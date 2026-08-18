@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>兒童醫學骨骼學習館</title>
+
+<style>
+*{
+  box-sizing:border-box;
+}
+
+body{
+  margin:0;
+  font-family:Arial,"Noto Sans TC",sans-serif;
+  background:#f4f9ff;
+  color:#243447;
+}
+
+/* 頂部 */
+header{
+  background:linear-gradient(135deg,#1976d2,#42a5f5);
+  color:white;
+  text-align:center;
+  padding:28px 15px 30px;
+}
+
+header h1{
+  margin:0;
+  font-size:30px;
+  font-weight:700;
+}
+
+header h1 span{
+  margin-right:8px;
+}
+
+header .english{
+  font-size:22px;
+  margin:22px 0 0;
+}
+
+header .subtitle{
+  font-size:18px;
+  margin:18px 0 0;
+}
+
+/* 主體 */
+.container{
+  max-width:900px;
+  margin:auto;
+  padding:28px 18px;
+}
+
+.card{
+  background:white;
+  border-radius:24px;
+  padding:26px 22px;
+  margin-bottom:24px;
+  box-shadow:0 5px 20px rgba(0,0,0,.08);
+}
+
+.section-title{
+  color:#1465c0;
+  font-size:26px;
+  font-weight:700;
+  margin:0 0 24px;
+}
+
+/* 206骨頭 */
+.total-box{
+  background:#e8f4ff;
+  border-radius:20px;
+  padding:22px;
+  text-align:center;
+  margin-bottom:22px;
+}
+
+.total-number{
+  font-size:48px;
+  font-weight:800;
+  color:#1565c0;
+}
+
+.total-text{
+  font-size:20px;
+  color:#3d5f7a;
+}
+
+/* 四大區域 */
+.bone-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:16px;
+}
+
+.bone-area{
+  border-radius:20px;
+  padding:20px 15px;
+  text-align:center;
+  min-height:180px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+}
+
+.area-head{
+  background:#e3f2fd;
+}
+
+.area-trunk{
+  background:#e8f5e9;
+}
+
+.area-upper{
+  background:#fff3e0;
+}
+
+.area-lower{
+  background:#f3e5f5;
+}
+
+.area-icon{
+  font-size:48px;
+  margin-bottom:8px;
+}
+
+.area-title{
+  font-size:25px;
+  font-weight:700;
+  color:#155db1;
+}
+
+.area-en{
+  font-size:17px;
+  color:#52738b;
+  margin-top:5px;
+}
+
+.area-number{
+  font-size:32px;
+  font-weight:800;
+  margin-top:12px;
+  color:#263b50;
+}
+
+.area-unit{
+  font-size:18px;
+  font-weight:400;
+}
+
+/* 詳細介紹 */
+.detail{
+  margin-top:18px;
+  border-radius:18px;
+  padding:18px;
+  background:#f7fbff;
+}
+
+.detail h3{
+  margin:0 0 10px;
+  color:#1465c0;
+  font-size:21px;
+}
+
+.detail p{
+  margin:6px 0;
+  font-size:17px;
+  line-height:1.7;
+}
+
+/* 小測驗 */
+.quiz-box{
+  background:#fff9e6;
+  border-radius:20px;
+  padding:20px;
+}
+
+.question{
+  font-size:20px;
+  font-weight:700;
+  margin-bottom:16px;
+}
+
+.answer-btn{
+  width:100%;
+  border:none;
+  background:#e3f2fd;
+  padding:15px;
+  border-radius:14px;
+  margin:7px 0;
+  font-size:17px;
+  cursor:pointer;
+}
+
+.answer-btn:active{
+  transform:scale(.98);
+}
+
+.correct{
+  background:#c8e6c9 !important;
+}
+
+.wrong{
+  background:#ffcdd2 !important;
+}
+
+#result{
+  margin-top:15px;
+  font-size:18px;
+  font-weight:700;
+  text-align:center;
+}
+
+/* 記憶口訣 */
+.memory{
+  background:#eef7ff;
+  border-left:6px solid #42a5f5;
+  border-radius:14px;
+  padding:18px;
+  font-size:18px;
+  line-height:1.8;
+}
+
+/* 手機 */
+@media(max-width:600px){
+
+  header h1{
+    font-size:26px;
+  }
+
+  header .english{
+    font-size:20px;
+  }
+
+  header .subtitle{
+    font-size:17px;
+  }
+
+  .container{
+    padding:22px 14px;
+  }
+
+  .card{
+    padding:22px 18px;
+  }
+
+  .section-title{
+    font-size:24px;
+  }
+
+  .bone-grid{
+    grid-template-columns:1fr;
+  }
+
+  .bone-area{
+    min-height:160px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+
+<h1>
+<span>🦴</span>
+兒童醫學骨骼學習館
+</h1>
+
+<div class="english">
+Human Skeleton Anatomy
+</div>
+
+<div class="subtitle">
+點一點、學骨頭、玩遊戲！
+</div>
+
+</header>
+
+
+<div class="container">
+
+
+<!-- 第一區 -->
+
+<div class="card">
+
+<h2 class="section-title">
+① 認識人體 206 根骨頭
+</h2>
+
+<div class="total-box">
+
+<div class="total-number">
+206
+</div>
+
+<div class="total-text">
+成人全身共有約 206 根骨頭
+</div>
+
+</div>
+
+
+<div class="bone-grid">
+
+<!-- 頭部 -->
+
+<div class="bone-area area-head">
+
+<div class="area-icon">
+💀
+</div>
+
+<div class="area-title">
+頭部
+</div>
+
+<div class="area-en">
+Head
+</div>
+
+<div class="area-number">
+29
+<span class="area-unit">
+根
+</span>
+</div>
+
+</div>
+
+
+<!-- 軀幹 -->
+
+<div class="bone-area area-trunk">
+
+<div class="area-icon">
+🩻
+</div>
+
+<div class="area-title">
+胸腹部・軀幹
+</div>
+
+<div class="area-en">
+Trunk
+</div>
+
+<div class="area-number">
+51
+<span class="area-unit">
+根
+</span>
+</div>
+
+</div>
+
+
+<!-- 上肢 -->
+
+<div class="bone-area area-upper">
+
+<div class="area-icon">
+💪
+</div>
+
+<div class="area-title">
+上肢
+</div>
+
+<div class="area-en">
+Upper Limbs
+</div>
+
+<div class="area-number">
+64
+<span class="area-unit">
+根
+</span>
+</div>
+
+</div>
+
+
+<!-- 下肢 -->
+
+<div class="bone-area area-lower">
+
+<div class="area-icon">
+🦵
+</div>
+
+<div class="area-title">
+下肢
+</div>
+
+<div class="area-en">
+Lower Limbs
+</div>
+
+<div class="area-number">
+62
+<span class="area-unit">
+根
+</span>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<!-- 第二區 -->
+
+<div class="card">
+
+<h2 class="section-title">
+② 每一區有哪些骨頭？
+</h2>
+
+
+<div class="detail">
+
+<h3>
+💀 頭部｜29 根
+</h3>
+
+<p>
+頭顱骨 22 根
+</p>
+
+<p>
+聽小骨 6 根
+</p>
+
+<p>
+舌骨 1 根
+</p>
+
+</div>
+
+
+<div class="detail">
+
+<h3>
+🩻 胸腹部・軀幹｜51 根
+</h3>
+
+<p>
+脊柱 26 根
+</p>
+
+<p>
+肋骨 24 根
+</p>
+
+<p>
+胸骨 1 根
+</p>
+
+</div>
+
+
+<div class="detail">
+
+<h3>
+💪 上肢｜64 根
+</h3>
+
+<p>
+肩帶 4 根
+</p>
+
+<p>
+上臂、前臂與手部 60 根
+</p>
+
+</div>
+
+
+<div class="detail">
+
+<h3>
+🦵 下肢｜62 根
+</h3>
+
+<p>
+骨盆帶 2 根
+</p>
+
+<p>
+大腿、小腿與足部 60 根
+</p>
+
+</div>
+
+
+</div>
+
+
+
+<!-- 第三區 -->
+
+<div class="card">
+
+<h2 class="section-title">
+③ 206 根怎麼加？
+</h2>
+
+<div class="memory">
+
+<strong>
+29 ＋ 51 ＋ 64 ＋ 62 ＝ 206
+</strong>
+
+<br>
+
+頭部 29 根
+
+<br>
+
+軀幹 51 根
+
+<br>
+
+上肢 64 根
+
+<br>
+
+下肢 62 根
+
+<br><br>
+
+🧠 記住：
+
+<strong>
+「頭 29、身 51、手 64、腳 62」
+</strong>
+
+</div>
+
+</div>
+
+
+
+<!-- 第四區 -->
+
+<div class="card">
+
+<h2 class="section-title">
+④ 骨骼小測驗
+</h2>
+
+<div class="quiz-box">
+
+<div class="question">
+人體成人共有幾根骨頭？
+</div>
+
+<button class="answer-btn"
+onclick="checkAnswer(this,false)">
+196 根
+</button>
+
+<button class="answer-btn"
+onclick="checkAnswer(this,true)">
+206 根
+</button>
+
+<button class="answer-btn"
+onclick="checkAnswer(this,false)">
+216 根
+</button>
+
+<div id="result"></div>
+
+</div>
+
+</div>
+
+
+</div>
+
+
+<script>
+
+function checkAnswer(button,isCorrect){
+
+const buttons =
+document.querySelectorAll(".answer-btn");
+
+buttons.forEach(btn=>{
+btn.classList.remove("correct","wrong");
+});
+
+if(isCorrect){
+
+button.classList.add("correct");
+
+document.getElementById("result").innerHTML =
+"🎉 答對了！成人人體約有 206 根骨頭！";
+
+}else{
+
+button.classList.add("wrong");
+
+document.getElementById("result").innerHTML =
+"再想想看～答案是 206 根喔！";
+
+}
+
+}
+
+</script>
+
+
+</body>
+</html>
