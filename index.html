@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>兒童醫學骨骼學習館</title>
+
+<style>
+*{
+  box-sizing:border-box;
+}
+
+body{
+  margin:0;
+  font-family:Arial,"Noto Sans TC",sans-serif;
+  background:#f3f8fd;
+  color:#263746;
+}
+
+header{
+  background:linear-gradient(135deg,#1976d2,#42a5f5);
+  color:white;
+  text-align:center;
+  padding:25px 15px;
+}
+
+header h1{
+  margin:0;
+  font-size:28px;
+}
+
+header p{
+  margin:8px 0 0;
+  font-size:15px;
+}
+
+.container{
+  max-width:900px;
+  margin:auto;
+  padding:18px;
+}
+
+.card{
+  background:white;
+  border-radius:18px;
+  padding:20px;
+  margin-bottom:20px;
+  box-shadow:0 4px 18px rgba(0,0,0,.08);
+}
+
+h2{
+  margin-top:0;
+  color:#1565c0;
+}
+
+.intro{
+  line-height:1.8;
+}
+
+/* 骨骼區 */
+
+.skeleton-area{
+  text-align:center;
+}
+
+.skeleton{
+  width:240px;
+  max-width:80%;
+  margin:15px auto;
+}
+
+.bone{
+  fill:#f7f7f2;
+  stroke:#455a64;
+  stroke-width:3;
+  cursor:pointer;
+  transition:.25s;
+}
+
+.bone:hover{
+  fill:#bbdefb;
+}
+
+.bone.active{
+  fill:#64b5f6;
+}
+
+/* 按鈕 */
+
+.buttons{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:12px;
+  margin-top:20px;
+}
+
+button{
+  border:none;
+  border-radius:12px;
+  padding:13px 10px;
+  font-size:16px;
+  background:#e3f2fd;
+  color:#1565c0;
+  cursor:pointer;
+  font-weight:bold;
+}
+
+button:hover{
+  background:#bbdefb;
+}
+
+/* 資訊 */
+
+.info{
+  margin-top:20px;
+  background:#f7fbff;
+  border-left:5px solid #42a5f5;
+  padding:16px;
+  border-radius:10px;
+  text-align:left;
+}
+
+.info h3{
+  margin-top:0;
+  color:#1565c0;
+}
+
+/* 小知識 */
+
+.fact{
+  background:#fff8e1;
+  padding:16px;
+  border-radius:12px;
+  line-height:1.7;
+}
+
+/* quiz */
+
+.quiz button{
+  width:100%;
+  margin:6px 0;
+  background:#f1f8e9;
+  color:#33691e;
+}
+
+#quizResult{
+  font-weight:bold;
+  margin-top:12px;
+}
+
+/* 手機 */
+
+@media(max-width:600px){
+
+  header h1{
+    font-size:24px;
+  }
+
+  .buttons{
+    grid-template-columns:1fr;
+  }
+
+  .skeleton{
+    width:210px;
+  }
+
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>🩺 兒童醫學骨骼學習館</h1>
+<p>點選骨骼，一起認識人體的骨頭！</p>
+</header>
+
+<div class="container">
+
+<div class="card intro">
+
+<h2>人體骨骼</h2>
+
+<p>
+人體的骨骼就像身體的「支架」，
+可以支撐身體、保護重要器官，
+也能和肌肉一起幫助我們活動。
+</p>
+
+<p>
+成年人大約有 <strong>206 塊骨頭</strong>。
+</p>
+
+</div>
+
+
+<div class="card skeleton-area">
+
+<h2>🔎 點點看骨骼</h2>
+
+<svg class="skeleton"
+viewBox="0 0 300 650"
+xmlns="http://www.w3.org/2000/svg">
+
+<!-- 頭骨 -->
+
+<ellipse
+id="skull"
+class="bone"
+cx="150"
+cy="65"
+rx="48"
+ry="55"
+onclick="showBone('skull')"
+/>
+
+<!-- 眼窩 -->
+
+<ellipse cx="132" cy="58" rx="10" ry="13"
+fill="white" stroke="#455a64" stroke-width="2"/>
+
+<ellipse cx="168" cy="58" rx="10" ry="13"
+fill="white" stroke="#455a64" stroke-width="2"/>
+
+<!-- 鼻子 -->
+
+<path d="M150 68 L143 85 L157 85 Z"
+fill="white"
+stroke="#455a64"
+stroke-width="2"/>
+
+<!-- 下顎 -->
+
+<path
+class="bone"
+d="M115 85 Q150 125 185 85 L180 112 Q150 138 120 112 Z"
+onclick="showBone('skull')"
+/>
+
+
+<!-- 脊椎 -->
+
+<rect
+id="spine"
+class="bone"
+x="142"
+y="145"
+width="16"
+height="200"
+rx="8"
+onclick="showBone('spine')"
+/>
+
+
+<!-- 肋骨 -->
+
+<g id="ribs"
+onclick="showBone('ribs')">
+
+<path class="bone"
+d="M145 155 Q85 155 90 205 Q95 245 145 255"
+fill="none"
+stroke-width="7"/>
+
+<path class="bone"
+d="M155 155 Q215 155 210 205 Q205 245 155 255"
+fill="none"
+stroke-width="7"/>
+
+<path class="bone"
+d="M145 175 Q100 175 105 215 Q110 240 145 245"
+fill="none"
+stroke-width="6"/>
+
+<path class="bone"
+d="M155 175 Q200 175 195 215 Q190 240 155 245"
+fill="none"
+stroke-width="6"/>
+
+</g>
+
+
+<!-- 左手 -->
+
+<line
+class="bone"
+x1="105"
+y1="170"
+x2="65"
+y2="310"
+stroke-width="14"
+onclick="showBone('arm')"
+/>
+
+<line
+class="bone"
+x1="65"
+y1="310"
+x2="48"
+y2="430"
+stroke-width="12"
+onclick="showBone('arm')"
+/>
+
+
+<!-- 右手 -->
+
+<line
+class="bone"
+x1="195"
+y1="170"
+x2="235"
+y2="310"
+stroke-width="14"
+onclick="showBone('arm')"
+/>
+
+<line
+class="bone"
+x1="235"
+y1="310"
+x2="252"
+y2="430"
+stroke-width="12"
+onclick="showBone('arm')"
+/>
+
+
+<!-- 骨盆 -->
+
+<path
+id="pelvis"
+class="bone"
+d="M105 335
+Q150 315 195 335
+L180 390
+Q150 410 120 390 Z"
+onclick="showBone('pelvis')"
+/>
+
+
+<!-- 左腿 -->
+
+<line
+class="bone"
+x1="130"
+y1="390"
+x2="110"
+y2="520"
+stroke-width="17"
+onclick="showBone('leg')"
+/>
+
+<line
+class="bone"
+x1="110"
+y1="520"
+x2="100"
+y2="620"
+stroke-width="14"
+onclick="showBone('leg')"
+/>
+
+
+<!-- 右腿 -->
+
+<line
+class="bone"
+x1="170"
+y1="390"
+x2="190"
+y2="520"
+stroke-width="17"
+onclick="showBone('leg')"
+/>
+
+<line
+class="bone"
+x1="190"
+y1="520"
+x2="200"
+y2="620"
+stroke-width="14"
+onclick="showBone('leg')"
+/>
+
+</svg>
+
+
+<div class="buttons">
+
+<button onclick="showBone('skull')">
+頭骨
+</button>
+
+<button onclick="showBone('ribs')">
+肋骨
+</button>
+
+<button onclick="showBone('spine')">
+脊椎
+</button>
+
+<button onclick="showBone('arm')">
+手臂骨
+</button>
+
+<button onclick="showBone('pelvis')">
+骨盆
+</button>
+
+<button onclick="showBone('leg')">
+腿骨
+</button>
+
+</div>
+
+
+<div class="info">
+
+<h3 id="boneTitle">
+點選一個骨骼
+</h3>
+
+<p id="boneText">
+看看它叫什麼名字，以及它的功能。
+</p>
+
+</div>
+
+</div>
+
+
+<div class="card">
+
+<h2>💡 骨骼小知識</h2>
+
+<div class="fact">
+
+👶 嬰兒出生時大約有
+<strong>270 塊骨頭</strong>。
+
+<br><br>
+
+長大的過程中，
+有些骨頭會慢慢融合在一起。
+
+<br><br>
+
+因此成年人通常約有
+<strong>206 塊骨頭</strong>。
+
+</div>
+
+</div>
+
+
+<div class="card quiz">
+
+<h2>🧠 骨骼小測驗</h2>
+
+<p>
+哪一個骨骼主要負責保護大腦？
+</p>
+
+<button onclick="quiz(false)">
+肋骨
+</button>
+
+<button onclick="quiz(true)">
+頭骨
+</button>
+
+<button onclick="quiz(false)">
+骨盆
+</button>
+
+<p id="quizResult"></p>
+
+</div>
+
+
+</div>
+
+
+<script>
+
+const bones={
+
+skull:{
+title:"頭骨 Skull",
+text:"頭骨位在頭部，主要功能是保護大腦，也形成臉部的基本結構。"
+},
+
+ribs:{
+title:"肋骨 Ribs",
+text:"肋骨圍繞胸腔，可以幫助保護心臟與肺臟。"
+},
+
+spine:{
+title:"脊椎 Spine",
+text:"脊椎由一節一節的椎骨組成，可以支撐身體，也保護脊髓。"
+},
+
+arm:{
+title:"手臂骨 Arm Bones",
+text:"上臂主要有肱骨，前臂則有橈骨與尺骨，幫助我們做各種手部動作。"
+},
+
+pelvis:{
+title:"骨盆 Pelvis",
+text:"骨盆可以支撐上半身，也能保護骨盆腔內的重要器官。"
+},
+
+leg:{
+title:"腿骨 Leg Bones",
+text:"大腿的股骨是人體最長、非常強壯的骨頭，負責支撐體重並幫助走路。"
+}
+
+};
+
+
+function showBone(name){
+
+document.getElementById("boneTitle").innerText
+=bones[name].title;
+
+document.getElementById("boneText").innerText
+=bones[name].text;
+
+}
+
+
+function quiz(correct){
+
+const result=
+document.getElementById("quizResult");
+
+if(correct){
+
+result.innerHTML=
+"🎉 答對了！頭骨可以保護我們的大腦。";
+
+result.style.color="green";
+
+}else{
+
+result.innerHTML=
+"再想想看 😊 提示：它就在大腦的外面！";
+
+result.style.color="#e65100";
+
+}
+
+}
+
+</script>
+
+</body>
+</html>
