@@ -1,0 +1,2025 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>兒童醫學骨骼學習館</title>
+
+<style>
+*{
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  margin:0;
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    "Noto Sans TC",
+    Arial,
+    sans-serif;
+  background:#f4f9ff;
+  color:#243447;
+}
+
+/* ===== 頂部 ===== */
+
+header{
+  background:linear-gradient(135deg,#1976d2,#42a5f5);
+  color:white;
+  text-align:center;
+  padding:30px 16px 32px;
+}
+
+header h1{
+  margin:0;
+  font-size:30px;
+}
+
+header .english{
+  margin-top:10px;
+  font-size:18px;
+  opacity:.95;
+}
+
+header .subtitle{
+  margin-top:12px;
+  font-size:16px;
+  line-height:1.7;
+}
+
+/* ===== 主容器 ===== */
+
+.container{
+  max-width:900px;
+  margin:auto;
+  padding:20px 16px 50px;
+}
+
+.card{
+  background:white;
+  border-radius:22px;
+  margin-bottom:22px;
+  box-shadow:0 6px 20px rgba(29,78,121,.08);
+  overflow:hidden;
+}
+
+/* ===== 標題 ===== */
+
+.section-title{
+  font-size:25px;
+  color:#1976d2;
+  font-weight:800;
+  margin:10px 2px 20px;
+}
+
+.section-title span{
+  display:block;
+  font-size:15px;
+  color:#78909c;
+  margin-top:5px;
+  font-weight:500;
+}
+
+/* ===== 206 ===== */
+
+.total-box{
+  background:#e5f2ff;
+  border-radius:22px;
+  padding:32px 15px;
+  text-align:center;
+  margin-bottom:25px;
+}
+
+.total-number{
+  font-size:68px;
+  font-weight:900;
+  color:#1769c2;
+  line-height:1;
+}
+
+.total-text{
+  margin-top:14px;
+  font-size:22px;
+  color:#42677e;
+}
+
+/* ===== 分區按鈕 ===== */
+
+.region{
+  margin-bottom:18px;
+  border-radius:22px;
+  overflow:hidden;
+  background:white;
+  box-shadow:0 5px 18px rgba(0,0,0,.07);
+}
+
+.region-button{
+  width:100%;
+  border:0;
+  padding:25px 22px;
+  text-align:left;
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  font-family:inherit;
+}
+
+.head-btn{
+  background:#e1f1ff;
+}
+
+.trunk-btn{
+  background:#e8f5e9;
+}
+
+.upper-btn{
+  background:#fff3dc;
+}
+
+.lower-btn{
+  background:#f3e9ff;
+}
+
+.region-info h2{
+  margin:0;
+  font-size:28px;
+  color:#1565c0;
+}
+
+.region-info .en{
+  display:block;
+  margin-top:5px;
+  font-size:18px;
+  color:#607d8b;
+}
+
+.region-count{
+  font-size:36px;
+  font-weight:900;
+  color:#263c4f;
+}
+
+.region-count small{
+  font-size:18px;
+  font-weight:500;
+}
+
+.arrow{
+  font-size:25px;
+  color:#607d8b;
+  margin-left:12px;
+  transition:.25s;
+}
+
+.region.open .arrow{
+  transform:rotate(180deg);
+}
+
+/* ===== 展開內容 ===== */
+
+.region-content{
+  display:none;
+  padding:24px 18px 28px;
+  border-top:1px solid #edf2f5;
+}
+
+.region.open .region-content{
+  display:block;
+}
+
+.learn-title{
+  text-align:center;
+  font-size:23px;
+  color:#1565c0;
+  margin:0 0 5px;
+}
+
+.learn-sub{
+  text-align:center;
+  color:#78909c;
+  margin-bottom:22px;
+}
+
+/* ===== 視角切換 ===== */
+
+.view-switch{
+  display:flex;
+  justify-content:center;
+  gap:10px;
+  margin-bottom:20px;
+}
+
+.view-btn{
+  border:2px solid #90caf9;
+  background:white;
+  color:#1976d2;
+  padding:9px 17px;
+  border-radius:30px;
+  font-size:15px;
+  font-weight:700;
+  cursor:pointer;
+}
+
+.view-btn.active{
+  color:white;
+  background:#1976d2;
+}
+
+/* ===== 解剖圖 ===== */
+
+.anatomy-box{
+  background:linear-gradient(#f7fbff,#eef7ff);
+  border:1px solid #d6e9f7;
+  border-radius:20px;
+  padding:16px;
+  margin-bottom:22px;
+  text-align:center;
+  position:relative;
+}
+
+.anatomy-box svg{
+  width:100%;
+  max-width:470px;
+  height:auto;
+}
+
+/* ===== 頭骨 SVG ===== */
+
+.bone-shape{
+  stroke:#617c8c;
+  stroke-width:2;
+  transition:.2s;
+  cursor:pointer;
+}
+
+.bone-shape:hover{
+  filter:brightness(.94);
+  stroke:#1976d2;
+  stroke-width:3;
+}
+
+.bone-shape.selected{
+  stroke:#0d47a1;
+  stroke-width:5;
+  filter:drop-shadow(0 0 5px rgba(25,118,210,.35));
+}
+
+.skull-outline{
+  fill:#fbfaf3;
+  stroke:#718895;
+  stroke-width:3;
+}
+
+.bone-frontal{
+  fill:#bde3ff;
+}
+
+.bone-parietal{
+  fill:#d5edbb;
+}
+
+.bone-temporal{
+  fill:#ffd9a8;
+}
+
+.bone-zygomatic{
+  fill:#ffc6d6;
+}
+
+.bone-maxilla{
+  fill:#ffe9a9;
+}
+
+.bone-mandible{
+  fill:#d7c7ff;
+}
+
+.bone-nasal{
+  fill:#bcebe4;
+}
+
+.eye{
+  fill:#21333e;
+}
+
+.nose-hole{
+  fill:#354952;
+}
+
+.tooth{
+  fill:#fff;
+  stroke:#87969d;
+  stroke-width:1;
+}
+
+/* ===== 一般人體骨骼線稿 ===== */
+
+.skeleton-stroke{
+  fill:none;
+  stroke:#edf1e8;
+  stroke-width:12;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+}
+
+.skeleton-thin{
+  fill:none;
+  stroke:#738995;
+  stroke-width:2.5;
+  stroke-linecap:round;
+}
+
+.highlight-part{
+  stroke:#42a5f5;
+  stroke-width:13;
+}
+
+/* ===== 骨頭按鈕 ===== */
+
+.bone-list{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:11px;
+  margin-top:18px;
+}
+
+.bone-btn{
+  border:1px solid #cbddea;
+  background:white;
+  border-radius:15px;
+  padding:12px 8px;
+  font-family:inherit;
+  cursor:pointer;
+  color:#344e5f;
+}
+
+.bone-btn strong{
+  display:block;
+  color:#1565c0;
+  font-size:16px;
+  margin-bottom:3px;
+}
+
+.bone-btn span{
+  font-size:13px;
+  color:#78909c;
+}
+
+.bone-btn.active{
+  background:#e4f2ff;
+  border:2px solid #42a5f5;
+}
+
+/* ===== 學習資訊 ===== */
+
+.info-panel{
+  margin-top:20px;
+  background:#fff;
+  border:2px solid #d8ebf8;
+  border-radius:18px;
+  padding:20px;
+  min-height:150px;
+}
+
+.info-cn{
+  font-size:27px;
+  font-weight:900;
+  color:#1565c0;
+}
+
+.info-en{
+  font-size:22px;
+  margin-top:5px;
+  color:#37474f;
+  font-weight:700;
+}
+
+.speak{
+  display:inline-flex;
+  align-items:center;
+  gap:5px;
+  margin-top:12px;
+  border:0;
+  background:#1976d2;
+  color:white;
+  border-radius:30px;
+  padding:9px 16px;
+  cursor:pointer;
+  font-size:15px;
+}
+
+.info-desc{
+  margin-top:14px;
+  color:#526c7b;
+  line-height:1.75;
+  font-size:15px;
+}
+
+.tip{
+  background:#fff8db;
+  border-radius:13px;
+  padding:11px 13px;
+  margin-top:12px;
+  font-size:14px;
+  color:#705f28;
+}
+
+/* ===== 小測驗 ===== */
+
+.quiz{
+  background:white;
+  border-radius:22px;
+  padding:24px 18px;
+  box-shadow:0 5px 18px rgba(0,0,0,.07);
+  margin-top:28px;
+}
+
+.quiz h2{
+  text-align:center;
+  color:#1565c0;
+}
+
+.quiz-question{
+  background:#eef7ff;
+  border-radius:18px;
+  padding:20px;
+  text-align:center;
+  font-size:20px;
+  font-weight:700;
+}
+
+.quiz-options{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+  margin-top:18px;
+}
+
+.quiz-options button{
+  background:white;
+  border:2px solid #bbdefb;
+  border-radius:16px;
+  padding:15px;
+  font-size:16px;
+  cursor:pointer;
+  font-family:inherit;
+}
+
+.quiz-result{
+  text-align:center;
+  margin-top:15px;
+  font-size:18px;
+  font-weight:800;
+  min-height:30px;
+}
+
+/* ===== 手機 ===== */
+
+@media(max-width:600px){
+
+  header h1{
+    font-size:26px;
+  }
+
+  .section-title{
+    font-size:23px;
+  }
+
+  .total-number{
+    font-size:64px;
+  }
+
+  .total-text{
+    font-size:19px;
+  }
+
+  .region-info h2{
+    font-size:24px;
+  }
+
+  .region-count{
+    font-size:31px;
+  }
+
+  .bone-list{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .quiz-options{
+    grid-template-columns:1fr;
+  }
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>🩺 兒童醫學骨骼學習館</h1>
+  <div class="english">Children's Human Skeleton Learning Museum</div>
+  <div class="subtitle">
+    看骨骼・點骨頭・學英文・聽發音
+  </div>
+</header>
+
+
+<main class="container">
+
+  <div class="section-title">
+    ① 認識人體 206 根骨頭
+    <span>Human Skeleton — 206 Bones</span>
+  </div>
+
+  <div class="total-box">
+    <div class="total-number">206</div>
+    <div class="total-text">成人全身共有約 206 根骨頭</div>
+  </div>
+
+
+  <!-- ==================== 頭部 ==================== -->
+
+  <section class="region" id="head">
+
+    <button class="region-button head-btn"
+            onclick="toggleRegion('head')">
+
+      <div class="region-info">
+        <h2>頭部</h2>
+        <span class="en">Head</span>
+      </div>
+
+      <div style="display:flex;align-items:center">
+        <div class="region-count">
+          29 <small>根</small>
+        </div>
+        <div class="arrow">⌄</div>
+      </div>
+
+    </button>
+
+
+    <div class="region-content">
+
+      <h3 class="learn-title">頭骨 Skull</h3>
+      <div class="learn-sub">
+        點選圖上的骨頭，看看它的中文與英文名稱
+      </div>
+
+
+      <div class="view-switch">
+
+        <button
+          class="view-btn active"
+          id="frontBtn"
+          onclick="switchSkull('front')">
+
+          正面 Front View
+
+        </button>
+
+        <button
+          class="view-btn"
+          id="sideBtn"
+          onclick="switchSkull('side')">
+
+          側面 Side View
+
+        </button>
+
+      </div>
+
+
+      <div class="anatomy-box">
+
+
+        <!-- ===== 頭骨正面 ===== -->
+
+        <svg id="skullFront"
+             viewBox="0 0 400 500"
+             aria-label="頭骨正面解剖圖">
+
+          <!-- 顱骨外型 -->
+          <path class="skull-outline"
+                d="
+                M200 34
+                C117 34 72 88 76 166
+                C78 211 88 245 105 269
+                C116 287 122 300 124 324
+                L130 386
+                C133 428 159 458 200 465
+                C241 458 267 428 270 386
+                L276 324
+                C278 300 284 287 295 269
+                C312 245 322 211 324 166
+                C328 88 283 34 200 34Z"/>
+
+          <!-- 額骨 -->
+          <path id="frontal-front"
+                class="bone-shape bone-frontal"
+                onclick="selectBone('frontal','frontal-front')"
+                d="
+                M97 171
+                C91 99 130 57 200 56
+                C270 57 309 99 303 171
+                C270 147 238 137 200 138
+                C162 137 130 147 97 171Z"/>
+
+          <!-- 左顴骨 -->
+          <path id="zygomatic-front"
+                class="bone-shape bone-zygomatic"
+                onclick="selectBone('zygomatic','zygomatic-front')"
+                d="
+                M108 240
+                C87 257 88 291 111 308
+                L153 288
+                L143 249Z"/>
+
+          <!-- 右顴骨 -->
+          <path
+                class="bone-shape bone-zygomatic"
+                onclick="selectBone('zygomatic',this)"
+                d="
+                M292 240
+                C313 257 312 291 289 308
+                L247 288
+                L257 249Z"/>
+
+          <!-- 鼻骨 -->
+          <path id="nasal-front"
+                class="bone-shape bone-nasal"
+                onclick="selectBone('nasal','nasal-front')"
+                d="
+                M184 171
+                L216 171
+                L221 233
+                L200 251
+                L179 233Z"/>
+
+          <!-- 上顎骨 -->
+          <path id="maxilla-front"
+                class="bone-shape bone-maxilla"
+                onclick="selectBone('maxilla','maxilla-front')"
+                d="
+                M145 288
+                C163 272 182 265 200 265
+                C218 265 237 272 255 288
+                L250 354
+                C220 341 180 341 150 354Z"/>
+
+          <!-- 下顎骨 -->
+          <path id="mandible-front"
+                class="bone-shape bone-mandible"
+                onclick="selectBone('mandible','mandible-front')"
+                d="
+                M129 327
+                L149 354
+                L154 395
+                C158 428 175 447 200 452
+                C225 447 242 428 246 395
+                L251 354
+                L271 327
+                L266 401
+                C262 444 237 472 200 478
+                C163 472 138 444 134 401Z"/>
+
+          <!-- 眼窩 -->
+          <ellipse class="eye"
+                   cx="145" cy="211"
+                   rx="38" ry="33"/>
+
+          <ellipse class="eye"
+                   cx="255" cy="211"
+                   rx="38" ry="33"/>
+
+          <!-- 鼻腔 -->
+          <path class="nose-hole"
+                d="M200 246 L177 288 Q200 302 223 288Z"/>
+
+          <!-- 牙齒 -->
+          <g>
+            <rect class="tooth" x="160" y="338" width="16" height="25" rx="4"/>
+            <rect class="tooth" x="177" y="336" width="15" height="27" rx="4"/>
+            <rect class="tooth" x="193" y="335" width="14" height="28" rx="4"/>
+            <rect class="tooth" x="208" y="336" width="15" height="27" rx="4"/>
+            <rect class="tooth" x="224" y="338" width="16" height="25" rx="4"/>
+          </g>
+
+          <!-- 骨縫 -->
+          <path d="M200 58 C193 93 207 116 200 138"
+                class="skeleton-thin"/>
+
+          <path d="M99 170 C137 164 159 154 200 155
+                         C241 154 263 164 301 170"
+                class="skeleton-thin"/>
+
+        </svg>
+
+
+        <!-- ===== 頭骨側面 ===== -->
+
+        <svg id="skullSide"
+             viewBox="0 0 450 500"
+             style="display:none"
+             aria-label="頭骨側面解剖圖">
+
+          <path class="skull-outline"
+                d="
+                M209 40
+                C118 40 71 97 77 181
+                C82 239 112 279 158 297
+                L163 337
+                L142 365
+                L155 422
+                C182 451 231 459 272 437
+                L316 398
+                L318 335
+                L351 300
+                C371 279 363 251 334 240
+                L302 227
+                C321 178 307 108 259 67
+                C247 56 229 46 209 40Z"/>
+
+          <!-- 額骨 -->
+          <path id="frontal-side"
+                class="bone-shape bone-frontal"
+                onclick="selectBone('frontal','frontal-side')"
+                d="
+                M87 181
+                C78 112 116 62 187 51
+                C214 47 239 54 258 68
+                C226 96 212 135 216 186
+                Z"/>
+
+          <!-- 頂骨 -->
+          <path id="parietal-side"
+                class="bone-shape bone-parietal"
+                onclick="selectBone('parietal','parietal-side')"
+                d="
+                M258 69
+                C300 101 316 159 298 223
+                L218 236
+                C211 202 212 154 217 127
+                C223 101 237 81 258 69Z"/>
+
+          <!-- 顳骨 -->
+          <path id="temporal-side"
+                class="bone-shape bone-temporal"
+                onclick="selectBone('temporal','temporal-side')"
+                d="
+                M217 237
+                L299 224
+                L325 250
+                L289 305
+                L218 302Z"/>
+
+          <!-- 顴骨 -->
+          <path id="zygomatic-side"
+                class="bone-shape bone-zygomatic"
+                onclick="selectBone('zygomatic','zygomatic-side')"
+                d="
+                M292 243
+                L341 258
+                L356 287
+                L322 313
+                L278 294Z"/>
+
+          <!-- 上顎骨 -->
+          <path id="maxilla-side"
+                class="bone-shape bone-maxilla"
+                onclick="selectBone('maxilla','maxilla-side')"
+                d="
+                M275 296
+                L324 315
+                L321 355
+                L276 368
+                L238 340Z"/>
+
+          <!-- 下顎骨 -->
+          <path id="mandible-side"
+                class="bone-shape bone-mandible"
+                onclick="selectBone('mandible','mandible-side')"
+                d="
+                M163 320
+                L193 345
+                L245 349
+                L282 370
+                L319 360
+                L316 398
+                L272 437
+                C229 459 184 449 157 421
+                L145 367Z"/>
+
+          <!-- 眼窩 -->
+          <ellipse class="eye"
+                   cx="276"
+                   cy="211"
+                   rx="38"
+                   ry="36"/>
+
+          <!-- 鼻腔 -->
+          <path class="nose-hole"
+                d="M323 240
+                   Q370 248 365 279
+                   Q352 299 328 299
+                   L306 276Z"/>
+
+          <!-- 外耳道 -->
+          <circle cx="248"
+                  cy="273"
+                  r="13"
+                  fill="#293c46"/>
+
+          <!-- 牙齒 -->
+          <g>
+            <rect class="tooth" x="273" y="348" width="16" height="25" rx="4"/>
+            <rect class="tooth" x="290" y="346" width="15" height="25" rx="4"/>
+            <rect class="tooth" x="306" y="344" width="14" height="24" rx="4"/>
+          </g>
+
+        </svg>
+
+      </div>
+
+
+      <div class="bone-list">
+
+        <button class="bone-btn"
+                onclick="selectBone('frontal')">
+          <strong>Frontal bone</strong>
+          <span>額骨</span>
+        </button>
+
+        <button class="bone-btn"
+                onclick="selectBone('parietal')">
+          <strong>Parietal bone</strong>
+          <span>頂骨</span>
+        </button>
+
+        <button class="bone-btn"
+                onclick="selectBone('temporal')">
+          <strong>Temporal bone</strong>
+          <span>顳骨</span>
+        </button>
+
+        <button class="bone-btn"
+                onclick="selectBone('zygomatic')">
+          <strong>Zygomatic bone</strong>
+          <span>顴骨</span>
+        </button>
+
+        <button class="bone-btn"
+                onclick="selectBone('nasal')">
+          <strong>Nasal bone</strong>
+          <span>鼻骨</span>
+        </button>
+
+        <button class="bone-btn"
+                onclick="selectBone('maxilla')">
+          <strong>Maxilla</strong>
+          <span>上顎骨</span>
+        </button>
+
+        <button class="bone-btn"
+                onclick="selectBone('mandible')">
+          <strong>Mandible</strong>
+          <span>下顎骨</span>
+        </button>
+
+        <button class="bone-btn"
+                onclick="selectBone('occipital')">
+          <strong>Occipital bone</strong>
+          <span>枕骨</span>
+        </button>
+
+      </div>
+
+
+      <div class="info-panel" id="headInfo">
+
+        <div class="info-cn">點一個骨頭開始學習</div>
+
+        <div class="info-en">
+          Tap a bone to start learning.
+        </div>
+
+        <div class="info-desc">
+          可以直接點頭骨圖上的彩色區域，
+          或點下方的骨頭名稱。
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ==================== 軀幹 ==================== -->
+
+  <section class="region" id="trunk">
+
+    <button class="region-button trunk-btn"
+            onclick="toggleRegion('trunk')">
+
+      <div class="region-info">
+        <h2>胸腹部・軀幹</h2>
+        <span class="en">Trunk</span>
+      </div>
+
+      <div style="display:flex;align-items:center">
+        <div class="region-count">
+          51 <small>根</small>
+        </div>
+        <div class="arrow">⌄</div>
+      </div>
+
+    </button>
+
+
+    <div class="region-content">
+
+      <h3 class="learn-title">
+        軀幹骨骼 Trunk Skeleton
+      </h3>
+
+      <div class="learn-sub">
+        胸骨、肋骨與脊椎保護身體重要器官
+      </div>
+
+
+      <div class="anatomy-box">
+
+        <svg viewBox="0 0 400 520">
+
+          <!-- 脊柱 -->
+          <path
+            d="M200 70 L200 410"
+            stroke="#c8b4ff"
+            stroke-width="22"
+            stroke-linecap="round"/>
+
+          <!-- 胸骨 -->
+          <path
+            d="M200 132 L200 292"
+            stroke="#ffd477"
+            stroke-width="18"
+            stroke-linecap="round"/>
+
+          <!-- 肋骨 -->
+          <g fill="none"
+             stroke="#dce8eb"
+             stroke-width="8">
+
+            <path d="M194 145 Q122 120 97 165 Q117 205 190 189"/>
+            <path d="M206 145 Q278 120 303 165 Q283 205 210 189"/>
+
+            <path d="M194 172 Q113 151 91 197 Q115 237 190 218"/>
+            <path d="M206 172 Q287 151 309 197 Q285 237 210 218"/>
+
+            <path d="M194 202 Q111 183 96 230 Q120 265 190 247"/>
+            <path d="M206 202 Q289 183 304 230 Q280 265 210 247"/>
+
+            <path d="M194 232 Q120 218 108 261 Q130 292 190 273"/>
+            <path d="M206 232 Q280 218 292 261 Q270 292 210 273"/>
+
+            <path d="M194 262 Q133 251 123 289 Q141 314 190 296"/>
+            <path d="M206 262 Q267 251 277 289 Q259 314 210 296"/>
+
+          </g>
+
+          <!-- 骨盆 -->
+          <path
+            d="
+            M199 393
+            Q158 362 126 387
+            Q122 437 165 462
+            Q185 470 199 449
+            Q213 470 235 462
+            Q278 437 274 387
+            Q242 362 201 393Z"
+            fill="#c6e7d0"
+            stroke="#6f8793"
+            stroke-width="3"/>
+
+        </svg>
+
+      </div>
+
+
+      <div class="bone-list">
+
+        <button class="bone-btn"
+                onclick="showGeneric('sternum')">
+          <strong>Sternum</strong>
+          <span>胸骨</span>
+        </button>
+
+        <button class="bone-btn"
+                onclick="showGeneric('rib')">
+          <strong>Ribs</strong>
+          <span>肋骨</span>
+        </button>
+
+        <button class="bone-btn"
+                onclick="showGeneric('cervical')">
+          <strong>Cervical vertebrae</strong>
+          <span>頸椎</span>
+        </button>
+
+        <button class="bone-btn"
+                onclick="showGeneric('thoracic')">
+          <strong>Thoracic vertebrae</strong>
+          <span>胸椎</span>
+        </button>
+
+        <button class="bone-btn"
+                onclick="showGeneric('lumbar')">
+          <strong>Lumbar vertebrae</strong>
+          <span>腰椎</span>
+        </button>
+
+        <button class="bone-btn"
+                onclick="showGeneric('sacrum')">
+          <strong>Sacrum</strong>
+          <span>薦骨</span>
+        </button>
+
+      </div>
+
+      <div class="info-panel"
+           id="genericInfo">
+
+        <div class="info-cn">
+          點骨頭名稱開始學習
+        </div>
+
+        <div class="info-en">
+          Choose a bone.
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ==================== 上肢 ==================== -->
+
+  <section class="region" id="upper">
+
+    <button class="region-button upper-btn"
+            onclick="toggleRegion('upper')">
+
+      <div class="region-info">
+        <h2>上肢</h2>
+        <span class="en">Upper Limbs</span>
+      </div>
+
+      <div style="display:flex;align-items:center">
+
+        <div class="region-count">
+          64 <small>根</small>
+        </div>
+
+        <div class="arrow">⌄</div>
+
+      </div>
+
+    </button>
+
+
+    <div class="region-content">
+
+      <h3 class="learn-title">
+        上肢骨骼 Upper Limb
+      </h3>
+
+      <div class="learn-sub">
+        從肩膀一路學到手指
+      </div>
+
+
+      <div class="anatomy-box">
+
+        <svg viewBox="0 0 400 600">
+
+          <!-- 鎖骨 -->
+          <path d="M130 75 Q200 50 270 75"
+                stroke="#9ed8ff"
+                stroke-width="15"
+                fill="none"
+                stroke-linecap="round"/>
+
+          <!-- 肱骨 -->
+          <path d="M145 100 L120 285"
+                stroke="#ffe2a2"
+                stroke-width="20"
+                stroke-linecap="round"/>
+
+          <path d="M255 100 L280 285"
+                stroke="#ffe2a2"
+                stroke-width="20"
+                stroke-linecap="round"/>
+
+          <!-- 橈骨尺骨 -->
+          <path d="M118 295 L92 450"
+                stroke="#d7c5ff"
+                stroke-width="13"
+                stroke-linecap="round"/>
+
+          <path d="M128 295 L137 451"
+                stroke="#c6e8d1"
+                stroke-width="13"
+                stroke-linecap="round"/>
+
+          <path d="M282 295 L308 450"
+                stroke="#d7c5ff"
+                stroke-width="13"
+                stroke-linecap="round"/>
+
+          <path d="M272 295 L263 451"
+                stroke="#c6e8d1"
+                stroke-width="13"
+                stroke-linecap="round"/>
+
+          <!-- 手 -->
+          <circle cx="110"
+                  cy="470"
+                  r="28"
+                  fill="#ffd0dd"/>
+
+          <circle cx="290"
+                  cy="470"
+                  r="28"
+                  fill="#ffd0dd"/>
+
+          <!-- 手指 -->
+          <g stroke="#ffd0dd"
+             stroke-width="9"
+             stroke-linecap="round">
+
+            <path d="M89 485 L72 535"/>
+            <path d="M101 490 L95 548"/>
+            <path d="M113 491 L116 552"/>
+            <path d="M124 486 L137 540"/>
+
+            <path d="M311 485 L328 535"/>
+            <path d="M299 490 L305 548"/>
+            <path d="M287 491 L284 552"/>
+            <path d="M276 486 L263 540"/>
+
+          </g>
+
+        </svg>
+
+      </div>
+
+
+      <div class="bone-list">
+
+        <button class="bone-btn"
+                onclick="showGeneric('clavicle')">
+          <strong>Clavicle</strong>
+          <span>鎖骨</span>
+        </button>
+
+        <button class="bone-btn"
+                onclick="showGeneric('scapula')">
+          <strong>Scapula</strong>
+          <span>肩胛骨</span>
+        </button>
+
+        <button class="bone-btn"
+                onclick="showGeneric('humerus')">
+          <strong>Humerus</strong>
+          <span>肱骨</span>
+        </button>
+
+        <button class="bone-btn"
+                onclick="showGeneric('radius')">
+          <strong>Radius</strong>
+          <span>橈骨</span>
+        </button>
+
+        <button class="bone-btn"
+                onclick="showGeneric('ulna')">
+          <strong>Ulna</strong>
+          <span>尺骨</span>
+        </button>
+
+        <button class="bone-btn"
+                onclick="showGeneric('carpals')">
+          <strong>Carpals</strong>
+          <span>腕骨</span>
+        </button>
+
+        <button class="bone-btn"
+                onclick="showGeneric('metacarpals')">
+          <strong>Metacarpals</strong>
+          <span>掌骨</span>
+        </button>
+
+        <button class="bone-btn"
+                onclick="showGeneric('phalangesHand')">
+          <strong>Phalanges</strong>
+          <span>指骨</span>
+        </button>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ==================== 下肢 ==================== -->
+
+  <section class="region" id="lower">
+
+    <button class="region-button lower-btn"
+            onclick="toggleRegion('lower')">
+
+      <div class="region-info">
+        <h2>下肢</h2>
+        <span class="en">Lower Limbs</span>
+      </div>
+
+      <div style="display:flex;align-items:center">
+
+        <div class="region-count">
+          62 <small>根</small>
+        </div>
+
+        <div class="arrow">⌄</div>
+
+      </div>
+
+    </button>
+
+
+    <div class="region-content">
+
+      <h3 class="learn-title">
+        下肢骨骼 Lower Limb
+      </h3>
+
+      <div class="learn-sub">
+        從骨盆、大腿，一路認識到腳趾
+      </div>
+
+
+      <div class="anatomy-box">
+
+        <svg viewBox="0 0 400 650">
+
+          <!-- 骨盆 -->
+          <path
+            d="
+            M200 70
+            Q150 40 113 81
+            Q110 138 160 159
+            Q181 169 200 141
+            Q219 169 240 159
+            Q290 138 287 81
+            Q250 40 200 70Z"
+            fill="#bae7d2"
+            stroke="#718895"
+            stroke-width="3"/>
+
+          <!-- 股骨 -->
+          <path d="M162 150 L145 340"
+                stroke="#ffe1a3"
+                stroke-width="24"
+                stroke-linecap="round"/>
+
+          <path d="M238 150 L255 340"
+                stroke="#ffe1a3"
+                stroke-width="24"
+                stroke-linecap="round"/>
+
+          <!-- 髕骨 -->
+          <circle cx="145"
+                  cy="355"
+                  r="16"
+                  fill="#ffd0de"/>
+
+          <circle cx="255"
+                  cy="355"
+                  r="16"
+                  fill="#ffd0de"/>
+
+          <!-- 脛骨 -->
+          <path d="M145 373 L130 555"
+                stroke="#c8b6ff"
+                stroke-width="20"
+                stroke-linecap="round"/>
+
+          <path d="M255 373 L270 555"
+                stroke="#c8b6ff"
+                stroke-width="20"
+                stroke-linecap="round"/>
+
+          <!-- 腓骨 -->
+          <path d="M166 375 L157 550"
+                stroke="#addff6"
+                stroke-width="10"
+                stroke-linecap="round"/>
+
+          <path d="M234 375 L243 550"
+                stroke="#addff6"
+                stroke-width="10"
+                stroke-linecap="round"/>
+
+          <!-- 足部 -->
+          <path d="M130 555 Q93 570 74 600 Q115 615 158 595"
+                fill="#ffdcb8"
+                stroke="#718895"
+                stroke-width="3"/>
+
+          <path d="M270 555 Q307 570 326 600 Q285 615 242 595"
+                fill="#ffdcb8"
+                stroke="#718895"
+                stroke-width="3"/>
+
+        </svg>
+
+      </div>
+
+
+      <div class="bone-list">
+
+        <button class="bone-btn"
+                onclick="showGeneric('hip')">
+          <strong>Hip bone</strong>
+          <span>髖骨</span>
+        </button>
+
+        <button class="bone-btn"
+                onclick="showGeneric('femur')">
+          <strong>Femur</strong>
+          <span>股骨</span>
+        </button>
+
+        <button class="bone-btn"
+                onclick="showGeneric('patella')">
+          <strong>Patella</strong>
+          <span>髕骨</span>
+        </button>
+
+        <button class="bone-btn"
+                onclick="showGeneric('tibia')">
+          <strong>Tibia</strong>
+          <span>脛骨</span>
+        </button>
+
+        <button class="bone-btn"
+                onclick="showGeneric('fibula')">
+          <strong>Fibula</strong>
+          <span>腓骨</span>
+        </button>
+
+        <button class="bone-btn"
+                onclick="showGeneric('tarsals')">
+          <strong>Tarsals</strong>
+          <span>跗骨</span>
+        </button>
+
+        <button class="bone-btn"
+                onclick="showGeneric('metatarsals')">
+          <strong>Metatarsals</strong>
+          <span>蹠骨</span>
+        </button>
+
+        <button class="bone-btn"
+                onclick="showGeneric('phalangesFoot')">
+          <strong>Phalanges</strong>
+          <span>趾骨</span>
+        </button>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ==================== QUIZ ==================== -->
+
+  <section class="quiz">
+
+    <h2>② 骨頭英文小測驗</h2>
+
+    <div class="quiz-question" id="quizQuestion">
+      「股骨」的英文是什麼？
+    </div>
+
+    <div class="quiz-options" id="quizOptions"></div>
+
+    <div class="quiz-result" id="quizResult"></div>
+
+  </section>
+
+</main>
+
+
+<script>
+
+/* ========================
+   展開 / 收合
+======================== */
+
+function toggleRegion(id){
+
+  const region =
+    document.getElementById(id);
+
+  region.classList.toggle("open");
+
+}
+
+
+/* ========================
+   頭骨視角
+======================== */
+
+function switchSkull(view){
+
+  const front =
+    document.getElementById("skullFront");
+
+  const side =
+    document.getElementById("skullSide");
+
+  const frontBtn =
+    document.getElementById("frontBtn");
+
+  const sideBtn =
+    document.getElementById("sideBtn");
+
+  if(view === "front"){
+
+    front.style.display = "block";
+    side.style.display = "none";
+
+    frontBtn.classList.add("active");
+    sideBtn.classList.remove("active");
+
+  }else{
+
+    front.style.display = "none";
+    side.style.display = "block";
+
+    sideBtn.classList.add("active");
+    frontBtn.classList.remove("active");
+
+  }
+
+}
+
+
+/* ========================
+   骨頭資料
+======================== */
+
+const bones = {
+
+  frontal:{
+    cn:"額骨",
+    en:"Frontal bone",
+    desc:"位在額頭與眼窩上方，是構成顱骨前方的重要骨頭。",
+    tip:"記憶：Frontal 就像 front，位在頭部的前面。"
+  },
+
+  parietal:{
+    cn:"頂骨",
+    en:"Parietal bone",
+    desc:"位於頭頂與顱骨兩側，左右各有一塊。",
+    tip:"頂骨保護大腦上方。"
+  },
+
+  temporal:{
+    cn:"顳骨",
+    en:"Temporal bone",
+    desc:"位在頭部側面、耳朵附近，是顱骨重要的一部分。",
+    tip:"摸摸耳朵附近，就接近 Temporal bone 的位置。"
+  },
+
+  zygomatic:{
+    cn:"顴骨",
+    en:"Zygomatic bone",
+    desc:"位在臉頰兩側，形成我們常說的顴骨。",
+    tip:"Zygomatic bone 就是 cheekbone。"
+  },
+
+  nasal:{
+    cn:"鼻骨",
+    en:"Nasal bone",
+    desc:"位在鼻子的上方，形成鼻樑的一部分。",
+    tip:"Nasal 和 nose 都與鼻子有關。"
+  },
+
+  maxilla:{
+    cn:"上顎骨",
+    en:"Maxilla",
+    desc:"形成上顎、部分眼窩與鼻腔，也是上排牙齒所在的位置。",
+    tip:"Maxilla 是上顎；Mandible 是下顎。"
+  },
+
+  mandible:{
+    cn:"下顎骨",
+    en:"Mandible",
+    desc:"位於臉部下方，是頭骨中可以明顯活動的骨頭。",
+    tip:"張嘴、咬東西時，下顎骨就會移動。"
+  },
+
+  occipital:{
+    cn:"枕骨",
+    en:"Occipital bone",
+    desc:"位於頭顱後方與底部，保護大腦後方。",
+    tip:"Occipital bone 位在後腦勺附近。"
+  },
+
+  sternum:{
+    cn:"胸骨",
+    en:"Sternum",
+    desc:"位在胸部正中央，許多肋骨會透過軟骨與胸骨相連。",
+    tip:"Sternum 是胸口中央的骨頭。"
+  },
+
+  rib:{
+    cn:"肋骨",
+    en:"Ribs",
+    desc:"成人通常有 12 對肋骨，共 24 根，協助保護心臟和肺。",
+    tip:"Rib 是一根肋骨；Ribs 是複數。"
+  },
+
+  cervical:{
+    cn:"頸椎",
+    en:"Cervical vertebrae",
+    desc:"頸部共有 7 節頸椎，支撐頭部並讓脖子活動。",
+    tip:"Cervical vertebrae = 頸椎。"
+  },
+
+  thoracic:{
+    cn:"胸椎",
+    en:"Thoracic vertebrae",
+    desc:"胸椎共有 12 節，與胸廓和肋骨關係密切。",
+    tip:"Thoracic 表示胸部。"
+  },
+
+  lumbar:{
+    cn:"腰椎",
+    en:"Lumbar vertebrae",
+    desc:"腰部共有 5 節腰椎，負責承受許多身體重量。",
+    tip:"Lumbar = 腰部。"
+  },
+
+  sacrum:{
+    cn:"薦骨",
+    en:"Sacrum",
+    desc:"位在脊椎最下方與骨盆之間，由數個椎骨融合形成。",
+    tip:"Sacrum 連接脊椎和骨盆。"
+  },
+
+  clavicle:{
+    cn:"鎖骨",
+    en:"Clavicle",
+    desc:"位於胸口上方，連接胸骨與肩部。",
+    tip:"Clavicle 也常被稱為 collarbone。"
+  },
+
+  scapula:{
+    cn:"肩胛骨",
+    en:"Scapula",
+    desc:"位在背部上方左右兩側，是肩關節的重要骨頭。",
+    tip:"Scapula = shoulder blade。"
+  },
+
+  humerus:{
+    cn:"肱骨",
+    en:"Humerus",
+    desc:"上臂唯一的一根長骨，從肩膀延伸到手肘。",
+    tip:"Humerus 在 upper arm。"
+  },
+
+  radius:{
+    cn:"橈骨",
+    en:"Radius",
+    desc:"前臂的兩根長骨之一，位於拇指側。",
+    tip:"拇指這一側是 Radius。"
+  },
+
+  ulna:{
+    cn:"尺骨",
+    en:"Ulna",
+    desc:"前臂的另一根長骨，位於小指側。",
+    tip:"小指這一側是 Ulna。"
+  },
+
+  carpals:{
+    cn:"腕骨",
+    en:"Carpals",
+    desc:"位於手腕的小骨頭，單手共有 8 塊腕骨。",
+    tip:"Carpals = wrist bones。"
+  },
+
+  metacarpals:{
+    cn:"掌骨",
+    en:"Metacarpals",
+    desc:"位在手掌內，單手共有 5 根掌骨。",
+    tip:"Meta + carpals，可以聯想到手掌區域。"
+  },
+
+  phalangesHand:{
+    cn:"指骨",
+    en:"Phalanges",
+    desc:"構成手指的骨頭，單手共有 14 根。",
+    tip:"Phalanges 可以指手指骨，也可以指腳趾骨。"
+  },
+
+  hip:{
+    cn:"髖骨",
+    en:"Hip bone",
+    desc:"左右髖骨與薦骨共同構成骨盆。",
+    tip:"Hip = 髖部。"
+  },
+
+  femur:{
+    cn:"股骨",
+    en:"Femur",
+    desc:"位在大腿，是人體最長、最粗壯的骨頭。",
+    tip:"Femur = thigh bone，大腿骨。"
+  },
+
+  patella:{
+    cn:"髕骨",
+    en:"Patella",
+    desc:"位在膝關節前方，也就是常說的膝蓋骨。",
+    tip:"Patella = kneecap。"
+  },
+
+  tibia:{
+    cn:"脛骨",
+    en:"Tibia",
+    desc:"小腿內側較粗大的骨頭，是主要承重骨。",
+    tip:"Tibia 是小腿較粗的那根。"
+  },
+
+  fibula:{
+    cn:"腓骨",
+    en:"Fibula",
+    desc:"小腿外側較細長的骨頭。",
+    tip:"Fibula 比 Tibia 細。"
+  },
+
+  tarsals:{
+    cn:"跗骨",
+    en:"Tarsals",
+    desc:"位在腳踝與後足部，單腳共有 7 塊。",
+    tip:"Tarsals = ankle bones。"
+  },
+
+  metatarsals:{
+    cn:"蹠骨",
+    en:"Metatarsals",
+    desc:"位於腳掌，單腳共有 5 根。",
+    tip:"Metatarsals 位於 foot 的中段。"
+  },
+
+  phalangesFoot:{
+    cn:"趾骨",
+    en:"Phalanges",
+    desc:"構成腳趾的骨頭，單腳共有 14 根。",
+    tip:"手指和腳趾的骨頭英文都叫 Phalanges。"
+  }
+
+};
+
+
+/* ========================
+   頭骨選擇
+======================== */
+
+function selectBone(key, elementId){
+
+  const bone = bones[key];
+
+  document
+    .querySelectorAll(".bone-shape")
+    .forEach(el =>
+      el.classList.remove("selected")
+    );
+
+  if(typeof elementId === "string"){
+
+    const target =
+      document.getElementById(elementId);
+
+    if(target){
+      target.classList.add("selected");
+    }
+
+  }
+
+  if(elementId instanceof Element){
+    elementId.classList.add("selected");
+  }
+
+
+  document
+    .querySelectorAll("#head .bone-btn")
+    .forEach(btn => {
+
+      btn.classList.toggle(
+        "active",
+        btn.innerText.includes(bone.en)
+      );
+
+    });
+
+
+  const box =
+    document.getElementById("headInfo");
+
+
+  box.innerHTML = `
+    <div class="info-cn">
+      ${bone.cn}
+    </div>
+
+    <div class="info-en">
+      ${bone.en}
+    </div>
+
+    <button class="speak"
+            onclick="speak('${bone.en}')">
+      🔊 聽英文發音
+    </button>
+
+    <div class="info-desc">
+      ${bone.desc}
+    </div>
+
+    <div class="tip">
+      💡 ${bone.tip}
+    </div>
+  `;
+
+}
+
+
+/* ========================
+   其他區域
+======================== */
+
+function showGeneric(key){
+
+  const bone = bones[key];
+
+  const info =
+    document.getElementById("genericInfo");
+
+  if(!bone){
+    return;
+  }
+
+
+  info.innerHTML = `
+    <div class="info-cn">
+      ${bone.cn}
+    </div>
+
+    <div class="info-en">
+      ${bone.en}
+    </div>
+
+    <button class="speak"
+            onclick="speak('${bone.en}')">
+      🔊 聽英文發音
+    </button>
+
+    <div class="info-desc">
+      ${bone.desc}
+    </div>
+
+    <div class="tip">
+      💡 ${bone.tip}
+    </div>
+  `;
+
+  info.scrollIntoView({
+    behavior:"smooth",
+    block:"nearest"
+  });
+
+}
+
+
+/* ========================
+   英文發音
+======================== */
+
+function speak(text){
+
+  if(!("speechSynthesis" in window)){
+    alert("你的瀏覽器目前不支援語音功能");
+    return;
+  }
+
+  speechSynthesis.cancel();
+
+  const speech =
+    new SpeechSynthesisUtterance(text);
+
+  speech.lang = "en-US";
+  speech.rate = 0.8;
+
+  speechSynthesis.speak(speech);
+
+}
+
+
+/* ========================
+   Quiz
+======================== */
+
+const quizData = [
+
+  {
+    cn:"股骨",
+    answer:"Femur",
+    options:[
+      "Femur",
+      "Tibia",
+      "Radius",
+      "Ulna"
+    ]
+  },
+
+  {
+    cn:"肱骨",
+    answer:"Humerus",
+    options:[
+      "Humerus",
+      "Femur",
+      "Fibula",
+      "Sternum"
+    ]
+  },
+
+  {
+    cn:"下顎骨",
+    answer:"Mandible",
+    options:[
+      "Maxilla",
+      "Mandible",
+      "Scapula",
+      "Patella"
+    ]
+  },
+
+  {
+    cn:"髕骨",
+    answer:"Patella",
+    options:[
+      "Patella",
+      "Parietal bone",
+      "Clavicle",
+      "Sacrum"
+    ]
+  },
+
+  {
+    cn:"橈骨",
+    answer:"Radius",
+    options:[
+      "Radius",
+      "Ulna",
+      "Tibia",
+      "Fibula"
+    ]
+  },
+
+  {
+    cn:"胸骨",
+    answer:"Sternum",
+    options:[
+      "Sternum",
+      "Sacrum",
+      "Scapula",
+      "Maxilla"
+    ]
+  }
+
+];
+
+let currentQuiz;
+
+
+/* 洗牌 */
+function shuffle(array){
+
+  return [...array].sort(
+    () => Math.random() - .5
+  );
+
+}
+
+
+/* 新題目 */
+function newQuiz(){
+
+  currentQuiz =
+    quizData[
+      Math.floor(
+        Math.random() * quizData.length
+      )
+    ];
+
+  document.getElementById(
+    "quizQuestion"
+  ).innerHTML =
+    `「${currentQuiz.cn}」的英文是什麼？`;
+
+  const options =
+    document.getElementById(
+      "quizOptions"
+    );
+
+  options.innerHTML = "";
+
+  shuffle(currentQuiz.options)
+    .forEach(option => {
+
+      const btn =
+        document.createElement("button");
+
+      btn.textContent = option;
+
+      btn.onclick =
+        () => checkQuiz(option);
+
+      options.appendChild(btn);
+
+    });
+
+  document.getElementById(
+    "quizResult"
+  ).textContent = "";
+
+}
+
+
+/* 檢查答案 */
+function checkQuiz(answer){
+
+  const result =
+    document.getElementById(
+      "quizResult"
+    );
+
+  if(answer === currentQuiz.answer){
+
+    result.innerHTML =
+      `✅ 答對了！ ${currentQuiz.cn} = ${currentQuiz.answer}`;
+
+    result.style.color =
+      "#2e7d32";
+
+    speak(currentQuiz.answer);
+
+    setTimeout(
+      newQuiz,
+      1700
+    );
+
+  }else{
+
+    result.innerHTML =
+      "❌ 再找找看！";
+
+    result.style.color =
+      "#d84315";
+
+  }
+
+}
+
+
+/* 啟動 */
+newQuiz();
+
+</script>
+
+</body>
+</html>
