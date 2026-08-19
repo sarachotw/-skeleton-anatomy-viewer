@@ -1,0 +1,1477 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>兒童醫學骨骼學習館</title>
+
+<style>
+*{
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  margin:0;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",
+  Arial,"Noto Sans TC",sans-serif;
+  background:#f2f7fb;
+  color:#29465b;
+}
+
+button{
+  font-family:inherit;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+header{
+  background:linear-gradient(135deg,#1769aa,#42a5f5);
+  color:white;
+  text-align:center;
+  padding:24px 16px 28px;
+}
+
+header h1{
+  margin:0;
+  font-size:28px;
+  font-weight:800;
+}
+
+header .english{
+  margin-top:7px;
+  font-size:18px;
+  font-weight:700;
+}
+
+header .subtitle{
+  margin-top:10px;
+  font-size:14px;
+  line-height:1.7;
+}
+
+/* =========================
+   MAIN
+========================= */
+
+.container{
+  max-width:920px;
+  margin:auto;
+  padding:18px;
+}
+
+.card{
+  background:white;
+  border-radius:22px;
+  padding:20px;
+  margin-bottom:22px;
+  box-shadow:0 5px 20px rgba(33,80,120,.08);
+}
+
+.section-title{
+  font-size:25px;
+  font-weight:850;
+  color:#17618e;
+  margin:0 0 15px;
+}
+
+.section-note{
+  color:#607d8b;
+  font-size:14px;
+  line-height:1.7;
+  margin:0 0 18px;
+}
+
+/* =========================
+   四大區
+========================= */
+
+.region-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:13px;
+  margin-bottom:20px;
+}
+
+.region-btn{
+  border:none;
+  border-radius:18px;
+  padding:18px 10px;
+  background:#e8f3fc;
+  color:#17618e;
+  font-size:18px;
+  font-weight:800;
+  cursor:pointer;
+}
+
+.region-btn.active{
+  background:#1976d2;
+  color:white;
+}
+
+/* =========================
+   學習區
+========================= */
+
+.learn-panel{
+  display:none;
+}
+
+.learn-panel.active{
+  display:block;
+}
+
+/* =========================
+   頭部視角
+========================= */
+
+.skull-tabs{
+  display:flex;
+  justify-content:center;
+  gap:10px;
+  margin:5px 0 17px;
+}
+
+.skull-tab{
+  border:none;
+  border-radius:18px;
+  padding:12px 22px;
+  font-size:17px;
+  font-weight:800;
+  color:#17618e;
+  background:#e4f0fa;
+  cursor:pointer;
+}
+
+.skull-tab.active{
+  color:#fff;
+  background:#1976d2;
+}
+
+.skull-view{
+  display:none;
+}
+
+.skull-view.active{
+  display:block;
+}
+
+/* =========================
+   骨骼圖共用
+========================= */
+
+.diagram{
+  position:relative;
+  width:100%;
+  height:620px;
+  border:2px solid #e1edf5;
+  border-radius:22px;
+  overflow:hidden;
+  background:#fff;
+}
+
+.diagram img{
+  position:absolute;
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-50%);
+  max-height:92%;
+  max-width:55%;
+  object-fit:contain;
+}
+
+/* =========================
+   英文標籤
+========================= */
+
+.bone-label{
+  position:absolute;
+  z-index:5;
+  border:none;
+  background:white;
+  color:#1f2d33;
+
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:16px;
+  font-style:italic;
+  font-weight:700;
+
+  padding:5px 7px;
+  border-radius:8px;
+  cursor:pointer;
+  white-space:nowrap;
+}
+
+.bone-label:hover,
+.bone-label.speaking{
+  color:#1976d2;
+  background:#eef7ff;
+}
+
+.bone-label small{
+  display:block;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",
+  Arial,"Noto Sans TC",sans-serif;
+  font-size:11px;
+  font-style:normal;
+  color:#78909c;
+  margin-top:2px;
+}
+
+/* =========================
+   指示線
+========================= */
+
+.bone-label.left::after,
+.bone-label.right::after{
+  content:"";
+  position:absolute;
+  top:50%;
+  width:var(--line);
+  border-top:2px dashed #7f8c8d;
+}
+
+.bone-label.left::after{
+  left:100%;
+}
+
+.bone-label.right::after{
+  right:100%;
+}
+
+/* =========================
+   頭部圖大小
+========================= */
+
+.skull-diagram img{
+  max-width:54%;
+  max-height:88%;
+}
+
+/* =========================
+   胸腹部圖
+========================= */
+
+.trunk-diagram img{
+  max-width:46%;
+  max-height:91%;
+}
+
+/* =========================
+   上肢圖
+========================= */
+
+.upper-diagram img{
+  max-width:54%;
+  max-height:90%;
+}
+
+/* =========================
+   下肢圖
+========================= */
+
+.lower-diagram img{
+  max-width:47%;
+  max-height:93%;
+}
+
+/* =========================
+   複習卡
+========================= */
+
+.review-title{
+  font-size:25px;
+  color:#17618e;
+  margin:0 0 16px;
+}
+
+.review-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:13px;
+}
+
+.review-card{
+  border:2px solid #dceaf3;
+  border-radius:18px;
+  padding:17px;
+}
+
+.review-cn{
+  font-size:17px;
+  font-weight:800;
+  margin-bottom:7px;
+}
+
+.review-en{
+  border:none;
+  background:none;
+  color:#1976d2;
+  font-size:17px;
+  font-weight:800;
+  padding:0;
+  cursor:pointer;
+}
+
+/* =========================
+   QUIZ
+========================= */
+
+.quiz-box{
+  text-align:center;
+}
+
+.quiz-question{
+  font-size:20px;
+  font-weight:800;
+  margin:15px 0;
+}
+
+.quiz-options{
+  display:grid;
+  gap:10px;
+}
+
+.quiz-option{
+  border:none;
+  border-radius:15px;
+  background:#eaf4fb;
+  padding:14px;
+  font-size:17px;
+  font-weight:700;
+  color:#245675;
+}
+
+.quiz-result{
+  min-height:30px;
+  margin-top:14px;
+  font-weight:800;
+}
+
+.next-btn{
+  width:100%;
+  margin-top:10px;
+  border:none;
+  border-radius:17px;
+  padding:15px;
+  background:#1976d2;
+  color:white;
+  font-size:17px;
+  font-weight:800;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+  text-align:center;
+  padding:5px 20px 30px;
+  color:#78909c;
+  font-size:13px;
+}
+
+/* =========================
+   手機
+========================= */
+
+@media(max-width:650px){
+
+  .container{
+    padding:12px;
+  }
+
+  .card{
+    padding:15px 10px;
+  }
+
+  .diagram{
+    height:520px;
+  }
+
+  .bone-label{
+    font-size:12px;
+    padding:4px;
+  }
+
+  .bone-label small{
+    font-size:9px;
+  }
+
+  .skull-diagram img{
+    max-width:52%;
+  }
+
+  .trunk-diagram img{
+    max-width:44%;
+  }
+
+  .upper-diagram img{
+    max-width:49%;
+  }
+
+  .lower-diagram img{
+    max-width:43%;
+  }
+
+  .review-grid{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .region-btn{
+    font-size:16px;
+    padding:15px 7px;
+  }
+
+  .bone-label.left::after,
+  .bone-label.right::after{
+    width:var(--mline);
+  }
+
+}
+
+@media(max-width:390px){
+
+  .diagram{
+    height:490px;
+  }
+
+  .bone-label{
+    font-size:11px;
+  }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+
+<h1>🦴 兒童醫學骨骼學習館</h1>
+
+<div class="english">
+Kids Medical Bone Learning Center
+</div>
+
+<div class="subtitle">
+看圖認識人體骨骼、學習英文名稱<br>
+👆 直接點圖旁的英文字，就會唸出英文
+</div>
+
+</header>
+
+
+<main class="container">
+
+
+<!-- ==================================================
+     ① 四大區骨骼
+================================================== -->
+
+<section class="card">
+
+<h2 class="section-title">
+① 看圖認識人體骨骼
+</h2>
+
+<p class="section-note">
+選擇身體區域，再直接點骨頭旁的英文名稱聽發音。
+虛線會告訴你這個英文指的是哪一塊骨頭。
+</p>
+
+
+<div class="region-grid">
+
+<button
+class="region-btn active"
+onclick="showRegion('head',this)">
+💀 頭部
+</button>
+
+<button
+class="region-btn"
+onclick="showRegion('trunk',this)">
+🫁 胸腹部
+</button>
+
+<button
+class="region-btn"
+onclick="showRegion('upper',this)">
+💪 上肢
+</button>
+
+<button
+class="region-btn"
+onclick="showRegion('lower',this)">
+🦵 下肢
+</button>
+
+</div>
+
+
+<!-- ==================================================
+     頭部
+================================================== -->
+
+<div id="head" class="learn-panel active">
+
+
+<div class="skull-tabs">
+
+<button
+class="skull-tab active"
+onclick="showSkull('front',this)">
+正面
+</button>
+
+<button
+class="skull-tab"
+onclick="showSkull('side',this)">
+側面
+</button>
+
+<button
+class="skull-tab"
+onclick="showSkull('back',this)">
+背面
+</button>
+
+</div>
+
+
+<!-- 正面 -->
+
+<div id="front" class="skull-view active">
+
+<div class="diagram skull-diagram">
+
+<img
+src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Human_skull_front_simplified_(bones).svg"
+alt="頭骨正面">
+
+
+<button
+class="bone-label left"
+style="left:2%;top:8%;--line:165px;--mline:72px"
+onclick="speak('frontal bone',this)">
+Frontal bone
+<small>額骨</small>
+</button>
+
+
+<button
+class="bone-label left"
+style="left:2%;top:24%;--line:175px;--mline:76px"
+onclick="speak('nasal bone',this)">
+Nasal bone
+<small>鼻骨</small>
+</button>
+
+
+<button
+class="bone-label left"
+style="left:2%;top:41%;--line:165px;--mline:72px"
+onclick="speak('zygomatic bone',this)">
+Zygomatic bone
+<small>顴骨</small>
+</button>
+
+
+<button
+class="bone-label left"
+style="left:2%;top:59%;--line:175px;--mline:77px"
+onclick="speak('maxilla',this)">
+Maxilla
+<small>上顎骨</small>
+</button>
+
+
+<button
+class="bone-label left"
+style="left:2%;top:77%;--line:185px;--mline:82px"
+onclick="speak('mandible',this)">
+Mandible
+<small>下顎骨</small>
+</button>
+
+
+<button
+class="bone-label right"
+style="right:2%;top:10%;--line:160px;--mline:70px"
+onclick="speak('parietal bone',this)">
+Parietal bone
+<small>頂骨</small>
+</button>
+
+
+<button
+class="bone-label right"
+style="right:2%;top:31%;--line:165px;--mline:72px"
+onclick="speak('sphenoid bone',this)">
+Sphenoid bone
+<small>蝶骨</small>
+</button>
+
+
+<button
+class="bone-label right"
+style="right:2%;top:48%;--line:160px;--mline:70px"
+onclick="speak('lacrimal bone',this)">
+Lacrimal bone
+<small>淚骨</small>
+</button>
+
+
+<button
+class="bone-label right"
+style="right:2%;top:65%;--line:165px;--mline:72px"
+onclick="speak('ethmoid bone',this)">
+Ethmoid bone
+<small>篩骨</small>
+</button>
+
+
+</div>
+</div>
+
+
+<!-- 側面 -->
+
+<div id="side" class="skull-view">
+
+<div class="diagram skull-diagram">
+
+<img
+src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Human_skull_side_simplified_(bones).svg"
+alt="頭骨側面">
+
+
+<button
+class="bone-label left"
+style="left:2%;top:8%;--line:170px;--mline:75px"
+onclick="speak('frontal bone',this)">
+Frontal bone
+<small>額骨</small>
+</button>
+
+
+<button
+class="bone-label left"
+style="left:2%;top:27%;--line:175px;--mline:77px"
+onclick="speak('zygomatic bone',this)">
+Zygomatic bone
+<small>顴骨</small>
+</button>
+
+
+<button
+class="bone-label left"
+style="left:2%;top:50%;--line:180px;--mline:80px"
+onclick="speak('maxilla',this)">
+Maxilla
+<small>上顎骨</small>
+</button>
+
+
+<button
+class="bone-label left"
+style="left:2%;top:73%;--line:185px;--mline:82px"
+onclick="speak('mandible',this)">
+Mandible
+<small>下顎骨</small>
+</button>
+
+
+<button
+class="bone-label right"
+style="right:2%;top:8%;--line:165px;--mline:72px"
+onclick="speak('parietal bone',this)">
+Parietal bone
+<small>頂骨</small>
+</button>
+
+
+<button
+class="bone-label right"
+style="right:2%;top:28%;--line:165px;--mline:72px"
+onclick="speak('temporal bone',this)">
+Temporal bone
+<small>顳骨</small>
+</button>
+
+
+<button
+class="bone-label right"
+style="right:2%;top:48%;--line:165px;--mline:72px"
+onclick="speak('sphenoid bone',this)">
+Sphenoid bone
+<small>蝶骨</small>
+</button>
+
+
+<button
+class="bone-label right"
+style="right:2%;top:69%;--line:175px;--mline:77px"
+onclick="speak('occipital bone',this)">
+Occipital bone
+<small>枕骨</small>
+</button>
+
+
+</div>
+</div>
+
+
+<!-- 背面 -->
+
+<div id="back" class="skull-view">
+
+<div class="diagram skull-diagram">
+
+<img
+src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Human_skull_-_posterior_view.png"
+alt="頭骨背面">
+
+
+<button
+class="bone-label left"
+style="left:3%;top:20%;--line:190px;--mline:85px"
+onclick="speak('parietal bone',this)">
+Parietal bone
+<small>頂骨</small>
+</button>
+
+
+<button
+class="bone-label left"
+style="left:3%;top:52%;--line:190px;--mline:85px"
+onclick="speak('occipital bone',this)">
+Occipital bone
+<small>枕骨</small>
+</button>
+
+
+<button
+class="bone-label right"
+style="right:3%;top:41%;--line:180px;--mline:80px"
+onclick="speak('temporal bone',this)">
+Temporal bone
+<small>顳骨</small>
+</button>
+
+
+<button
+class="bone-label right"
+style="right:3%;top:70%;--line:185px;--mline:82px"
+onclick="speak('mastoid process',this)">
+Mastoid process
+<small>乳突</small>
+</button>
+
+
+</div>
+</div>
+
+
+</div>
+
+
+<!-- ==================================================
+     胸腹部
+================================================== -->
+
+<div id="trunk" class="learn-panel">
+
+<div class="diagram trunk-diagram">
+
+<img
+src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Thoracic_Cage_with_Spine_-_Anatomy.gif"
+alt="胸腹部骨骼">
+
+
+<button
+class="bone-label left"
+style="left:3%;top:20%;--line:185px;--mline:82px"
+onclick="speak('ribs',this)">
+Ribs
+<small>肋骨</small>
+</button>
+
+
+<button
+class="bone-label right"
+style="right:3%;top:29%;--line:180px;--mline:80px"
+onclick="speak('sternum',this)">
+Sternum
+<small>胸骨</small>
+</button>
+
+
+<button
+class="bone-label left"
+style="left:3%;top:52%;--line:190px;--mline:85px"
+onclick="speak('vertebral column',this)">
+Vertebral column
+<small>脊柱</small>
+</button>
+
+
+<button
+class="bone-label right"
+style="right:3%;top:76%;--line:185px;--mline:82px"
+onclick="speak('sacrum',this)">
+Sacrum
+<small>薦骨</small>
+</button>
+
+
+</div>
+
+</div>
+
+
+<!-- ==================================================
+     上肢
+================================================== -->
+
+<div id="upper" class="learn-panel">
+
+<div class="diagram upper-diagram">
+
+<img
+src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Human_arm_bones_diagram.svg"
+alt="上肢骨骼">
+
+
+<button
+class="bone-label left"
+style="left:2%;top:7%;--line:180px;--mline:80px"
+onclick="speak('scapula',this)">
+Scapula
+<small>肩胛骨</small>
+</button>
+
+
+<button
+class="bone-label right"
+style="right:2%;top:12%;--line:175px;--mline:77px"
+onclick="speak('clavicle',this)">
+Clavicle
+<small>鎖骨</small>
+</button>
+
+
+<button
+class="bone-label left"
+style="left:2%;top:29%;--line:190px;--mline:85px"
+onclick="speak('humerus',this)">
+Humerus
+<small>肱骨</small>
+</button>
+
+
+<button
+class="bone-label left"
+style="left:2%;top:53%;--line:185px;--mline:82px"
+onclick="speak('radius',this)">
+Radius
+<small>橈骨</small>
+</button>
+
+
+<button
+class="bone-label right"
+style="right:2%;top:53%;--line:185px;--mline:82px"
+onclick="speak('ulna',this)">
+Ulna
+<small>尺骨</small>
+</button>
+
+
+<button
+class="bone-label left"
+style="left:2%;top:75%;--line:195px;--mline:88px"
+onclick="speak('carpal bones',this)">
+Carpal bones
+<small>腕骨</small>
+</button>
+
+
+<button
+class="bone-label right"
+style="right:2%;top:83%;--line:185px;--mline:82px"
+onclick="speak('metacarpals',this)">
+Metacarpals
+<small>掌骨</small>
+</button>
+
+
+<button
+class="bone-label right"
+style="right:2%;top:91%;--line:180px;--mline:80px"
+onclick="speak('phalanges',this)">
+Phalanges
+<small>指骨</small>
+</button>
+
+
+</div>
+
+</div>
+
+
+<!-- ==================================================
+     下肢
+================================================== -->
+
+<div id="lower" class="learn-panel">
+
+<div class="diagram lower-diagram">
+
+<img
+src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Human_leg_bones_labeled.svg"
+alt="下肢骨骼">
+
+
+<button
+class="bone-label left"
+style="left:2%;top:13%;--line:195px;--mline:88px"
+onclick="speak('femur',this)">
+Femur
+<small>股骨</small>
+</button>
+
+
+<button
+class="bone-label right"
+style="right:2%;top:39%;--line:190px;--mline:85px"
+onclick="speak('patella',this)">
+Patella
+<small>髕骨</small>
+</button>
+
+
+<button
+class="bone-label left"
+style="left:2%;top:56%;--line:190px;--mline:85px"
+onclick="speak('tibia',this)">
+Tibia
+<small>脛骨</small>
+</button>
+
+
+<button
+class="bone-label right"
+style="right:2%;top:58%;--line:185px;--mline:82px"
+onclick="speak('fibula',this)">
+Fibula
+<small>腓骨</small>
+</button>
+
+
+<button
+class="bone-label left"
+style="left:2%;top:79%;--line:195px;--mline:88px"
+onclick="speak('tarsal bones',this)">
+Tarsal bones
+<small>跗骨</small>
+</button>
+
+
+<button
+class="bone-label right"
+style="right:2%;top:85%;--line:185px;--mline:82px"
+onclick="speak('metatarsals',this)">
+Metatarsals
+<small>蹠骨</small>
+</button>
+
+
+<button
+class="bone-label right"
+style="right:2%;top:92%;--line:180px;--mline:80px"
+onclick="speak('phalanges',this)">
+Phalanges
+<small>趾骨</small>
+</button>
+
+
+</div>
+
+</div>
+
+
+</section>
+
+
+<!-- ==================================================
+     ② 英文複習
+================================================== -->
+
+<section class="card">
+
+<h2 class="review-title">
+② 骨頭英文複習
+</h2>
+
+<p class="section-note">
+直接點英文再聽一次。
+</p>
+
+<div class="review-grid">
+
+<div class="review-card">
+<div class="review-cn">額骨</div>
+<button class="review-en"
+onclick="speak('frontal bone',this)">
+Frontal bone
+</button>
+</div>
+
+
+<div class="review-card">
+<div class="review-cn">頂骨</div>
+<button class="review-en"
+onclick="speak('parietal bone',this)">
+Parietal bone
+</button>
+</div>
+
+
+<div class="review-card">
+<div class="review-cn">顳骨</div>
+<button class="review-en"
+onclick="speak('temporal bone',this)">
+Temporal bone
+</button>
+</div>
+
+
+<div class="review-card">
+<div class="review-cn">枕骨</div>
+<button class="review-en"
+onclick="speak('occipital bone',this)">
+Occipital bone
+</button>
+</div>
+
+
+<div class="review-card">
+<div class="review-cn">胸骨</div>
+<button class="review-en"
+onclick="speak('sternum',this)">
+Sternum
+</button>
+</div>
+
+
+<div class="review-card">
+<div class="review-cn">肋骨</div>
+<button class="review-en"
+onclick="speak('ribs',this)">
+Ribs
+</button>
+</div>
+
+
+<div class="review-card">
+<div class="review-cn">肱骨</div>
+<button class="review-en"
+onclick="speak('humerus',this)">
+Humerus
+</button>
+</div>
+
+
+<div class="review-card">
+<div class="review-cn">橈骨</div>
+<button class="review-en"
+onclick="speak('radius',this)">
+Radius
+</button>
+</div>
+
+
+<div class="review-card">
+<div class="review-cn">尺骨</div>
+<button class="review-en"
+onclick="speak('ulna',this)">
+Ulna
+</button>
+</div>
+
+
+<div class="review-card">
+<div class="review-cn">股骨</div>
+<button class="review-en"
+onclick="speak('femur',this)">
+Femur
+</button>
+</div>
+
+
+<div class="review-card">
+<div class="review-cn">髕骨</div>
+<button class="review-en"
+onclick="speak('patella',this)">
+Patella
+</button>
+</div>
+
+
+<div class="review-card">
+<div class="review-cn">脛骨</div>
+<button class="review-en"
+onclick="speak('tibia',this)">
+Tibia
+</button>
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ==================================================
+     ③ 小遊戲
+================================================== -->
+
+<section class="card quiz-box">
+
+<h2 class="section-title">
+③ 骨骼英文小遊戲
+</h2>
+
+<div
+class="quiz-question"
+id="quizQuestion">
+額骨的英文是？
+</div>
+
+<div
+class="quiz-options"
+id="quizOptions">
+</div>
+
+<div
+class="quiz-result"
+id="quizResult">
+</div>
+
+<button
+class="next-btn"
+onclick="nextQuestion()">
+下一題 ➜
+</button>
+
+</section>
+
+
+</main>
+
+
+<footer>
+🦴 Kids Medical Bone Learning Center
+</footer>
+
+
+<script>
+
+/* =========================
+   英文發音
+========================= */
+
+function speak(text,element){
+
+  if(!("speechSynthesis" in window)){
+    alert("這個瀏覽器目前不支援語音功能");
+    return;
+  }
+
+  window.speechSynthesis.cancel();
+
+  document
+  .querySelectorAll(".speaking")
+  .forEach(function(el){
+    el.classList.remove("speaking");
+  });
+
+  if(element){
+    element.classList.add("speaking");
+  }
+
+  const utterance=
+  new SpeechSynthesisUtterance(text);
+
+  utterance.lang="en-US";
+  utterance.rate=0.78;
+  utterance.pitch=1;
+
+  utterance.onend=function(){
+
+    if(element){
+      element.classList.remove("speaking");
+    }
+
+  };
+
+  window.speechSynthesis.speak(utterance);
+
+}
+
+
+/* =========================
+   四區切換
+========================= */
+
+function showRegion(id,button){
+
+  document
+  .querySelectorAll(".learn-panel")
+  .forEach(function(panel){
+    panel.classList.remove("active");
+  });
+
+  document
+  .querySelectorAll(".region-grid .region-btn")
+  .forEach(function(btn){
+    btn.classList.remove("active");
+  });
+
+  document
+  .getElementById(id)
+  .classList.add("active");
+
+  button.classList.add("active");
+
+}
+
+
+/* =========================
+   頭骨正側背面
+========================= */
+
+function showSkull(id,button){
+
+  document
+  .querySelectorAll(".skull-view")
+  .forEach(function(view){
+    view.classList.remove("active");
+  });
+
+  document
+  .querySelectorAll(".skull-tab")
+  .forEach(function(tab){
+    tab.classList.remove("active");
+  });
+
+  document
+  .getElementById(id)
+  .classList.add("active");
+
+  button.classList.add("active");
+
+}
+
+
+/* =========================
+   QUIZ
+========================= */
+
+const quizData=[
+
+{
+q:"額骨的英文是？",
+correct:"Frontal bone",
+options:[
+"Frontal bone",
+"Temporal bone",
+"Femur"
+]
+},
+
+{
+q:"頂骨的英文是？",
+correct:"Parietal bone",
+options:[
+"Nasal bone",
+"Parietal bone",
+"Mandible"
+]
+},
+
+{
+q:"胸骨的英文是？",
+correct:"Sternum",
+options:[
+"Scapula",
+"Sternum",
+"Patella"
+]
+},
+
+{
+q:"肋骨的英文是？",
+correct:"Ribs",
+options:[
+"Radius",
+"Ribs",
+"Fibula"
+]
+},
+
+{
+q:"肱骨的英文是？",
+correct:"Humerus",
+options:[
+"Humerus",
+"Femur",
+"Tibia"
+]
+},
+
+{
+q:"橈骨的英文是？",
+correct:"Radius",
+options:[
+"Ulna",
+"Radius",
+"Patella"
+]
+},
+
+{
+q:"尺骨的英文是？",
+correct:"Ulna",
+options:[
+"Fibula",
+"Ulna",
+"Femur"
+]
+},
+
+{
+q:"股骨的英文是？",
+correct:"Femur",
+options:[
+"Tibia",
+"Femur",
+"Radius"
+]
+},
+
+{
+q:"髕骨的英文是？",
+correct:"Patella",
+options:[
+"Scapula",
+"Patella",
+"Clavicle"
+]
+},
+
+{
+q:"脛骨的英文是？",
+correct:"Tibia",
+options:[
+"Tibia",
+"Fibula",
+"Humerus"
+]
+}
+
+];
+
+
+let currentQuiz=0;
+
+
+function loadQuestion(){
+
+  const item=
+  quizData[currentQuiz];
+
+  document
+  .getElementById("quizQuestion")
+  .textContent=item.q;
+
+  document
+  .getElementById("quizResult")
+  .textContent="";
+
+  const optionBox=
+  document.getElementById("quizOptions");
+
+  optionBox.innerHTML="";
+
+
+  item.options.forEach(function(option){
+
+    const button=
+    document.createElement("button");
+
+    button.className="quiz-option";
+
+    button.textContent=option;
+
+
+    button.onclick=function(){
+
+      speak(option);
+
+      if(option===item.correct){
+
+        document
+        .getElementById("quizResult")
+        .textContent=
+        "✅ 答對了！";
+
+      }else{
+
+        document
+        .getElementById("quizResult")
+        .textContent=
+        "❌ 再想想看，正確答案是 "
+        +item.correct;
+
+      }
+
+    };
+
+
+    optionBox.appendChild(button);
+
+  });
+
+}
+
+
+function nextQuestion(){
+
+  currentQuiz++;
+
+  if(currentQuiz>=quizData.length){
+
+    currentQuiz=0;
+
+  }
+
+  loadQuestion();
+
+}
+
+
+loadQuestion();
+
+</script>
+
+</body>
+</html>
