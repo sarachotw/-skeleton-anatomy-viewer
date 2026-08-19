@@ -1,0 +1,1160 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>兒童醫學骨骼學習館</title>
+
+<style>
+*{
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  margin:0;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",Arial,sans-serif;
+  background:#f3f8fc;
+  color:#29465b;
+}
+
+button{
+  font-family:inherit;
+  -webkit-tap-highlight-color:transparent;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+header{
+  background:linear-gradient(135deg,#1769aa,#42a5f5);
+  color:#fff;
+  text-align:center;
+  padding:25px 15px 28px;
+}
+
+header h1{
+  margin:0;
+  font-size:28px;
+  font-weight:900;
+}
+
+header .en-title{
+  margin-top:7px;
+  font-size:18px;
+  font-weight:800;
+}
+
+header .sub{
+  margin-top:9px;
+  font-size:14px;
+}
+
+/* =========================
+   主選單
+========================= */
+
+.nav{
+  max-width:950px;
+  margin:16px auto 0;
+  padding:0 12px;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:8px;
+}
+
+.nav a{
+  text-decoration:none;
+  text-align:center;
+  background:#fff;
+  color:#1769aa;
+  font-weight:900;
+  padding:12px 6px;
+  border-radius:16px;
+  box-shadow:0 3px 12px rgba(30,90,130,.10);
+}
+
+/* =========================
+   SECTION
+========================= */
+
+.container{
+  max-width:1000px;
+  margin:auto;
+  padding:8px 12px 50px;
+}
+
+.section{
+  background:#fff;
+  border-radius:25px;
+  margin:18px 0;
+  padding:22px 16px;
+  box-shadow:0 5px 22px rgba(35,85,125,.09);
+}
+
+.section-title{
+  text-align:center;
+  margin:0;
+  font-size:27px;
+  color:#144e82;
+  font-weight:900;
+}
+
+.section-en{
+  text-align:center;
+  color:#708a9e;
+  font-weight:700;
+  margin-top:4px;
+}
+
+.section-tip{
+  text-align:center;
+  margin-top:7px;
+  color:#698092;
+  font-size:14px;
+}
+
+/* =========================
+   VIEW BUTTON
+========================= */
+
+.view-tabs{
+  display:flex;
+  justify-content:center;
+  gap:12px;
+  margin:20px auto 16px;
+  flex-wrap:wrap;
+}
+
+.view-tab{
+  border:0;
+  border-radius:22px;
+  background:#e4f2fc;
+  color:#17618f;
+  padding:12px 31px;
+  font-size:19px;
+  font-weight:900;
+  cursor:pointer;
+}
+
+.view-tab.active{
+  background:#197bd1;
+  color:#fff;
+}
+
+/* =========================
+   解剖圖片
+========================= */
+
+.anatomy-stage{
+  position:relative;
+  width:100%;
+  max-width:920px;
+  margin:0 auto;
+}
+
+.anatomy-picture{
+  width:100%;
+  max-width:560px;
+  margin:0 auto;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+.anatomy-picture img{
+  display:block;
+  width:100%;
+  max-height:570px;
+  object-fit:contain;
+}
+
+/* =========================
+   圖片原本虛線說明
+   注意：不再從發音按鈕另外拉線
+========================= */
+
+.original-diagram-wrap{
+  position:relative;
+  width:100%;
+  max-width:650px;
+  margin:0 auto;
+}
+
+.original-diagram-wrap img{
+  display:block;
+  width:100%;
+  max-height:590px;
+  object-fit:contain;
+  margin:auto;
+}
+
+/* =========================
+   小型一整排發音按鈕
+========================= */
+
+.sound-row{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:7px;
+  margin:15px auto 8px;
+  max-width:900px;
+}
+
+.sound-chip{
+  border:1.5px solid #9bcff0;
+  background:#fff;
+  color:#0868bb;
+  padding:6px 10px;
+  border-radius:13px;
+  font-size:13px;
+  line-height:1.2;
+  font-weight:850;
+  cursor:pointer;
+  white-space:nowrap;
+  box-shadow:0 2px 7px rgba(40,105,150,.07);
+}
+
+.sound-chip:active{
+  background:#e9f6ff;
+  transform:scale(.97);
+}
+
+.sound-chip .mini-speaker{
+  font-size:12px;
+  margin-right:3px;
+}
+
+/* =========================
+   簡單解剖圖
+========================= */
+
+.simple-anatomy{
+  position:relative;
+  max-width:780px;
+  margin:15px auto;
+  text-align:center;
+}
+
+.simple-anatomy img{
+  display:block;
+  width:100%;
+  max-width:540px;
+  max-height:620px;
+  object-fit:contain;
+  margin:auto;
+}
+
+/* =========================
+   小提示
+========================= */
+
+.hint{
+  max-width:790px;
+  margin:16px auto 25px;
+  border:2px solid #a8d6f2;
+  background:#f7fcff;
+  color:#4e6b81;
+  border-radius:14px;
+  padding:11px 15px;
+  text-align:center;
+  font-size:14px;
+  line-height:1.55;
+}
+
+/* =========================
+   百科圖卡
+========================= */
+
+.knowledge-title{
+  text-align:center;
+  color:#164f82;
+  font-size:23px;
+  font-weight:900;
+  margin:25px 0 14px;
+}
+
+.cards{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:13px;
+}
+
+.bone-card{
+  background:#edf8ff;
+  border:3px solid #b5dcf4;
+  border-radius:23px;
+  padding:18px 13px;
+  text-align:center;
+  min-height:205px;
+}
+
+.bone-card h3{
+  margin:0;
+  font-size:22px;
+  color:#315e7b;
+}
+
+.card-sound{
+  border:0;
+  background:transparent;
+  color:#076bc4;
+  font-size:21px;
+  font-weight:900;
+  cursor:pointer;
+  margin-top:7px;
+}
+
+.card-sound span{
+  display:inline-flex;
+  width:42px;
+  height:42px;
+  margin-left:6px;
+  border-radius:50%;
+  align-items:center;
+  justify-content:center;
+  background:#dcefff;
+}
+
+.bone-card p{
+  margin:10px 0 0;
+  color:#607c8e;
+  line-height:1.65;
+  font-size:15px;
+}
+
+/* =========================
+   GAME
+========================= */
+
+.game{
+  margin-top:28px;
+  background:#fff8df;
+  border:2px solid #f1da88;
+  border-radius:22px;
+  padding:18px;
+  text-align:center;
+}
+
+.game h3{
+  margin:0 0 8px;
+  color:#795d15;
+}
+
+.game button{
+  border:0;
+  background:#fff;
+  color:#456073;
+  padding:10px 16px;
+  border-radius:14px;
+  margin:5px;
+  font-weight:800;
+  cursor:pointer;
+}
+
+#gameResult{
+  margin-top:10px;
+  font-weight:900;
+  min-height:25px;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:760px){
+
+  header h1{
+    font-size:25px;
+  }
+
+  .nav{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .section{
+    padding:20px 8px;
+  }
+
+  .section-title{
+    font-size:24px;
+  }
+
+  .view-tab{
+    padding:11px 22px;
+    font-size:18px;
+  }
+
+  .anatomy-picture{
+    max-width:500px;
+  }
+
+  .original-diagram-wrap{
+    max-width:560px;
+  }
+
+  .sound-row{
+    gap:6px;
+    margin-top:12px;
+  }
+
+  .sound-chip{
+    padding:5px 8px;
+    border-radius:11px;
+    font-size:12px;
+  }
+
+  .sound-chip .mini-speaker{
+    font-size:11px;
+  }
+
+  .cards{
+    grid-template-columns:1fr;
+  }
+}
+
+@media(max-width:460px){
+
+  .section{
+    padding-left:7px;
+    padding-right:7px;
+  }
+
+  .sound-row{
+    gap:5px;
+  }
+
+  .sound-chip{
+    padding:5px 7px;
+    font-size:11px;
+  }
+
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>🦴 兒童醫學骨骼學習館</h1>
+  <div class="en-title">Human Skeleton Learning</div>
+  <div class="sub">看骨頭位置・認識英文・點擊英文聽發音</div>
+</header>
+
+<nav class="nav">
+  <a href="#skull">💀 頭部</a>
+  <a href="#trunk">🫁 胸腹部</a>
+  <a href="#upper">💪 上肢</a>
+  <a href="#lower">🦵 下肢</a>
+</nav>
+
+<main class="container">
+
+<!-- ======================================================
+     頭部
+====================================================== -->
+
+<section class="section" id="skull">
+
+  <h2 class="section-title">💀 頭部骨骼</h2>
+  <div class="section-en">Skull</div>
+  <div class="section-tip">先看圖片上的骨頭位置，再點下方英文聽發音</div>
+
+  <div class="view-tabs">
+    <button class="view-tab active"
+      onclick="changeSkull('front',this)">正面</button>
+
+    <button class="view-tab"
+      onclick="changeSkull('side',this)">側面</button>
+
+    <button class="view-tab"
+      onclick="changeSkull('back',this)">背面</button>
+  </div>
+
+
+  <!-- 正面 -->
+  <div id="skullFront">
+
+    <div class="original-diagram-wrap">
+      <img
+        src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Human_skull_front_bones.svg"
+        alt="頭骨正面骨骼標示圖">
+    </div>
+
+    <div class="sound-row">
+      <button class="sound-chip" onclick="speak('Frontal bone')">
+        <span class="mini-speaker">🔊</span>Frontal bone
+      </button>
+
+      <button class="sound-chip" onclick="speak('Parietal bone')">
+        <span class="mini-speaker">🔊</span>Parietal bone
+      </button>
+
+      <button class="sound-chip" onclick="speak('Temporal bone')">
+        <span class="mini-speaker">🔊</span>Temporal bone
+      </button>
+
+      <button class="sound-chip" onclick="speak('Nasal bone')">
+        <span class="mini-speaker">🔊</span>Nasal bone
+      </button>
+
+      <button class="sound-chip" onclick="speak('Lacrimal bone')">
+        <span class="mini-speaker">🔊</span>Lacrimal bone
+      </button>
+
+      <button class="sound-chip" onclick="speak('Zygomatic bone')">
+        <span class="mini-speaker">🔊</span>Zygomatic bone
+      </button>
+
+      <button class="sound-chip" onclick="speak('Sphenoid bone')">
+        <span class="mini-speaker">🔊</span>Sphenoid bone
+      </button>
+
+      <button class="sound-chip" onclick="speak('Ethmoid bone')">
+        <span class="mini-speaker">🔊</span>Ethmoid bone
+      </button>
+
+      <button class="sound-chip" onclick="speak('Maxilla')">
+        <span class="mini-speaker">🔊</span>Maxilla
+      </button>
+
+      <button class="sound-chip" onclick="speak('Mandible')">
+        <span class="mini-speaker">🔊</span>Mandible
+      </button>
+    </div>
+
+  </div>
+
+
+  <!-- 側面 -->
+  <div id="skullSide" style="display:none">
+
+    <div class="simple-anatomy">
+      <img
+        src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Human_skull_side_simplified_(bones).svg"
+        alt="頭骨側面">
+    </div>
+
+    <div class="sound-row">
+      <button class="sound-chip" onclick="speak('Frontal bone')">
+        <span class="mini-speaker">🔊</span>Frontal bone
+      </button>
+
+      <button class="sound-chip" onclick="speak('Parietal bone')">
+        <span class="mini-speaker">🔊</span>Parietal bone
+      </button>
+
+      <button class="sound-chip" onclick="speak('Temporal bone')">
+        <span class="mini-speaker">🔊</span>Temporal bone
+      </button>
+
+      <button class="sound-chip" onclick="speak('Occipital bone')">
+        <span class="mini-speaker">🔊</span>Occipital bone
+      </button>
+
+      <button class="sound-chip" onclick="speak('Sphenoid bone')">
+        <span class="mini-speaker">🔊</span>Sphenoid bone
+      </button>
+
+      <button class="sound-chip" onclick="speak('Zygomatic bone')">
+        <span class="mini-speaker">🔊</span>Zygomatic bone
+      </button>
+
+      <button class="sound-chip" onclick="speak('Maxilla')">
+        <span class="mini-speaker">🔊</span>Maxilla
+      </button>
+
+      <button class="sound-chip" onclick="speak('Mandible')">
+        <span class="mini-speaker">🔊</span>Mandible
+      </button>
+    </div>
+
+  </div>
+
+
+  <!-- 背面 -->
+  <div id="skullBack" style="display:none">
+
+    <div class="simple-anatomy">
+      <img
+        src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Human_skull_side_bones.svg"
+        alt="頭骨骨骼">
+    </div>
+
+    <div class="sound-row">
+      <button class="sound-chip" onclick="speak('Parietal bone')">
+        <span class="mini-speaker">🔊</span>Parietal bone
+      </button>
+
+      <button class="sound-chip" onclick="speak('Occipital bone')">
+        <span class="mini-speaker">🔊</span>Occipital bone
+      </button>
+
+      <button class="sound-chip" onclick="speak('Temporal bone')">
+        <span class="mini-speaker">🔊</span>Temporal bone
+      </button>
+    </div>
+
+  </div>
+
+
+  <div class="hint">
+    💡 小提示：圖片上的原本標示與虛線可以幫你找到骨頭位置，
+    再點擊下方英文名稱聽正確發音。
+  </div>
+
+
+  <div class="knowledge-title">📖 骨頭小百科</div>
+
+  <div class="cards">
+
+    <div class="bone-card">
+      <h3>額骨</h3>
+      <button class="card-sound" onclick="speak('Frontal bone')">
+        Frontal bone <span>🔊</span>
+      </button>
+      <p>位在額頭的位置，形成前額，並保護大腦前方。</p>
+    </div>
+
+    <div class="bone-card">
+      <h3>頂骨</h3>
+      <button class="card-sound" onclick="speak('Parietal bone')">
+        Parietal bone <span>🔊</span>
+      </button>
+      <p>位在頭頂及頭部兩側，是顱骨的重要部分。</p>
+    </div>
+
+    <div class="bone-card">
+      <h3>顳骨</h3>
+      <button class="card-sound" onclick="speak('Temporal bone')">
+        Temporal bone <span>🔊</span>
+      </button>
+      <p>位在頭部兩側、耳朵附近，形成顱骨側面的一部分。</p>
+    </div>
+
+    <div class="bone-card">
+      <h3>鼻骨</h3>
+      <button class="card-sound" onclick="speak('Nasal bone')">
+        Nasal bone <span>🔊</span>
+      </button>
+      <p>位在鼻子的上方，是形成鼻樑的小骨頭。</p>
+    </div>
+
+    <div class="bone-card">
+      <h3>淚骨</h3>
+      <button class="card-sound" onclick="speak('Lacrimal bone')">
+        Lacrimal bone <span>🔊</span>
+      </button>
+      <p>位在眼窩內側，是臉部非常小的一塊骨頭。</p>
+    </div>
+
+    <div class="bone-card">
+      <h3>顴骨</h3>
+      <button class="card-sound" onclick="speak('Zygomatic bone')">
+        Zygomatic bone <span>🔊</span>
+      </button>
+      <p>形成臉頰突出的部分，也參與形成眼窩。</p>
+    </div>
+
+    <div class="bone-card">
+      <h3>蝶骨</h3>
+      <button class="card-sound" onclick="speak('Sphenoid bone')">
+        Sphenoid bone <span>🔊</span>
+      </button>
+      <p>位在顱腔深處，形狀像蝴蝶，是重要的顱骨。</p>
+    </div>
+
+    <div class="bone-card">
+      <h3>篩骨</h3>
+      <button class="card-sound" onclick="speak('Ethmoid bone')">
+        Ethmoid bone <span>🔊</span>
+      </button>
+      <p>位在鼻腔後方，參與形成鼻腔與眼窩。</p>
+    </div>
+
+    <div class="bone-card">
+      <h3>上顎骨</h3>
+      <button class="card-sound" onclick="speak('Maxilla')">
+        Maxilla <span>🔊</span>
+      </button>
+      <p>形成上顎，並固定上排牙齒。</p>
+    </div>
+
+    <div class="bone-card">
+      <h3>下顎骨</h3>
+      <button class="card-sound" onclick="speak('Mandible')">
+        Mandible <span>🔊</span>
+      </button>
+      <p>形成下巴，是頭部可以明顯活動的重要骨頭。</p>
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- ======================================================
+     胸腹部
+====================================================== -->
+
+<section class="section" id="trunk">
+
+  <h2 class="section-title">🫁 胸腹部骨骼</h2>
+  <div class="section-en">Thorax & Trunk</div>
+  <div class="section-tip">先看胸腔骨骼位置，再點下面英文聽發音</div>
+
+
+  <div class="original-diagram-wrap">
+    <img
+      src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Human_skeleton_front_en.svg"
+      alt="人體骨骼胸腔">
+  </div>
+
+
+  <div class="sound-row">
+
+    <button class="sound-chip" onclick="speak('Clavicle')">
+      <span class="mini-speaker">🔊</span>Clavicle
+    </button>
+
+    <button class="sound-chip" onclick="speak('Scapula')">
+      <span class="mini-speaker">🔊</span>Scapula
+    </button>
+
+    <button class="sound-chip" onclick="speak('Sternum')">
+      <span class="mini-speaker">🔊</span>Sternum
+    </button>
+
+    <button class="sound-chip" onclick="speak('Ribs')">
+      <span class="mini-speaker">🔊</span>Ribs
+    </button>
+
+    <button class="sound-chip" onclick="speak('Thoracic vertebrae')">
+      <span class="mini-speaker">🔊</span>Thoracic vertebrae
+    </button>
+
+  </div>
+
+
+  <div class="hint">
+    💡 胸廓像一個保護籠。先看圖片中的位置標示，再利用下方英文發音複習鎖骨、肩胛骨、胸骨、肋骨和胸椎。
+  </div>
+
+
+  <div class="knowledge-title">📖 骨頭小百科</div>
+
+  <div class="cards">
+
+    <div class="bone-card">
+      <h3>鎖骨</h3>
+      <button class="card-sound" onclick="speak('Clavicle')">
+        Clavicle <span>🔊</span>
+      </button>
+      <p>位在胸部上方，連接胸骨與肩部。</p>
+    </div>
+
+    <div class="bone-card">
+      <h3>肩胛骨</h3>
+      <button class="card-sound" onclick="speak('Scapula')">
+        Scapula <span>🔊</span>
+      </button>
+      <p>位在上背部兩側，幫助肩膀和手臂活動。</p>
+    </div>
+
+    <div class="bone-card">
+      <h3>胸骨</h3>
+      <button class="card-sound" onclick="speak('Sternum')">
+        Sternum <span>🔊</span>
+      </button>
+      <p>位在胸口中央，肋骨會透過肋軟骨與它連接。</p>
+    </div>
+
+    <div class="bone-card">
+      <h3>肋骨</h3>
+      <button class="card-sound" onclick="speak('Ribs')">
+        Ribs <span>🔊</span>
+      </button>
+      <p>形成胸廓，主要保護心臟與肺部。</p>
+    </div>
+
+    <div class="bone-card">
+      <h3>胸椎</h3>
+      <button class="card-sound" onclick="speak('Thoracic vertebrae')">
+        Thoracic vertebrae <span>🔊</span>
+      </button>
+      <p>位在胸部後方的脊椎，與肋骨共同形成胸廓。</p>
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- ======================================================
+     上肢
+====================================================== -->
+
+<section class="section" id="upper">
+
+  <h2 class="section-title">💪 上肢骨骼</h2>
+  <div class="section-en">Upper Limb</div>
+  <div class="section-tip">看圖片標示，再點下方英文聽發音</div>
+
+  <div class="simple-anatomy">
+    <img
+      src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Human_arm_bones_diagram.svg"
+      alt="上肢骨骼">
+  </div>
+
+  <div class="sound-row">
+
+    <button class="sound-chip" onclick="speak('Humerus')">
+      <span class="mini-speaker">🔊</span>Humerus
+    </button>
+
+    <button class="sound-chip" onclick="speak('Radius')">
+      <span class="mini-speaker">🔊</span>Radius
+    </button>
+
+    <button class="sound-chip" onclick="speak('Ulna')">
+      <span class="mini-speaker">🔊</span>Ulna
+    </button>
+
+    <button class="sound-chip" onclick="speak('Carpals')">
+      <span class="mini-speaker">🔊</span>Carpals
+    </button>
+
+    <button class="sound-chip" onclick="speak('Metacarpals')">
+      <span class="mini-speaker">🔊</span>Metacarpals
+    </button>
+
+    <button class="sound-chip" onclick="speak('Phalanges')">
+      <span class="mini-speaker">🔊</span>Phalanges
+    </button>
+
+  </div>
+
+
+  <div class="hint">
+    💡 上肢從上臂一路到手指，可以依序認識 Humerus、Radius、Ulna、Carpals、Metacarpals 和 Phalanges。
+  </div>
+
+
+  <div class="knowledge-title">📖 骨頭小百科</div>
+
+  <div class="cards">
+
+    <div class="bone-card">
+      <h3>肱骨</h3>
+      <button class="card-sound" onclick="speak('Humerus')">
+        Humerus <span>🔊</span>
+      </button>
+      <p>位在上臂，是肩膀到手肘之間的長骨。</p>
+    </div>
+
+    <div class="bone-card">
+      <h3>橈骨</h3>
+      <button class="card-sound" onclick="speak('Radius')">
+        Radius <span>🔊</span>
+      </button>
+      <p>位在前臂靠近拇指的一側。</p>
+    </div>
+
+    <div class="bone-card">
+      <h3>尺骨</h3>
+      <button class="card-sound" onclick="speak('Ulna')">
+        Ulna <span>🔊</span>
+      </button>
+      <p>位在前臂靠近小指的一側，與肱骨形成手肘。</p>
+    </div>
+
+    <div class="bone-card">
+      <h3>腕骨</h3>
+      <button class="card-sound" onclick="speak('Carpals')">
+        Carpals <span>🔊</span>
+      </button>
+      <p>位在手腕，由多塊小骨頭組成。</p>
+    </div>
+
+    <div class="bone-card">
+      <h3>掌骨</h3>
+      <button class="card-sound" onclick="speak('Metacarpals')">
+        Metacarpals <span>🔊</span>
+      </button>
+      <p>位在手掌，是手腕與手指之間的骨頭。</p>
+    </div>
+
+    <div class="bone-card">
+      <h3>指骨</h3>
+      <button class="card-sound" onclick="speak('Phalanges')">
+        Phalanges <span>🔊</span>
+      </button>
+      <p>形成手指，讓手指能夠靈活活動。</p>
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- ======================================================
+     下肢
+====================================================== -->
+
+<section class="section" id="lower">
+
+  <h2 class="section-title">🦵 下肢骨骼</h2>
+  <div class="section-en">Lower Limb</div>
+  <div class="section-tip">看圖片標示，再點下方英文聽發音</div>
+
+  <div class="simple-anatomy">
+    <img
+      src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Human_leg_bones_labeled.svg"
+      alt="下肢骨骼">
+  </div>
+
+  <div class="sound-row">
+
+    <button class="sound-chip" onclick="speak('Femur')">
+      <span class="mini-speaker">🔊</span>Femur
+    </button>
+
+    <button class="sound-chip" onclick="speak('Patella')">
+      <span class="mini-speaker">🔊</span>Patella
+    </button>
+
+    <button class="sound-chip" onclick="speak('Tibia')">
+      <span class="mini-speaker">🔊</span>Tibia
+    </button>
+
+    <button class="sound-chip" onclick="speak('Fibula')">
+      <span class="mini-speaker">🔊</span>Fibula
+    </button>
+
+    <button class="sound-chip" onclick="speak('Tarsals')">
+      <span class="mini-speaker">🔊</span>Tarsals
+    </button>
+
+    <button class="sound-chip" onclick="speak('Metatarsals')">
+      <span class="mini-speaker">🔊</span>Metatarsals
+    </button>
+
+    <button class="sound-chip" onclick="speak('Phalanges')">
+      <span class="mini-speaker">🔊</span>Phalanges
+    </button>
+
+  </div>
+
+
+  <div class="hint">
+    💡 下肢從大腿到腳趾，可以依序認識 Femur、Patella、Tibia、Fibula、Tarsals、Metatarsals 和 Phalanges。
+  </div>
+
+
+  <div class="knowledge-title">📖 骨頭小百科</div>
+
+  <div class="cards">
+
+    <div class="bone-card">
+      <h3>股骨</h3>
+      <button class="card-sound" onclick="speak('Femur')">
+        Femur <span>🔊</span>
+      </button>
+      <p>位在大腿，是人體最長、最強壯的骨頭。</p>
+    </div>
+
+    <div class="bone-card">
+      <h3>髕骨</h3>
+      <button class="card-sound" onclick="speak('Patella')">
+        Patella <span>🔊</span>
+      </button>
+      <p>位在膝蓋前方，可以幫忙保護膝關節。</p>
+    </div>
+
+    <div class="bone-card">
+      <h3>脛骨</h3>
+      <button class="card-sound" onclick="speak('Tibia')">
+        Tibia <span>🔊</span>
+      </button>
+      <p>位在小腿內側，是小腿主要承受重量的骨頭。</p>
+    </div>
+
+    <div class="bone-card">
+      <h3>腓骨</h3>
+      <button class="card-sound" onclick="speak('Fibula')">
+        Fibula <span>🔊</span>
+      </button>
+      <p>位在小腿外側，比脛骨細長。</p>
+    </div>
+
+    <div class="bone-card">
+      <h3>跗骨</h3>
+      <button class="card-sound" onclick="speak('Tarsals')">
+        Tarsals <span>🔊</span>
+      </button>
+      <p>位在腳踝與腳後部，由多塊小骨頭組成。</p>
+    </div>
+
+    <div class="bone-card">
+      <h3>蹠骨</h3>
+      <button class="card-sound" onclick="speak('Metatarsals')">
+        Metatarsals <span>🔊</span>
+      </button>
+      <p>位在腳掌，是腳踝與腳趾之間的骨頭。</p>
+    </div>
+
+    <div class="bone-card">
+      <h3>趾骨</h3>
+      <button class="card-sound" onclick="speak('Phalanges')">
+        Phalanges <span>🔊</span>
+      </button>
+      <p>形成腳趾，走路與保持平衡時都很重要。</p>
+    </div>
+
+  </div>
+
+
+  <div class="game">
+
+    <h3>🎮 骨頭小挑戰</h3>
+
+    <p>人體最長的骨頭是哪一根？</p>
+
+    <button onclick="checkAnswer(false)">Humerus</button>
+    <button onclick="checkAnswer(true)">Femur</button>
+    <button onclick="checkAnswer(false)">Tibia</button>
+
+    <div id="gameResult"></div>
+
+  </div>
+
+</section>
+
+</main>
+
+
+<script>
+
+/* ======================================================
+   英文發音
+====================================================== */
+
+let englishVoices = [];
+
+function loadVoices(){
+
+  if(!("speechSynthesis" in window)){
+    return;
+  }
+
+  englishVoices = window.speechSynthesis.getVoices();
+}
+
+loadVoices();
+
+if("speechSynthesis" in window){
+  window.speechSynthesis.onvoiceschanged = loadVoices;
+}
+
+
+function speak(text){
+
+  if(!("speechSynthesis" in window)){
+    alert("這個瀏覽器目前不支援英文語音播放。");
+    return;
+  }
+
+  window.speechSynthesis.cancel();
+
+  const utterance = new SpeechSynthesisUtterance(text);
+
+  utterance.lang = "en-US";
+  utterance.rate = 0.78;
+  utterance.pitch = 1;
+  utterance.volume = 1;
+
+  const preferredVoice =
+    englishVoices.find(v =>
+      v.lang === "en-US" &&
+      (
+        v.name.includes("Samantha") ||
+        v.name.includes("Ava") ||
+        v.name.includes("Google US English") ||
+        v.name.includes("Siri")
+      )
+    )
+    ||
+    englishVoices.find(v =>
+      v.lang === "en-US"
+    )
+    ||
+    englishVoices.find(v =>
+      v.lang && v.lang.startsWith("en")
+    );
+
+  if(preferredVoice){
+    utterance.voice = preferredVoice;
+  }
+
+  window.speechSynthesis.speak(utterance);
+}
+
+
+/* ======================================================
+   頭部切換
+====================================================== */
+
+function changeSkull(view,btn){
+
+  document.querySelectorAll(".view-tab")
+    .forEach(function(b){
+      b.classList.remove("active");
+    });
+
+  btn.classList.add("active");
+
+  document.getElementById("skullFront").style.display =
+    view === "front" ? "block" : "none";
+
+  document.getElementById("skullSide").style.display =
+    view === "side" ? "block" : "none";
+
+  document.getElementById("skullBack").style.display =
+    view === "back" ? "block" : "none";
+}
+
+
+/* ======================================================
+   小遊戲
+====================================================== */
+
+function checkAnswer(correct){
+
+  const result = document.getElementById("gameResult");
+
+  if(correct){
+
+    result.textContent =
+      "🎉 答對了！Femur 股骨是人體最長的骨頭！";
+
+    result.style.color = "#16864b";
+
+  }else{
+
+    result.textContent =
+      "再想想看～提示：它位在大腿！";
+
+    result.style.color = "#d36c29";
+  }
+}
+
+</script>
+
+</body>
+</html>
