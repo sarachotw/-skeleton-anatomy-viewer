@@ -1,0 +1,1323 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>兒童醫學骨骼學習館</title>
+
+<style>
+*{
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  margin:0;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",
+  Arial,"Noto Sans TC",sans-serif;
+  background:#f2f7fb;
+  color:#29465b;
+}
+
+button{
+  font-family:inherit;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+header{
+  background:linear-gradient(135deg,#1769aa,#42a5f5);
+  color:white;
+  text-align:center;
+  padding:24px 16px 28px;
+}
+
+header h1{
+  margin:0;
+  font-size:28px;
+  font-weight:800;
+}
+
+header .english{
+  margin-top:7px;
+  font-size:18px;
+  font-weight:700;
+}
+
+header .subtitle{
+  margin-top:10px;
+  font-size:14px;
+  line-height:1.7;
+  opacity:.95;
+}
+
+/* =========================
+   MAIN
+========================= */
+
+.container{
+  max-width:920px;
+  margin:auto;
+  padding:18px;
+}
+
+.card{
+  background:#fff;
+  border-radius:22px;
+  padding:20px;
+  margin-bottom:22px;
+  box-shadow:0 5px 20px rgba(33,80,120,.08);
+}
+
+.section-title{
+  font-size:25px;
+  font-weight:850;
+  color:#17618e;
+  margin:0 0 16px;
+}
+
+.section-note{
+  margin:-5px 0 18px;
+  color:#607d8b;
+  font-size:14px;
+  line-height:1.6;
+}
+
+/* =========================
+   四大區域
+========================= */
+
+.region-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:14px;
+}
+
+.region-btn{
+  border:none;
+  border-radius:18px;
+  padding:20px 12px;
+  background:#e8f3fc;
+  color:#17618e;
+  font-size:19px;
+  font-weight:800;
+  cursor:pointer;
+  transition:.2s;
+}
+
+.region-btn:active{
+  transform:scale(.97);
+}
+
+.region-btn.active{
+  background:#1976d2;
+  color:#fff;
+}
+
+/* =========================
+   骨頭按鈕
+========================= */
+
+.bone-panel{
+  display:none;
+  margin-top:18px;
+}
+
+.bone-panel.active{
+  display:block;
+}
+
+.bone-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:12px;
+}
+
+.bone-card{
+  border:2px solid #d9e9f4;
+  border-radius:18px;
+  padding:15px;
+  background:#fff;
+}
+
+.bone-cn{
+  font-size:18px;
+  font-weight:800;
+  margin-bottom:7px;
+}
+
+.bone-en{
+  border:none;
+  padding:0;
+  background:none;
+  color:#1976d2;
+  font-size:18px;
+  font-weight:800;
+  cursor:pointer;
+  text-align:left;
+}
+
+.bone-en:active{
+  transform:scale(.96);
+}
+
+/* =========================
+   頭骨專區
+========================= */
+
+.skull-tabs{
+  display:flex;
+  justify-content:center;
+  gap:12px;
+  margin:8px 0 20px;
+}
+
+.skull-tab{
+  border:none;
+  background:#e4f0fa;
+  color:#17618e;
+  border-radius:18px;
+  padding:13px 25px;
+  font-size:19px;
+  font-weight:850;
+  cursor:pointer;
+}
+
+.skull-tab.active{
+  background:#1976d2;
+  color:#fff;
+}
+
+.skull-view{
+  display:none;
+}
+
+.skull-view.active{
+  display:block;
+}
+
+.skull-box{
+  border:2px solid #e3edf4;
+  border-radius:22px;
+  padding:18px 12px 24px;
+  overflow:hidden;
+}
+
+/* 核心：
+   不使用 absolute 紅點
+   英文與圖片固定左右排列
+*/
+.skull-layout{
+  display:grid;
+  grid-template-columns:42% 58%;
+  align-items:center;
+  min-height:520px;
+}
+
+.skull-labels{
+  display:flex;
+  flex-direction:column;
+  gap:17px;
+  padding:5px 4px 5px 6px;
+}
+
+.skull-label{
+  border:none;
+  background:none;
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:18px;
+  font-style:italic;
+  color:#222;
+  text-align:left;
+  padding:4px 2px;
+  cursor:pointer;
+  transition:.15s;
+}
+
+.skull-label::before{
+  content:"•";
+  margin-right:9px;
+  color:#111;
+  font-style:normal;
+}
+
+.skull-label:hover,
+.skull-label:focus{
+  color:#1976d2;
+}
+
+.skull-label.speaking{
+  color:#1976d2;
+  font-weight:700;
+  transform:translateX(3px);
+}
+
+.skull-image-area{
+  width:100%;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+.skull-image{
+  width:100%;
+  max-width:430px;
+  height:auto;
+  display:block;
+  object-fit:contain;
+}
+
+/* =========================
+   複習卡
+========================= */
+
+.review-title{
+  font-size:27px;
+  color:#17618e;
+  margin:28px 0 17px;
+}
+
+.review-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:14px;
+}
+
+.review-card{
+  border:3px solid #d9e8f2;
+  border-radius:22px;
+  padding:22px 18px;
+  min-height:125px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+
+.review-cn{
+  font-size:19px;
+  font-weight:850;
+  margin-bottom:10px;
+}
+
+.review-en{
+  border:none;
+  background:none;
+  padding:0;
+  text-align:left;
+  color:#1976d2;
+  font-size:19px;
+  font-weight:850;
+  cursor:pointer;
+}
+
+/* =========================
+   QUIZ
+========================= */
+
+.quiz-box{
+  text-align:center;
+}
+
+.quiz-question{
+  font-size:20px;
+  font-weight:800;
+  margin:15px 0;
+}
+
+.quiz-options{
+  display:grid;
+  gap:10px;
+}
+
+.quiz-option{
+  border:none;
+  border-radius:15px;
+  background:#eaf4fb;
+  padding:14px;
+  font-size:17px;
+  font-weight:700;
+  color:#245675;
+  cursor:pointer;
+}
+
+.quiz-result{
+  min-height:28px;
+  margin-top:14px;
+  font-weight:800;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+  text-align:center;
+  padding:5px 20px 30px;
+  color:#78909c;
+  font-size:13px;
+}
+
+/* =========================
+   手機
+========================= */
+
+@media(max-width:650px){
+
+  .container{
+    padding:12px;
+  }
+
+  .card{
+    padding:16px 13px;
+  }
+
+  .region-grid,
+  .bone-grid,
+  .review-grid{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .skull-tab{
+    padding:12px 19px;
+    font-size:17px;
+  }
+
+  .skull-box{
+    padding:12px 8px 18px;
+  }
+
+  .skull-layout{
+    grid-template-columns:44% 56%;
+    min-height:470px;
+  }
+
+  .skull-labels{
+    gap:14px;
+  }
+
+  .skull-label{
+    font-size:15px;
+    white-space:nowrap;
+  }
+
+  .skull-image{
+    width:112%;
+    max-width:none;
+    transform:translateX(-5%);
+  }
+}
+
+@media(max-width:390px){
+
+  .skull-layout{
+    grid-template-columns:46% 54%;
+  }
+
+  .skull-label{
+    font-size:14px;
+  }
+
+  .skull-labels{
+    gap:12px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>🦴 兒童醫學骨骼學習館</h1>
+  <div class="english">Kids Medical Bone Learning Center</div>
+  <div class="subtitle">
+    認識人體骨骼、學習英文名稱<br>
+    👆 直接點英文名稱，就會唸出英文
+  </div>
+</header>
+
+<main class="container">
+
+  <!-- =========================
+       四大區域
+  ========================== -->
+
+  <section class="card">
+    <h2 class="section-title">① 認識人體骨骼</h2>
+
+    <p class="section-note">
+      人體成人通常有 206 塊骨頭。先從四個主要區域開始認識。
+    </p>
+
+    <div class="region-grid">
+
+      <button class="region-btn active"
+        onclick="showRegion('head',this)">
+        💀 頭部
+      </button>
+
+      <button class="region-btn"
+        onclick="showRegion('trunk',this)">
+        🫁 胸腹部
+      </button>
+
+      <button class="region-btn"
+        onclick="showRegion('upper',this)">
+        💪 上肢
+      </button>
+
+      <button class="region-btn"
+        onclick="showRegion('lower',this)">
+        🦵 下肢
+      </button>
+
+    </div>
+
+    <!-- 頭部 -->
+
+    <div id="head" class="bone-panel active">
+      <div class="bone-grid">
+
+        <div class="bone-card">
+          <div class="bone-cn">額骨</div>
+          <button class="bone-en" onclick="speak('frontal bone',this)">
+            Frontal bone
+          </button>
+        </div>
+
+        <div class="bone-card">
+          <div class="bone-cn">頂骨</div>
+          <button class="bone-en" onclick="speak('parietal bone',this)">
+            Parietal bone
+          </button>
+        </div>
+
+        <div class="bone-card">
+          <div class="bone-cn">顳骨</div>
+          <button class="bone-en" onclick="speak('temporal bone',this)">
+            Temporal bone
+          </button>
+        </div>
+
+        <div class="bone-card">
+          <div class="bone-cn">枕骨</div>
+          <button class="bone-en" onclick="speak('occipital bone',this)">
+            Occipital bone
+          </button>
+        </div>
+
+        <div class="bone-card">
+          <div class="bone-cn">鼻骨</div>
+          <button class="bone-en" onclick="speak('nasal bone',this)">
+            Nasal bone
+          </button>
+        </div>
+
+        <div class="bone-card">
+          <div class="bone-cn">顴骨</div>
+          <button class="bone-en" onclick="speak('zygomatic bone',this)">
+            Zygomatic bone
+          </button>
+        </div>
+
+        <div class="bone-card">
+          <div class="bone-cn">上顎骨</div>
+          <button class="bone-en" onclick="speak('maxilla',this)">
+            Maxilla
+          </button>
+        </div>
+
+        <div class="bone-card">
+          <div class="bone-cn">下顎骨</div>
+          <button class="bone-en" onclick="speak('mandible',this)">
+            Mandible
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- 胸腹部 -->
+
+    <div id="trunk" class="bone-panel">
+      <div class="bone-grid">
+
+        <div class="bone-card">
+          <div class="bone-cn">胸骨</div>
+          <button class="bone-en" onclick="speak('sternum',this)">
+            Sternum
+          </button>
+        </div>
+
+        <div class="bone-card">
+          <div class="bone-cn">肋骨</div>
+          <button class="bone-en" onclick="speak('ribs',this)">
+            Ribs
+          </button>
+        </div>
+
+        <div class="bone-card">
+          <div class="bone-cn">脊柱</div>
+          <button class="bone-en" onclick="speak('vertebral column',this)">
+            Vertebral column
+          </button>
+        </div>
+
+        <div class="bone-card">
+          <div class="bone-cn">骨盆</div>
+          <button class="bone-en" onclick="speak('pelvis',this)">
+            Pelvis
+          </button>
+        </div>
+
+        <div class="bone-card">
+          <div class="bone-cn">薦骨</div>
+          <button class="bone-en" onclick="speak('sacrum',this)">
+            Sacrum
+          </button>
+        </div>
+
+        <div class="bone-card">
+          <div class="bone-cn">尾骨</div>
+          <button class="bone-en" onclick="speak('coccyx',this)">
+            Coccyx
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- 上肢 -->
+
+    <div id="upper" class="bone-panel">
+      <div class="bone-grid">
+
+        <div class="bone-card">
+          <div class="bone-cn">鎖骨</div>
+          <button class="bone-en" onclick="speak('clavicle',this)">
+            Clavicle
+          </button>
+        </div>
+
+        <div class="bone-card">
+          <div class="bone-cn">肩胛骨</div>
+          <button class="bone-en" onclick="speak('scapula',this)">
+            Scapula
+          </button>
+        </div>
+
+        <div class="bone-card">
+          <div class="bone-cn">肱骨</div>
+          <button class="bone-en" onclick="speak('humerus',this)">
+            Humerus
+          </button>
+        </div>
+
+        <div class="bone-card">
+          <div class="bone-cn">橈骨</div>
+          <button class="bone-en" onclick="speak('radius',this)">
+            Radius
+          </button>
+        </div>
+
+        <div class="bone-card">
+          <div class="bone-cn">尺骨</div>
+          <button class="bone-en" onclick="speak('ulna',this)">
+            Ulna
+          </button>
+        </div>
+
+        <div class="bone-card">
+          <div class="bone-cn">腕骨</div>
+          <button class="bone-en" onclick="speak('carpal bones',this)">
+            Carpal bones
+          </button>
+        </div>
+
+        <div class="bone-card">
+          <div class="bone-cn">掌骨</div>
+          <button class="bone-en" onclick="speak('metacarpals',this)">
+            Metacarpals
+          </button>
+        </div>
+
+        <div class="bone-card">
+          <div class="bone-cn">指骨</div>
+          <button class="bone-en" onclick="speak('phalanges',this)">
+            Phalanges
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- 下肢 -->
+
+    <div id="lower" class="bone-panel">
+      <div class="bone-grid">
+
+        <div class="bone-card">
+          <div class="bone-cn">股骨</div>
+          <button class="bone-en" onclick="speak('femur',this)">
+            Femur
+          </button>
+        </div>
+
+        <div class="bone-card">
+          <div class="bone-cn">髕骨</div>
+          <button class="bone-en" onclick="speak('patella',this)">
+            Patella
+          </button>
+        </div>
+
+        <div class="bone-card">
+          <div class="bone-cn">脛骨</div>
+          <button class="bone-en" onclick="speak('tibia',this)">
+            Tibia
+          </button>
+        </div>
+
+        <div class="bone-card">
+          <div class="bone-cn">腓骨</div>
+          <button class="bone-en" onclick="speak('fibula',this)">
+            Fibula
+          </button>
+        </div>
+
+        <div class="bone-card">
+          <div class="bone-cn">跗骨</div>
+          <button class="bone-en" onclick="speak('tarsal bones',this)">
+            Tarsal bones
+          </button>
+        </div>
+
+        <div class="bone-card">
+          <div class="bone-cn">蹠骨</div>
+          <button class="bone-en" onclick="speak('metatarsals',this)">
+            Metatarsals
+          </button>
+        </div>
+
+        <div class="bone-card">
+          <div class="bone-cn">趾骨</div>
+          <button class="bone-en" onclick="speak('phalanges',this)">
+            Phalanges
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       頭骨學習
+  ========================== -->
+
+  <section class="card">
+
+    <h2 class="section-title">② 頭部骨骼學習</h2>
+
+    <p class="section-note">
+      不放紅點，直接點左邊英文名稱聽發音。
+    </p>
+
+    <div class="skull-tabs">
+
+      <button class="skull-tab active"
+        onclick="showSkull('front',this)">
+        正面
+      </button>
+
+      <button class="skull-tab"
+        onclick="showSkull('side',this)">
+        側面
+      </button>
+
+      <button class="skull-tab"
+        onclick="showSkull('back',this)">
+        背面
+      </button>
+
+    </div>
+
+    <!-- 正面 -->
+
+    <div id="front" class="skull-view active">
+
+      <div class="skull-box">
+
+        <div class="skull-layout">
+
+          <div class="skull-labels">
+
+            <button class="skull-label"
+              onclick="speak('os frontale',this)">
+              os frontale
+            </button>
+
+            <button class="skull-label"
+              onclick="speak('os nasale',this)">
+              os nasale
+            </button>
+
+            <button class="skull-label"
+              onclick="speak('os parietale',this)">
+              os parietale
+            </button>
+
+            <button class="skull-label"
+              onclick="speak('os temporale',this)">
+              os temporale
+            </button>
+
+            <button class="skull-label"
+              onclick="speak('os sphenoidale',this)">
+              os sphenoidale
+            </button>
+
+            <button class="skull-label"
+              onclick="speak('os lacrimale',this)">
+              os lacrimale
+            </button>
+
+            <button class="skull-label"
+              onclick="speak('os zygomaticum',this)">
+              os zygomaticum
+            </button>
+
+            <button class="skull-label"
+              onclick="speak('os ethmoidale',this)">
+              os ethmoidale
+            </button>
+
+            <button class="skull-label"
+              onclick="speak('maxilla',this)">
+              maxilla
+            </button>
+
+            <button class="skull-label"
+              onclick="speak('mandibula',this)">
+              mandibula
+            </button>
+
+          </div>
+
+          <div class="skull-image-area">
+
+            <img
+              class="skull-image"
+              src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Human_skull_front_simplified_(bones).svg"
+              alt="頭骨正面圖"
+            >
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- 側面 -->
+
+    <div id="side" class="skull-view">
+
+      <div class="skull-box">
+
+        <div class="skull-layout">
+
+          <div class="skull-labels">
+
+            <button class="skull-label"
+              onclick="speak('os frontale',this)">
+              os frontale
+            </button>
+
+            <button class="skull-label"
+              onclick="speak('os parietale',this)">
+              os parietale
+            </button>
+
+            <button class="skull-label"
+              onclick="speak('os temporale',this)">
+              os temporale
+            </button>
+
+            <button class="skull-label"
+              onclick="speak('os occipitale',this)">
+              os occipitale
+            </button>
+
+            <button class="skull-label"
+              onclick="speak('os sphenoidale',this)">
+              os sphenoidale
+            </button>
+
+            <button class="skull-label"
+              onclick="speak('os zygomaticum',this)">
+              os zygomaticum
+            </button>
+
+            <button class="skull-label"
+              onclick="speak('os nasale',this)">
+              os nasale
+            </button>
+
+            <button class="skull-label"
+              onclick="speak('maxilla',this)">
+              maxilla
+            </button>
+
+            <button class="skull-label"
+              onclick="speak('mandibula',this)">
+              mandibula
+            </button>
+
+          </div>
+
+          <div class="skull-image-area">
+
+            <img
+              class="skull-image"
+              src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Human_skull_side_simplified_(bones).svg"
+              alt="頭骨側面圖"
+            >
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- 背面 -->
+
+    <div id="back" class="skull-view">
+
+      <div class="skull-box">
+
+        <div class="skull-layout">
+
+          <div class="skull-labels">
+
+            <button class="skull-label"
+              onclick="speak('os parietale',this)">
+              os parietale
+            </button>
+
+            <button class="skull-label"
+              onclick="speak('os occipitale',this)">
+              os occipitale
+            </button>
+
+            <button class="skull-label"
+              onclick="speak('os temporale',this)">
+              os temporale
+            </button>
+
+            <button class="skull-label"
+              onclick="speak('processus mastoideus',this)">
+              processus mastoideus
+            </button>
+
+          </div>
+
+          <div class="skull-image-area">
+
+            <img
+              class="skull-image"
+              src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Human_skull_-_posterior_view.png"
+              alt="頭骨背面圖"
+            >
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- =========================
+         英文複習
+    ========================== -->
+
+    <h2 class="review-title">骨頭英文複習</h2>
+
+    <div class="review-grid">
+
+      <div class="review-card">
+        <div class="review-cn">額骨</div>
+        <button class="review-en"
+          onclick="speak('frontal bone',this)">
+          Frontal bone
+        </button>
+      </div>
+
+      <div class="review-card">
+        <div class="review-cn">頂骨</div>
+        <button class="review-en"
+          onclick="speak('parietal bone',this)">
+          Parietal bone
+        </button>
+      </div>
+
+      <div class="review-card">
+        <div class="review-cn">顳骨</div>
+        <button class="review-en"
+          onclick="speak('temporal bone',this)">
+          Temporal bone
+        </button>
+      </div>
+
+      <div class="review-card">
+        <div class="review-cn">枕骨</div>
+        <button class="review-en"
+          onclick="speak('occipital bone',this)">
+          Occipital bone
+        </button>
+      </div>
+
+      <div class="review-card">
+        <div class="review-cn">鼻骨</div>
+        <button class="review-en"
+          onclick="speak('nasal bone',this)">
+          Nasal bone
+        </button>
+      </div>
+
+      <div class="review-card">
+        <div class="review-cn">蝶骨</div>
+        <button class="review-en"
+          onclick="speak('sphenoid bone',this)">
+          Sphenoid bone
+        </button>
+      </div>
+
+      <div class="review-card">
+        <div class="review-cn">淚骨</div>
+        <button class="review-en"
+          onclick="speak('lacrimal bone',this)">
+          Lacrimal bone
+        </button>
+      </div>
+
+      <div class="review-card">
+        <div class="review-cn">顴骨</div>
+        <button class="review-en"
+          onclick="speak('zygomatic bone',this)">
+          Zygomatic bone
+        </button>
+      </div>
+
+      <div class="review-card">
+        <div class="review-cn">篩骨</div>
+        <button class="review-en"
+          onclick="speak('ethmoid bone',this)">
+          Ethmoid bone
+        </button>
+      </div>
+
+      <div class="review-card">
+        <div class="review-cn">上顎骨</div>
+        <button class="review-en"
+          onclick="speak('maxilla',this)">
+          Maxilla
+        </button>
+      </div>
+
+      <div class="review-card">
+        <div class="review-cn">下顎骨</div>
+        <button class="review-en"
+          onclick="speak('mandible',this)">
+          Mandible
+        </button>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       小遊戲
+  ========================== -->
+
+  <section class="card quiz-box">
+
+    <h2 class="section-title">③ 骨骼英文小遊戲</h2>
+
+    <div class="quiz-question" id="quizQuestion">
+      額骨的英文是？
+    </div>
+
+    <div class="quiz-options" id="quizOptions"></div>
+
+    <div class="quiz-result" id="quizResult"></div>
+
+    <button
+      class="region-btn"
+      style="margin-top:10px;width:100%;"
+      onclick="nextQuestion()">
+      下一題 ➜
+    </button>
+
+  </section>
+
+</main>
+
+<footer>
+  🦴 Kids Medical Bone Learning Center
+</footer>
+
+
+<script>
+
+/* =========================
+   發音
+========================= */
+
+function speak(text,element){
+
+  if(!("speechSynthesis" in window)){
+    alert("這個瀏覽器目前不支援語音功能");
+    return;
+  }
+
+  window.speechSynthesis.cancel();
+
+  const utterance =
+    new SpeechSynthesisUtterance(text);
+
+  utterance.lang="en-US";
+  utterance.rate=0.78;
+  utterance.pitch=1;
+
+  if(element){
+    document
+      .querySelectorAll(".speaking")
+      .forEach(el=>el.classList.remove("speaking"));
+
+    element.classList.add("speaking");
+  }
+
+  utterance.onend=function(){
+    if(element){
+      element.classList.remove("speaking");
+    }
+  };
+
+  window.speechSynthesis.speak(utterance);
+}
+
+
+/* =========================
+   四大區域切換
+========================= */
+
+function showRegion(id,button){
+
+  document
+    .querySelectorAll(".bone-panel")
+    .forEach(panel=>{
+      panel.classList.remove("active");
+    });
+
+  document
+    .querySelectorAll(".region-btn")
+    .forEach(btn=>{
+      btn.classList.remove("active");
+    });
+
+  document
+    .getElementById(id)
+    .classList.add("active");
+
+  button.classList.add("active");
+}
+
+
+/* =========================
+   頭骨視角
+========================= */
+
+function showSkull(id,button){
+
+  document
+    .querySelectorAll(".skull-view")
+    .forEach(view=>{
+      view.classList.remove("active");
+    });
+
+  document
+    .querySelectorAll(".skull-tab")
+    .forEach(tab=>{
+      tab.classList.remove("active");
+    });
+
+  document
+    .getElementById(id)
+    .classList.add("active");
+
+  button.classList.add("active");
+}
+
+
+/* =========================
+   小遊戲
+========================= */
+
+const quizData=[
+
+  {
+    q:"額骨的英文是？",
+    correct:"Frontal bone",
+    options:[
+      "Frontal bone",
+      "Temporal bone",
+      "Femur"
+    ]
+  },
+
+  {
+    q:"頂骨的英文是？",
+    correct:"Parietal bone",
+    options:[
+      "Parietal bone",
+      "Nasal bone",
+      "Mandible"
+    ]
+  },
+
+  {
+    q:"顳骨的英文是？",
+    correct:"Temporal bone",
+    options:[
+      "Temporal bone",
+      "Sternum",
+      "Patella"
+    ]
+  },
+
+  {
+    q:"下顎骨的英文是？",
+    correct:"Mandible",
+    options:[
+      "Maxilla",
+      "Mandible",
+      "Clavicle"
+    ]
+  },
+
+  {
+    q:"肱骨的英文是？",
+    correct:"Humerus",
+    options:[
+      "Humerus",
+      "Radius",
+      "Femur"
+    ]
+  },
+
+  {
+    q:"股骨的英文是？",
+    correct:"Femur",
+    options:[
+      "Fibula",
+      "Femur",
+      "Ulna"
+    ]
+  },
+
+  {
+    q:"髕骨的英文是？",
+    correct:"Patella",
+    options:[
+      "Pelvis",
+      "Patella",
+      "Scapula"
+    ]
+  }
+
+];
+
+let currentQuiz=0;
+
+function loadQuestion(){
+
+  const item=quizData[currentQuiz];
+
+  document.getElementById("quizQuestion")
+    .textContent=item.q;
+
+  document.getElementById("quizResult")
+    .textContent="";
+
+  const optionBox=
+    document.getElementById("quizOptions");
+
+  optionBox.innerHTML="";
+
+  item.options.forEach(option=>{
+
+    const button=
+      document.createElement("button");
+
+    button.className="quiz-option";
+    button.textContent=option;
+
+    button.onclick=function(){
+
+      speak(option);
+
+      if(option===item.correct){
+
+        document.getElementById("quizResult")
+          .textContent="✅ 答對了！";
+
+      }else{
+
+        document.getElementById("quizResult")
+          .textContent=
+          "❌ 再想想看，正確答案是 "
+          +item.correct;
+
+      }
+
+    };
+
+    optionBox.appendChild(button);
+
+  });
+
+}
+
+function nextQuestion(){
+
+  currentQuiz++;
+
+  if(currentQuiz>=quizData.length){
+    currentQuiz=0;
+  }
+
+  loadQuestion();
+
+}
+
+loadQuestion();
+
+</script>
+
+</body>
+</html>
