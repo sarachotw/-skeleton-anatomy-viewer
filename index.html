@@ -1,0 +1,1156 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>兒童醫學骨骼學習館</title>
+
+<style>
+*{
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  margin:0;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",Arial,sans-serif;
+  background:#f2f7fb;
+  color:#29465b;
+}
+
+button{
+  font-family:inherit;
+  -webkit-tap-highlight-color:transparent;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+header{
+  background:linear-gradient(135deg,#1769aa,#42a5f5);
+  color:#fff;
+  text-align:center;
+  padding:26px 16px 30px;
+}
+
+header h1{
+  margin:0;
+  font-size:29px;
+  font-weight:900;
+}
+
+.en-title{
+  margin-top:7px;
+  font-size:18px;
+  font-weight:800;
+}
+
+.sub{
+  margin-top:10px;
+  font-size:14px;
+  line-height:1.7;
+  opacity:.96;
+}
+
+
+/* =========================
+   NAV
+========================= */
+
+.nav{
+  max-width:900px;
+  margin:-15px auto 22px;
+  padding:0 14px;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:8px;
+}
+
+.nav a{
+  text-decoration:none;
+  background:#fff;
+  color:#1769aa;
+  border-radius:14px;
+  text-align:center;
+  padding:12px 4px;
+  font-size:14px;
+  font-weight:900;
+  box-shadow:0 4px 15px rgba(35,90,125,.12);
+}
+
+
+/* =========================
+   MAIN
+========================= */
+
+.container{
+  width:min(900px,100%);
+  margin:auto;
+  padding:0 14px 40px;
+}
+
+.card{
+  background:#fff;
+  border-radius:27px;
+  padding:26px 12px 25px;
+  margin-bottom:25px;
+  box-shadow:0 5px 22px rgba(31,82,115,.11);
+  overflow:hidden;
+}
+
+.section-title{
+  text-align:center;
+  margin-bottom:2px;
+}
+
+.section-title h2{
+  margin:0;
+  color:#155b8e;
+  font-size:30px;
+  font-weight:900;
+}
+
+.section-title .eng{
+  margin-top:5px;
+  font-size:21px;
+  color:#7994a7;
+  font-weight:800;
+}
+
+.section-title p{
+  margin:12px 0 0;
+  color:#7690a3;
+  font-size:16px;
+}
+
+
+/* =========================
+   IMAGE AREA
+========================= */
+
+.figure{
+  position:relative;
+  width:100%;
+  margin:16px auto 10px;
+  overflow:hidden;
+  background:#fff;
+}
+
+/* 原始完整骨架 */
+.anatomy-image{
+  position:absolute;
+  left:50%;
+  display:block;
+  max-width:none;
+  user-select:none;
+  pointer-events:none;
+}
+
+/* -------------------------
+   HEAD
+------------------------- */
+
+.figure-head{
+  height:490px;
+}
+
+.figure-head .anatomy-image{
+  width:780px;
+  top:-18px;
+  transform:translateX(-50%) scale(2.8);
+  transform-origin:50% 5%;
+}
+
+/* -------------------------
+   TRUNK
+------------------------- */
+
+.figure-trunk{
+  height:620px;
+}
+
+.figure-trunk .anatomy-image{
+  width:580px;
+  top:-385px;
+  transform:translateX(-50%) scale(1.65);
+  transform-origin:center top;
+}
+
+/* -------------------------
+   UPPER LIMB
+------------------------- */
+
+.figure-upper{
+  height:720px;
+}
+
+.figure-upper .anatomy-image{
+  width:620px;
+  top:-240px;
+  transform:translateX(-50%) scale(1.55);
+  transform-origin:center top;
+}
+
+/* -------------------------
+   LOWER LIMB
+------------------------- */
+
+.figure-lower{
+  height:900px;
+}
+
+.figure-lower .anatomy-image{
+  width:640px;
+  top:-350px;
+  transform:translateX(-50%) scale(1.42);
+  transform-origin:center top;
+}
+
+
+/* =========================
+   LABEL
+========================= */
+
+.label{
+  position:absolute;
+  z-index:5;
+  color:#111;
+  cursor:pointer;
+  background:rgba(255,255,255,.92);
+  border-radius:7px;
+  padding:3px 5px 4px;
+  line-height:1.05;
+}
+
+.label .english{
+  font-size:17px;
+  font-weight:700;
+}
+
+.label .chinese{
+  font-size:12px;
+  color:#667f91;
+  margin-top:3px;
+  font-weight:800;
+}
+
+.label.left{
+  left:3%;
+}
+
+.label.right{
+  right:3%;
+  text-align:right;
+}
+
+.label::after{
+  content:"";
+  position:absolute;
+  height:1.5px;
+  background:#ff3b30;
+  top:50%;
+  width:var(--line,80px);
+}
+
+.label::before{
+  content:"";
+  position:absolute;
+  width:8px;
+  height:8px;
+  border-radius:50%;
+  background:#ff2d20;
+  top:calc(50% - 3px);
+  z-index:3;
+}
+
+.label.left::after{
+  left:100%;
+}
+
+.label.left::before{
+  left:calc(100% + var(--line,80px) - 3px);
+}
+
+.label.right::after{
+  right:100%;
+}
+
+.label.right::before{
+  right:calc(100% + var(--line,80px) - 3px);
+}
+
+
+/* =========================
+   HEAD LABELS
+========================= */
+
+.head-frontal{
+  top:53px;
+  --line:76px;
+}
+
+.head-parietal{
+  top:92px;
+  --line:73px;
+}
+
+.head-temporal{
+  top:165px;
+  --line:74px;
+}
+
+.head-nasal{
+  top:202px;
+  --line:70px;
+}
+
+.head-zygomatic{
+  top:240px;
+  --line:70px;
+}
+
+.head-maxilla{
+  top:289px;
+  --line:73px;
+}
+
+.head-mandible{
+  top:347px;
+  --line:80px;
+}
+
+
+/* =========================
+   TRUNK LABELS
+========================= */
+
+.trunk-clavicle{
+  top:88px;
+  --line:90px;
+}
+
+.trunk-scapula{
+  top:145px;
+  --line:82px;
+}
+
+.trunk-sternum{
+  top:200px;
+  --line:103px;
+}
+
+.trunk-ribs{
+  top:270px;
+  --line:93px;
+}
+
+.trunk-spine{
+  top:350px;
+  --line:105px;
+}
+
+.trunk-pelvis{
+  top:448px;
+  --line:88px;
+}
+
+.trunk-sacrum{
+  top:500px;
+  --line:101px;
+}
+
+
+/* =========================
+   UPPER LABELS
+========================= */
+
+.upper-clavicle{
+  top:51px;
+  --line:88px;
+}
+
+.upper-scapula{
+  top:105px;
+  --line:84px;
+}
+
+.upper-humerus{
+  top:218px;
+  --line:99px;
+}
+
+.upper-radius{
+  top:373px;
+  --line:93px;
+}
+
+.upper-ulna{
+  top:430px;
+  --line:95px;
+}
+
+.upper-carpals{
+  top:545px;
+  --line:89px;
+}
+
+.upper-metacarpals{
+  top:605px;
+  --line:75px;
+}
+
+.upper-phalanges{
+  top:662px;
+  --line:80px;
+}
+
+
+/* =========================
+   LOWER LABELS
+========================= */
+
+.lower-pelvis{
+  top:80px;
+  --line:103px;
+}
+
+.lower-femur{
+  top:280px;
+  --line:118px;
+}
+
+.lower-patella{
+  top:475px;
+  --line:110px;
+}
+
+.lower-tibia{
+  top:555px;
+  --line:120px;
+}
+
+.lower-fibula{
+  top:625px;
+  --line:117px;
+}
+
+.lower-tarsals{
+  top:750px;
+  --line:100px;
+}
+
+.lower-metatarsals{
+  top:802px;
+  --line:83px;
+}
+
+.lower-phalanges{
+  top:850px;
+  --line:85px;
+}
+
+
+/* =========================
+   SOUND BUTTONS
+========================= */
+
+.sound-title{
+  margin:20px 7px 11px;
+  text-align:center;
+  color:#5d7b90;
+  font-size:14px;
+  font-weight:800;
+}
+
+.sound-grid{
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:9px;
+  padding:0 5px;
+}
+
+.sound-btn{
+  appearance:none;
+  border:2px solid #8acdf4;
+  background:#fff;
+  border-radius:18px;
+  min-width:110px;
+  padding:9px 11px;
+  color:#1769aa;
+  cursor:pointer;
+  box-shadow:0 2px 8px rgba(37,129,185,.08);
+}
+
+.sound-btn:active{
+  transform:scale(.97);
+  background:#edf8ff;
+}
+
+.sound-btn .en{
+  display:block;
+  font-size:15px;
+  font-weight:900;
+}
+
+.sound-btn .zh{
+  display:block;
+  font-size:12px;
+  margin-top:3px;
+  color:#627f93;
+  font-weight:800;
+}
+
+
+/* =========================
+   INFO BOX
+========================= */
+
+.info{
+  margin:22px 7px 0;
+  background:#eef8ff;
+  border-radius:17px;
+  padding:15px;
+  font-size:14px;
+  line-height:1.7;
+  color:#456b82;
+}
+
+.info strong{
+  color:#1769aa;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:600px){
+
+  header h1{
+    font-size:26px;
+  }
+
+  .nav{
+    gap:6px;
+  }
+
+  .nav a{
+    font-size:12px;
+    padding:11px 2px;
+  }
+
+  .card{
+    padding-left:4px;
+    padding-right:4px;
+  }
+
+  .section-title h2{
+    font-size:28px;
+  }
+
+  .label .english{
+    font-size:15px;
+  }
+
+  .label .chinese{
+    font-size:11px;
+  }
+
+  .label.left{
+    left:2%;
+  }
+
+  .label.right{
+    right:2%;
+  }
+
+  .figure-head{
+    height:465px;
+  }
+
+  .figure-trunk{
+    height:590px;
+  }
+
+  .figure-upper{
+    height:700px;
+  }
+
+  .figure-lower{
+    height:880px;
+  }
+
+  .sound-btn{
+    min-width:103px;
+  }
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>🦴 兒童醫學骨骼學習館</h1>
+  <div class="en-title">Human Skeleton Learning</div>
+  <div class="sub">
+    看骨頭位置・學英文名稱・點一下就能聽發音
+  </div>
+</header>
+
+
+<nav class="nav">
+  <a href="#head">💀 頭部</a>
+  <a href="#trunk">🫁 軀幹</a>
+  <a href="#upper">💪 上肢</a>
+  <a href="#lower">🦵 下肢</a>
+</nav>
+
+
+<main class="container">
+
+
+<!-- ==================================================
+     HEAD
+================================================== -->
+
+<section class="card" id="head">
+
+  <div class="section-title">
+    <h2>💀 頭部骨骼</h2>
+    <div class="eng">Skull</div>
+    <p>直接點圖片旁的英文，就可以聽發音</p>
+  </div>
+
+  <div class="figure figure-head">
+
+    <img
+      class="anatomy-image"
+      src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Skeleton_anterior.svg"
+      alt="Human skull">
+
+    <div class="label left head-frontal"
+         onclick="speak('Frontal bone')">
+      <div class="english">Frontal bone 🔊</div>
+      <div class="chinese">額骨</div>
+    </div>
+
+    <div class="label right head-parietal"
+         onclick="speak('Parietal bone')">
+      <div class="english">Parietal bone 🔊</div>
+      <div class="chinese">頂骨</div>
+    </div>
+
+    <div class="label left head-temporal"
+         onclick="speak('Temporal bone')">
+      <div class="english">Temporal bone 🔊</div>
+      <div class="chinese">顳骨</div>
+    </div>
+
+    <div class="label right head-nasal"
+         onclick="speak('Nasal bone')">
+      <div class="english">Nasal bone 🔊</div>
+      <div class="chinese">鼻骨</div>
+    </div>
+
+    <div class="label left head-zygomatic"
+         onclick="speak('Zygomatic bone')">
+      <div class="english">Zygomatic 🔊</div>
+      <div class="chinese">顴骨</div>
+    </div>
+
+    <div class="label right head-maxilla"
+         onclick="speak('Maxilla')">
+      <div class="english">Maxilla 🔊</div>
+      <div class="chinese">上顎骨</div>
+    </div>
+
+    <div class="label left head-mandible"
+         onclick="speak('Mandible')">
+      <div class="english">Mandible 🔊</div>
+      <div class="chinese">下顎骨</div>
+    </div>
+
+  </div>
+
+
+  <div class="sound-title">🔊 點英文練習發音</div>
+
+  <div class="sound-grid">
+
+    <button class="sound-btn" onclick="speak('Frontal bone')">
+      <span class="en">🔊 Frontal bone</span>
+      <span class="zh">額骨</span>
+    </button>
+
+    <button class="sound-btn" onclick="speak('Parietal bone')">
+      <span class="en">🔊 Parietal bone</span>
+      <span class="zh">頂骨</span>
+    </button>
+
+    <button class="sound-btn" onclick="speak('Temporal bone')">
+      <span class="en">🔊 Temporal bone</span>
+      <span class="zh">顳骨</span>
+    </button>
+
+    <button class="sound-btn" onclick="speak('Nasal bone')">
+      <span class="en">🔊 Nasal bone</span>
+      <span class="zh">鼻骨</span>
+    </button>
+
+    <button class="sound-btn" onclick="speak('Zygomatic bone')">
+      <span class="en">🔊 Zygomatic</span>
+      <span class="zh">顴骨</span>
+    </button>
+
+    <button class="sound-btn" onclick="speak('Maxilla')">
+      <span class="en">🔊 Maxilla</span>
+      <span class="zh">上顎骨</span>
+    </button>
+
+    <button class="sound-btn" onclick="speak('Mandible')">
+      <span class="en">🔊 Mandible</span>
+      <span class="zh">下顎骨</span>
+    </button>
+
+  </div>
+
+  <div class="info">
+    <strong>小知識：</strong>
+    Skull 是頭骨的總稱。Mandible 是下顎骨，也是頭骨中最容易觀察到活動的骨頭之一。
+  </div>
+
+</section>
+
+
+
+<!-- ==================================================
+     TRUNK
+================================================== -->
+
+<section class="card" id="trunk">
+
+  <div class="section-title">
+    <h2>🫁 胸腔與軀幹骨骼</h2>
+    <div class="eng">Trunk</div>
+    <p>鎖骨、肩胛骨、胸骨、肋骨和脊椎都標出來</p>
+  </div>
+
+  <div class="figure figure-trunk">
+
+    <img
+      class="anatomy-image"
+      src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Skeleton_anterior.svg"
+      alt="Trunk skeleton">
+
+    <div class="label left trunk-clavicle"
+         onclick="speak('Clavicle')">
+      <div class="english">Clavicle 🔊</div>
+      <div class="chinese">鎖骨</div>
+    </div>
+
+    <div class="label right trunk-scapula"
+         onclick="speak('Scapula')">
+      <div class="english">Scapula 🔊</div>
+      <div class="chinese">肩胛骨</div>
+    </div>
+
+    <div class="label left trunk-sternum"
+         onclick="speak('Sternum')">
+      <div class="english">Sternum 🔊</div>
+      <div class="chinese">胸骨</div>
+    </div>
+
+    <div class="label right trunk-ribs"
+         onclick="speak('Ribs')">
+      <div class="english">Ribs 🔊</div>
+      <div class="chinese">肋骨</div>
+    </div>
+
+    <div class="label left trunk-spine"
+         onclick="speak('Vertebral column')">
+      <div class="english">Vertebral column 🔊</div>
+      <div class="chinese">脊柱</div>
+    </div>
+
+    <div class="label right trunk-pelvis"
+         onclick="speak('Pelvis')">
+      <div class="english">Pelvis 🔊</div>
+      <div class="chinese">骨盆</div>
+    </div>
+
+    <div class="label left trunk-sacrum"
+         onclick="speak('Sacrum')">
+      <div class="english">Sacrum 🔊</div>
+      <div class="chinese">薦骨</div>
+    </div>
+
+  </div>
+
+
+  <div class="sound-title">🔊 點英文練習發音</div>
+
+  <div class="sound-grid">
+
+    <button class="sound-btn" onclick="speak('Clavicle')">
+      <span class="en">🔊 Clavicle</span>
+      <span class="zh">鎖骨</span>
+    </button>
+
+    <button class="sound-btn" onclick="speak('Scapula')">
+      <span class="en">🔊 Scapula</span>
+      <span class="zh">肩胛骨</span>
+    </button>
+
+    <button class="sound-btn" onclick="speak('Sternum')">
+      <span class="en">🔊 Sternum</span>
+      <span class="zh">胸骨</span>
+    </button>
+
+    <button class="sound-btn" onclick="speak('Ribs')">
+      <span class="en">🔊 Ribs</span>
+      <span class="zh">肋骨</span>
+    </button>
+
+    <button class="sound-btn" onclick="speak('Vertebral column')">
+      <span class="en">🔊 Vertebral column</span>
+      <span class="zh">脊柱</span>
+    </button>
+
+    <button class="sound-btn" onclick="speak('Pelvis')">
+      <span class="en">🔊 Pelvis</span>
+      <span class="zh">骨盆</span>
+    </button>
+
+    <button class="sound-btn" onclick="speak('Sacrum')">
+      <span class="en">🔊 Sacrum</span>
+      <span class="zh">薦骨</span>
+    </button>
+
+  </div>
+
+  <div class="info">
+    <strong>小知識：</strong>
+    Ribs 是肋骨，Sternum 是胸骨；它們一起形成胸廓，保護胸腔裡的重要器官。
+  </div>
+
+</section>
+
+
+
+<!-- ==================================================
+     UPPER LIMB
+================================================== -->
+
+<section class="card" id="upper">
+
+  <div class="section-title">
+    <h2>💪 上肢骨骼</h2>
+    <div class="eng">Upper Limb</div>
+    <p>從肩膀一路學到手指</p>
+  </div>
+
+  <div class="figure figure-upper">
+
+    <img
+      class="anatomy-image"
+      src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Skeleton_anterior.svg"
+      alt="Upper limb skeleton">
+
+    <div class="label left upper-clavicle"
+         onclick="speak('Clavicle')">
+      <div class="english">Clavicle 🔊</div>
+      <div class="chinese">鎖骨</div>
+    </div>
+
+    <div class="label right upper-scapula"
+         onclick="speak('Scapula')">
+      <div class="english">Scapula 🔊</div>
+      <div class="chinese">肩胛骨</div>
+    </div>
+
+    <div class="label left upper-humerus"
+         onclick="speak('Humerus')">
+      <div class="english">Humerus 🔊</div>
+      <div class="chinese">肱骨</div>
+    </div>
+
+    <div class="label right upper-radius"
+         onclick="speak('Radius')">
+      <div class="english">Radius 🔊</div>
+      <div class="chinese">橈骨</div>
+    </div>
+
+    <div class="label left upper-ulna"
+         onclick="speak('Ulna')">
+      <div class="english">Ulna 🔊</div>
+      <div class="chinese">尺骨</div>
+    </div>
+
+    <div class="label right upper-carpals"
+         onclick="speak('Carpals')">
+      <div class="english">Carpals 🔊</div>
+      <div class="chinese">腕骨</div>
+    </div>
+
+    <div class="label left upper-metacarpals"
+         onclick="speak('Metacarpals')">
+      <div class="english">Metacarpals 🔊</div>
+      <div class="chinese">掌骨</div>
+    </div>
+
+    <div class="label right upper-phalanges"
+         onclick="speak('Phalanges')">
+      <div class="english">Phalanges 🔊</div>
+      <div class="chinese">指骨</div>
+    </div>
+
+  </div>
+
+
+  <div class="sound-title">🔊 點英文練習發音</div>
+
+  <div class="sound-grid">
+
+    <button class="sound-btn" onclick="speak('Clavicle')">
+      <span class="en">🔊 Clavicle</span>
+      <span class="zh">鎖骨</span>
+    </button>
+
+    <button class="sound-btn" onclick="speak('Scapula')">
+      <span class="en">🔊 Scapula</span>
+      <span class="zh">肩胛骨</span>
+    </button>
+
+    <button class="sound-btn" onclick="speak('Humerus')">
+      <span class="en">🔊 Humerus</span>
+      <span class="zh">肱骨</span>
+    </button>
+
+    <button class="sound-btn" onclick="speak('Radius')">
+      <span class="en">🔊 Radius</span>
+      <span class="zh">橈骨</span>
+    </button>
+
+    <button class="sound-btn" onclick="speak('Ulna')">
+      <span class="en">🔊 Ulna</span>
+      <span class="zh">尺骨</span>
+    </button>
+
+    <button class="sound-btn" onclick="speak('Carpals')">
+      <span class="en">🔊 Carpals</span>
+      <span class="zh">腕骨</span>
+    </button>
+
+    <button class="sound-btn" onclick="speak('Metacarpals')">
+      <span class="en">🔊 Metacarpals</span>
+      <span class="zh">掌骨</span>
+    </button>
+
+    <button class="sound-btn" onclick="speak('Phalanges')">
+      <span class="en">🔊 Phalanges</span>
+      <span class="zh">指骨</span>
+    </button>
+
+  </div>
+
+  <div class="info">
+    <strong>記憶方法：</strong>
+    Humerus 是上臂；Radius 和 Ulna 是前臂；Carpals、Metacarpals、Phalanges 則一路從手腕排到手指。
+  </div>
+
+</section>
+
+
+
+<!-- ==================================================
+     LOWER LIMB
+================================================== -->
+
+<section class="card" id="lower">
+
+  <div class="section-title">
+    <h2>🦵 下肢骨骼</h2>
+    <div class="eng">Lower Limb</div>
+    <p>看圖片標示，再點英文聽發音</p>
+  </div>
+
+  <div class="figure figure-lower">
+
+    <img
+      class="anatomy-image"
+      src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Skeleton_anterior.svg"
+      alt="Lower limb skeleton">
+
+    <div class="label right lower-pelvis"
+         onclick="speak('Pelvis')">
+      <div class="english">Pelvis 🔊</div>
+      <div class="chinese">骨盆</div>
+    </div>
+
+    <div class="label left lower-femur"
+         onclick="speak('Femur')">
+      <div class="english">Femur 🔊</div>
+      <div class="chinese">股骨</div>
+    </div>
+
+    <div class="label left lower-patella"
+         onclick="speak('Patella')">
+      <div class="english">Patella 🔊</div>
+      <div class="chinese">髕骨</div>
+    </div>
+
+    <div class="label right lower-tibia"
+         onclick="speak('Tibia')">
+      <div class="english">Tibia 🔊</div>
+      <div class="chinese">脛骨</div>
+    </div>
+
+    <div class="label left lower-fibula"
+         onclick="speak('Fibula')">
+      <div class="english">Fibula 🔊</div>
+      <div class="chinese">腓骨</div>
+    </div>
+
+    <div class="label right lower-tarsals"
+         onclick="speak('Tarsals')">
+      <div class="english">Tarsals 🔊</div>
+      <div class="chinese">跗骨</div>
+    </div>
+
+    <div class="label left lower-metatarsals"
+         onclick="speak('Metatarsals')">
+      <div class="english">Metatarsals 🔊</div>
+      <div class="chinese">蹠骨</div>
+    </div>
+
+    <div class="label right lower-phalanges"
+         onclick="speak('Phalanges')">
+      <div class="english">Phalanges 🔊</div>
+      <div class="chinese">趾骨</div>
+    </div>
+
+  </div>
+
+
+  <div class="sound-title">🔊 點英文練習發音</div>
+
+  <div class="sound-grid">
+
+    <button class="sound-btn" onclick="speak('Pelvis')">
+      <span class="en">🔊 Pelvis</span>
+      <span class="zh">骨盆</span>
+    </button>
+
+    <button class="sound-btn" onclick="speak('Femur')">
+      <span class="en">🔊 Femur</span>
+      <span class="zh">股骨</span>
+    </button>
+
+    <button class="sound-btn" onclick="speak('Patella')">
+      <span class="en">🔊 Patella</span>
+      <span class="zh">髕骨</span>
+    </button>
+
+    <button class="sound-btn" onclick="speak('Tibia')">
+      <span class="en">🔊 Tibia</span>
+      <span class="zh">脛骨</span>
+    </button>
+
+    <button class="sound-btn" onclick="speak('Fibula')">
+      <span class="en">🔊 Fibula</span>
+      <span class="zh">腓骨</span>
+    </button>
+
+    <button class="sound-btn" onclick="speak('Tarsals')">
+      <span class="en">🔊 Tarsals</span>
+      <span class="zh">跗骨</span>
+    </button>
+
+    <button class="sound-btn" onclick="speak('Metatarsals')">
+      <span class="en">🔊 Metatarsals</span>
+      <span class="zh">蹠骨</span>
+    </button>
+
+    <button class="sound-btn" onclick="speak('Phalanges')">
+      <span class="en">🔊 Phalanges</span>
+      <span class="zh">趾骨</span>
+    </button>
+
+  </div>
+
+  <div class="info">
+    <strong>記憶方法：</strong>
+    Femur 是大腿的股骨；Patella 在膝蓋前方；Tibia 和 Fibula 是小腿的兩根主要骨頭。
+  </div>
+
+</section>
+
+</main>
+
+
+<script>
+
+/* =========================
+   ENGLISH PRONUNCIATION
+========================= */
+
+let voices = [];
+
+function loadVoices(){
+  voices = window.speechSynthesis.getVoices();
+}
+
+loadVoices();
+
+if("speechSynthesis" in window){
+  window.speechSynthesis.onvoiceschanged = loadVoices;
+}
+
+function speak(text){
+
+  if(!("speechSynthesis" in window)){
+    alert("這個瀏覽器目前不支援語音功能");
+    return;
+  }
+
+  window.speechSynthesis.cancel();
+
+  const utterance = new SpeechSynthesisUtterance(text);
+
+  utterance.lang = "en-US";
+  utterance.rate = 0.78;
+  utterance.pitch = 1;
+  utterance.volume = 1;
+
+  const englishVoice =
+    voices.find(v =>
+      v.lang === "en-US" &&
+      (
+        v.name.includes("Samantha") ||
+        v.name.includes("Google") ||
+        v.name.includes("English")
+      )
+    )
+    ||
+    voices.find(v => v.lang === "en-US")
+    ||
+    voices.find(v => v.lang.startsWith("en"));
+
+  if(englishVoice){
+    utterance.voice = englishVoice;
+  }
+
+  window.speechSynthesis.speak(utterance);
+}
+
+</script>
+
+</body>
+</html>
