@@ -1,0 +1,1543 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>兒童醫學骨骼學習館</title>
+
+<style>
+*{
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  margin:0;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",
+  Arial,"Noto Sans TC",sans-serif;
+  background:#f2f7fb;
+  color:#29465b;
+}
+
+button{
+  font-family:inherit;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+header{
+  background:linear-gradient(135deg,#1769aa,#42a5f5);
+  color:#fff;
+  text-align:center;
+  padding:24px 16px 28px;
+}
+
+header h1{
+  margin:0;
+  font-size:28px;
+  font-weight:800;
+}
+
+header .english{
+  margin-top:7px;
+  font-size:18px;
+  font-weight:700;
+}
+
+header .subtitle{
+  margin-top:10px;
+  font-size:15px;
+  line-height:1.6;
+}
+
+/* =========================
+   LAYOUT
+========================= */
+
+.container{
+  width:min(920px,100%);
+  margin:auto;
+  padding:18px;
+}
+
+.card{
+  background:#fff;
+  border-radius:24px;
+  padding:20px;
+  margin-bottom:20px;
+  box-shadow:0 5px 20px rgba(33,72,105,.08);
+}
+
+h2{
+  margin:0 0 18px;
+  color:#1268ac;
+}
+
+.section-title{
+  font-size:25px;
+  font-weight:800;
+  color:#205b81;
+  margin:26px 0 16px;
+}
+
+/* =========================
+   HOME
+========================= */
+
+.home-title{
+  text-align:center;
+  font-size:25px;
+  font-weight:800;
+  margin-bottom:20px;
+}
+
+.area-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:14px;
+}
+
+.area-button{
+  border:2px solid #d7e8f4;
+  border-radius:20px;
+  background:#fff;
+  min-height:120px;
+  padding:18px 10px;
+  cursor:pointer;
+  font-size:20px;
+  font-weight:800;
+  color:#24658f;
+  transition:.2s;
+}
+
+.area-button:hover{
+  transform:translateY(-2px);
+  border-color:#83c6f5;
+}
+
+.area-button .icon{
+  display:block;
+  font-size:38px;
+  margin-bottom:8px;
+}
+
+.area-button small{
+  display:block;
+  font-size:14px;
+  color:#7d98aa;
+  margin-top:5px;
+}
+
+/* =========================
+   DETAIL PAGE
+========================= */
+
+.detail-page{
+  display:none;
+}
+
+.detail-page.active{
+  display:block;
+}
+
+.back-btn{
+  border:0;
+  background:#e6f3fc;
+  color:#176ca8;
+  padding:12px 18px;
+  border-radius:18px;
+  font-size:17px;
+  font-weight:800;
+  cursor:pointer;
+}
+
+.detail-heading{
+  text-align:center;
+  margin:22px 0 14px;
+}
+
+.detail-heading h2{
+  font-size:31px;
+  margin-bottom:7px;
+}
+
+.detail-heading p{
+  margin:0;
+  color:#7892a3;
+  font-size:17px;
+}
+
+/* =========================
+   MODE TABS
+========================= */
+
+.mode-tabs{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+  margin:20px 0;
+}
+
+.mode-btn{
+  border:0;
+  border-radius:18px;
+  padding:16px 8px;
+  font-size:18px;
+  font-weight:800;
+  color:#316a8c;
+  background:#eaf4fb;
+  cursor:pointer;
+}
+
+.mode-btn.active{
+  background:#1976d2;
+  color:#fff;
+}
+
+/* =========================
+   LEARNING PANEL
+========================= */
+
+.learning-panel{
+  border:2px solid #d9eaf6;
+  border-radius:24px;
+  padding:16px;
+}
+
+.tip{
+  background:#fff3c9;
+  color:#745d18;
+  border-radius:18px;
+  padding:15px;
+  text-align:center;
+  font-size:16px;
+  line-height:1.5;
+  font-weight:700;
+  margin-bottom:16px;
+}
+
+/* =========================
+   VIEW BUTTONS
+========================= */
+
+.view-buttons{
+  display:flex;
+  justify-content:center;
+  gap:10px;
+  flex-wrap:wrap;
+  margin:14px 0 18px;
+}
+
+.view-btn{
+  border:0;
+  background:#e7f3fc;
+  color:#23688f;
+  padding:10px 17px;
+  border-radius:18px;
+  font-size:15px;
+  font-weight:800;
+  cursor:pointer;
+}
+
+.view-btn.active{
+  background:#1976d2;
+  color:#fff;
+}
+
+/* =========================
+   IMAGE
+========================= */
+
+.image-stage{
+  min-height:520px;
+  background:#fff;
+  border-radius:22px;
+  padding:18px 10px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  overflow:hidden;
+}
+
+.anatomy-image{
+  display:block;
+  max-width:100%;
+  max-height:610px;
+  object-fit:contain;
+}
+
+/* =========================
+   BONE BUTTON CARDS
+========================= */
+
+.bone-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:14px;
+  margin-top:18px;
+}
+
+.bone-card{
+  border:2px solid #d9e8f3;
+  background:#fff;
+  border-radius:20px;
+  padding:17px;
+  text-align:left;
+  cursor:pointer;
+  min-height:118px;
+  transition:.2s;
+}
+
+.bone-card:active{
+  transform:scale(.98);
+}
+
+.bone-card:hover{
+  border-color:#83c8f6;
+  background:#f8fcff;
+}
+
+.bone-zh{
+  display:block;
+  font-size:19px;
+  font-weight:800;
+  color:#294c66;
+  margin-bottom:8px;
+}
+
+.bone-en-row{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:8px;
+}
+
+.bone-en{
+  color:#1475d1;
+  font-size:20px;
+  font-weight:800;
+}
+
+.sound{
+  flex:0 0 auto;
+  width:45px;
+  height:45px;
+  border-radius:50%;
+  background:#e7f4ff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:22px;
+}
+
+/* =========================
+   INFO CARD
+========================= */
+
+.info-card{
+  margin-top:20px;
+  border:4px solid #a9d6f4;
+  border-radius:28px;
+  background:#edf7ff;
+  padding:26px 20px;
+  text-align:center;
+  min-height:220px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+
+.info-card.empty{
+  color:#7894a8;
+}
+
+.info-zh{
+  font-size:31px;
+  font-weight:900;
+  color:#284b64;
+}
+
+.info-en{
+  margin-top:12px;
+  font-size:34px;
+  font-weight:900;
+  color:#1274d2;
+  cursor:pointer;
+}
+
+.info-description{
+  margin-top:22px;
+  font-size:20px;
+  color:#607d91;
+  line-height:1.65;
+}
+
+/* =========================
+   VERTEBRA DETAIL
+========================= */
+
+.number-box{
+  margin-top:18px;
+  padding:16px;
+  background:#f5fbff;
+  border:2px solid #d8ebf7;
+  border-radius:18px;
+}
+
+.number-row{
+  padding:9px 4px;
+  font-size:16px;
+  line-height:1.5;
+  border-bottom:1px dashed #cfdeea;
+}
+
+.number-row:last-child{
+  border-bottom:0;
+}
+
+.number-row strong{
+  color:#166eb4;
+}
+
+/* =========================
+   GAME
+========================= */
+
+.game-panel{
+  display:none;
+  border:2px solid #d9eaf6;
+  border-radius:24px;
+  padding:20px;
+}
+
+.game-panel.active{
+  display:block;
+}
+
+.quiz-card{
+  background:#f5fbff;
+  border-radius:22px;
+  padding:22px;
+  text-align:center;
+}
+
+.quiz-question{
+  font-size:23px;
+  font-weight:900;
+  margin-bottom:20px;
+  color:#295a78;
+}
+
+.quiz-options{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+}
+
+.quiz-option{
+  border:2px solid #d2e7f5;
+  background:#fff;
+  border-radius:17px;
+  padding:15px 8px;
+  color:#236a9d;
+  font-size:18px;
+  font-weight:800;
+  cursor:pointer;
+}
+
+.quiz-result{
+  min-height:42px;
+  margin-top:16px;
+  font-weight:800;
+  font-size:18px;
+}
+
+.next-btn{
+  margin-top:10px;
+  border:0;
+  background:#1976d2;
+  color:white;
+  border-radius:18px;
+  padding:13px 24px;
+  font-size:17px;
+  font-weight:800;
+  cursor:pointer;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+  text-align:center;
+  color:#8ca2b2;
+  font-size:13px;
+  padding:5px 15px 30px;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:640px){
+
+  .container{
+    padding:14px;
+  }
+
+  .card{
+    padding:16px;
+    border-radius:22px;
+  }
+
+  .area-grid,
+  .bone-grid{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .area-button{
+    min-height:105px;
+    font-size:18px;
+  }
+
+  .image-stage{
+    min-height:430px;
+    padding:10px 4px;
+  }
+
+  .anatomy-image{
+    max-height:520px;
+  }
+
+  .bone-card{
+    padding:14px;
+  }
+
+  .bone-zh{
+    font-size:17px;
+  }
+
+  .bone-en{
+    font-size:17px;
+  }
+
+  .info-zh{
+    font-size:27px;
+  }
+
+  .info-en{
+    font-size:29px;
+  }
+
+  .info-description{
+    font-size:18px;
+  }
+
+  .quiz-options{
+    grid-template-columns:1fr;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>🦴 兒童醫學骨骼學習館</h1>
+  <div class="english">Human Skeleton Learning</div>
+  <div class="subtitle">
+    認識人體骨骼・學習骨頭英文・挑戰骨骼小遊戲
+  </div>
+</header>
+
+<div class="container">
+
+<!-- =========================
+     HOME
+========================= -->
+
+<section id="home" class="card">
+
+  <div class="home-title">選一個部位開始學習 👇</div>
+
+  <div class="area-grid">
+
+    <button class="area-button" onclick="openArea('head')">
+      <span class="icon">💀</span>
+      頭部骨骼
+      <small>Skull</small>
+    </button>
+
+    <button class="area-button" onclick="openArea('trunk')">
+      <span class="icon">🫁</span>
+      胸腹部骨骼
+      <small>Trunk</small>
+    </button>
+
+    <button class="area-button" onclick="openArea('upper')">
+      <span class="icon">💪</span>
+      上肢骨骼
+      <small>Upper limb</small>
+    </button>
+
+    <button class="area-button" onclick="openArea('lower')">
+      <span class="icon">🦵</span>
+      下肢骨骼
+      <small>Lower limb</small>
+    </button>
+
+  </div>
+
+</section>
+
+<!-- =========================
+     HEAD
+========================= -->
+
+<section id="head" class="detail-page card">
+
+  <button class="back-btn" onclick="goHome()">← 回四大區</button>
+
+  <div class="detail-heading">
+    <h2>💀 頭部骨骼</h2>
+    <p>Skull bones</p>
+  </div>
+
+  <div class="mode-tabs">
+    <button class="mode-btn active"
+      onclick="setMode('head','learn',this)">
+      📖 學習模式
+    </button>
+
+    <button class="mode-btn"
+      onclick="setMode('head','game',this)">
+      🎮 骨頭小遊戲
+    </button>
+  </div>
+
+  <div id="head-learn" class="learning-panel">
+
+    <div class="tip">
+      👆 點下面的骨頭名稱，就會看到中文、英文、解釋並聽到英文發音
+    </div>
+
+    <div class="view-buttons">
+
+      <button class="view-btn active"
+        onclick="changeHeadView('front',this)">
+        正面
+      </button>
+
+      <button class="view-btn"
+        onclick="changeHeadView('side',this)">
+        側面
+      </button>
+
+      <button class="view-btn"
+        onclick="changeHeadView('back',this)">
+        背面
+      </button>
+
+    </div>
+
+    <div class="image-stage">
+
+      <img
+        id="head-image"
+        class="anatomy-image"
+        alt="頭骨解剖圖"
+        src="https://commons.wikimedia.org/wiki/Special:FilePath/Human_skull_front_bones.svg"
+      >
+
+    </div>
+
+    <div class="section-title">骨頭英文複習</div>
+
+    <div class="bone-grid" id="head-bones"></div>
+
+    <div id="head-info" class="info-card empty">
+      點一塊骨頭開始學習 👆
+    </div>
+
+  </div>
+
+  <div id="head-game" class="game-panel"></div>
+
+</section>
+
+<!-- =========================
+     TRUNK
+========================= -->
+
+<section id="trunk" class="detail-page card">
+
+  <button class="back-btn" onclick="goHome()">← 回四大區</button>
+
+  <div class="detail-heading">
+    <h2>🫁 胸腹部骨骼</h2>
+    <p>Trunk skeleton</p>
+  </div>
+
+  <div class="mode-tabs">
+    <button class="mode-btn active"
+      onclick="setMode('trunk','learn',this)">
+      📖 學習模式
+    </button>
+
+    <button class="mode-btn"
+      onclick="setMode('trunk','game',this)">
+      🎮 骨頭小遊戲
+    </button>
+  </div>
+
+  <div id="trunk-learn" class="learning-panel">
+
+    <div class="tip">
+      👆 肋骨有幾根？頸椎、胸椎、腰椎有幾節？這裡全部一起學
+    </div>
+
+    <div class="view-buttons">
+
+      <button class="view-btn active"
+        onclick="changeTrunkView('rib',this)">
+        胸廓
+      </button>
+
+      <button class="view-btn"
+        onclick="changeTrunkView('spine',this)">
+        脊柱
+      </button>
+
+      <button class="view-btn"
+        onclick="changeTrunkView('full',this)">
+        全身位置
+      </button>
+
+    </div>
+
+    <div class="image-stage">
+
+      <img
+        id="trunk-image"
+        class="anatomy-image"
+        alt="胸腹部骨骼解剖圖"
+        src="https://commons.wikimedia.org/wiki/Special:FilePath/721_Rib_Cage.jpg"
+      >
+
+    </div>
+
+    <div class="section-title">點一塊骨頭開始學習 👇</div>
+
+    <div class="bone-grid" id="trunk-bones"></div>
+
+    <div class="number-box">
+
+      <div class="number-row">
+        🦴 <strong>Ribs 肋骨：</strong>
+        12 對，共 24 根
+      </div>
+
+      <div class="number-row">
+        <strong>1–7 對</strong>：
+        True ribs 真肋
+      </div>
+
+      <div class="number-row">
+        <strong>8–10 對</strong>：
+        False ribs 假肋
+      </div>
+
+      <div class="number-row">
+        <strong>11–12 對</strong>：
+        Floating ribs 浮肋
+      </div>
+
+      <div class="number-row">
+        🦴 <strong>Cervical vertebrae 頸椎：</strong>
+        7 節，C1–C7
+      </div>
+
+      <div class="number-row">
+        🦴 <strong>Thoracic vertebrae 胸椎：</strong>
+        12 節，T1–T12
+      </div>
+
+      <div class="number-row">
+        🦴 <strong>Lumbar vertebrae 腰椎：</strong>
+        5 節，L1–L5
+      </div>
+
+      <div class="number-row">
+        🦴 <strong>Sacrum 薦骨：</strong>
+        5 節薦椎融合
+      </div>
+
+      <div class="number-row">
+        🦴 <strong>Coccyx 尾骨：</strong>
+        通常 4 節尾椎融合
+      </div>
+
+    </div>
+
+    <div id="trunk-info" class="info-card empty">
+      點一塊骨頭開始學習 👆
+    </div>
+
+  </div>
+
+  <div id="trunk-game" class="game-panel"></div>
+
+</section>
+
+<!-- =========================
+     UPPER LIMB
+========================= -->
+
+<section id="upper" class="detail-page card">
+
+  <button class="back-btn" onclick="goHome()">← 回四大區</button>
+
+  <div class="detail-heading">
+    <h2>💪 上肢骨骼</h2>
+    <p>Upper limb bones</p>
+  </div>
+
+  <div class="mode-tabs">
+
+    <button class="mode-btn active"
+      onclick="setMode('upper','learn',this)">
+      📖 學習模式
+    </button>
+
+    <button class="mode-btn"
+      onclick="setMode('upper','game',this)">
+      🎮 骨頭小遊戲
+    </button>
+
+  </div>
+
+  <div id="upper-learn" class="learning-panel">
+
+    <div class="tip">
+      👆 從肩膀一路學到手指
+    </div>
+
+    <div class="image-stage">
+
+      <img
+        class="anatomy-image"
+        alt="上肢骨骼"
+        src="https://commons.wikimedia.org/wiki/Special:FilePath/Human_arm_bones_diagram.svg"
+      >
+
+    </div>
+
+    <div class="section-title">點一塊骨頭開始學習 👇</div>
+
+    <div class="bone-grid" id="upper-bones"></div>
+
+    <div id="upper-info" class="info-card empty">
+      點一塊骨頭開始學習 👆
+    </div>
+
+  </div>
+
+  <div id="upper-game" class="game-panel"></div>
+
+</section>
+
+<!-- =========================
+     LOWER LIMB
+========================= -->
+
+<section id="lower" class="detail-page card">
+
+  <button class="back-btn" onclick="goHome()">← 回四大區</button>
+
+  <div class="detail-heading">
+    <h2>🦵 下肢骨骼</h2>
+    <p>Lower limb bones</p>
+  </div>
+
+  <div class="mode-tabs">
+
+    <button class="mode-btn active"
+      onclick="setMode('lower','learn',this)">
+      📖 學習模式
+    </button>
+
+    <button class="mode-btn"
+      onclick="setMode('lower','game',this)">
+      🎮 骨頭小遊戲
+    </button>
+
+  </div>
+
+  <div id="lower-learn" class="learning-panel">
+
+    <div class="tip">
+      👆 從骨盆、大腿一路學到腳趾
+    </div>
+
+    <div class="image-stage">
+
+      <img
+        class="anatomy-image"
+        alt="下肢骨骼"
+        src="https://commons.wikimedia.org/wiki/Special:FilePath/Human_leg_bones_labeled.svg"
+      >
+
+    </div>
+
+    <div class="section-title">點一塊骨頭開始學習 👇</div>
+
+    <div class="bone-grid" id="lower-bones"></div>
+
+    <div id="lower-info" class="info-card empty">
+      點一塊骨頭開始學習 👆
+    </div>
+
+  </div>
+
+  <div id="lower-game" class="game-panel"></div>
+
+</section>
+
+</div>
+
+<footer>
+  Human Skeleton Learning・兒童骨骼英文學習
+</footer>
+
+<script>
+
+/* =====================================================
+   DATA
+===================================================== */
+
+const boneData = {
+
+head:[
+
+{
+zh:"額骨",
+en:"Frontal bone",
+desc:"位在額頭的位置，形成前額以及眼眶上方的一部分。"
+},
+
+{
+zh:"頂骨",
+en:"Parietal bone",
+desc:"位在頭骨的上方和兩側，左右各有一塊。"
+},
+
+{
+zh:"顳骨",
+en:"Temporal bone",
+desc:"位在頭骨兩側、靠近耳朵的位置。"
+},
+
+{
+zh:"枕骨",
+en:"Occipital bone",
+desc:"位在頭骨後方與底部，保護大腦後方。"
+},
+
+{
+zh:"蝶骨",
+en:"Sphenoid bone",
+desc:"位在頭骨中央偏底部，是連接許多頭骨的重要骨頭。"
+},
+
+{
+zh:"篩骨",
+en:"Ethmoid bone",
+desc:"位在兩眼之間、鼻腔上方，是鼻腔與眼眶附近的重要骨頭。"
+},
+
+{
+zh:"鼻骨",
+en:"Nasal bone",
+desc:"位在鼻樑上方，左右各有一小塊。"
+},
+
+{
+zh:"淚骨",
+en:"Lacrimal bone",
+desc:"位在眼眶內側，是臉部非常小的骨頭之一。"
+},
+
+{
+zh:"顴骨",
+en:"Zygomatic bone",
+desc:"就是常說的顴骨，形成臉頰突出的位置以及眼眶的一部分。"
+},
+
+{
+zh:"上顎骨",
+en:"Maxilla",
+desc:"位在上排牙齒周圍，形成上顎以及臉部中央的一部分。"
+},
+
+{
+zh:"下顎骨",
+en:"Mandible",
+desc:"形成下巴與下排牙齒，是頭骨中主要可以大幅活動的骨頭。"
+}
+
+],
+
+trunk:[
+
+{
+zh:"胸骨",
+en:"Sternum",
+desc:"位在胸部正中央，肋骨透過肋軟骨與胸骨相連，幫助形成胸廓。"
+},
+
+{
+zh:"肋骨",
+en:"Ribs",
+desc:"人體共有 12 對肋骨，也就是 24 根。肋骨和胸骨、胸椎共同形成胸廓，幫助保護心臟與肺。"
+},
+
+{
+zh:"頸椎",
+en:"Cervical vertebrae",
+desc:"頸椎共有 7 節，編號為 C1 到 C7，位在頸部並支撐頭部。"
+},
+
+{
+zh:"第一頸椎",
+en:"Atlas",
+desc:"Atlas 是第一頸椎 C1，位在頭骨下方，主要負責支撐頭部。"
+},
+
+{
+zh:"第二頸椎",
+en:"Axis",
+desc:"Axis 是第二頸椎 C2，幫助頭部左右轉動。"
+},
+
+{
+zh:"胸椎",
+en:"Thoracic vertebrae",
+desc:"胸椎共有 12 節，編號為 T1 到 T12，並且與肋骨相連。"
+},
+
+{
+zh:"腰椎",
+en:"Lumbar vertebrae",
+desc:"腰椎共有 5 節，編號為 L1 到 L5，位在腰部並承受較多身體重量。"
+},
+
+{
+zh:"薦骨",
+en:"Sacrum",
+desc:"薦骨位在脊柱下方，成人通常由 5 節薦椎融合形成。"
+},
+
+{
+zh:"尾骨",
+en:"Coccyx",
+desc:"尾骨位在脊柱最下端，成人通常由約 4 節尾椎融合形成。"
+},
+
+{
+zh:"脊柱",
+en:"Vertebral column",
+desc:"脊柱從頸部一路延伸到骨盆，包括頸椎、胸椎、腰椎、薦骨與尾骨，可以支撐身體並保護脊髓。"
+}
+
+],
+
+upper:[
+
+{
+zh:"鎖骨",
+en:"Clavicle",
+desc:"位在胸部上方，連接胸骨與肩胛骨，也叫做鎖骨。"
+},
+
+{
+zh:"肩胛骨",
+en:"Scapula",
+desc:"位在背部上方左右兩側，是肩關節的重要骨頭。"
+},
+
+{
+zh:"肱骨",
+en:"Humerus",
+desc:"位在上臂，是肩膀到手肘之間的長骨。"
+},
+
+{
+zh:"橈骨",
+en:"Radius",
+desc:"位在前臂，靠近拇指側，是前臂兩根長骨之一。"
+},
+
+{
+zh:"尺骨",
+en:"Ulna",
+desc:"位在前臂，靠近小指側，並形成手肘的重要部分。"
+},
+
+{
+zh:"腕骨",
+en:"Carpals",
+desc:"腕骨位在手腕，一隻手共有 8 塊腕骨。"
+},
+
+{
+zh:"掌骨",
+en:"Metacarpals",
+desc:"掌骨位在手掌，一隻手共有 5 根掌骨。"
+},
+
+{
+zh:"指骨",
+en:"Phalanges",
+desc:"指骨形成手指。一隻手共有 14 節指骨。"
+}
+
+],
+
+lower:[
+
+{
+zh:"髖骨",
+en:"Hip bone",
+desc:"髖骨是骨盆的重要部分，左右各一塊，幫助連接軀幹與下肢。"
+},
+
+{
+zh:"股骨",
+en:"Femur",
+desc:"位在大腿，是人體最長、最強壯的骨頭。"
+},
+
+{
+zh:"髕骨",
+en:"Patella",
+desc:"位在膝關節前方，就是俗稱的膝蓋骨，可以保護膝關節。"
+},
+
+{
+zh:"脛骨",
+en:"Tibia",
+desc:"位在小腿內側，是小腿較粗、主要承受身體重量的骨頭。"
+},
+
+{
+zh:"腓骨",
+en:"Fibula",
+desc:"位在小腿外側，比脛骨細，主要協助穩定小腿與腳踝。"
+},
+
+{
+zh:"跗骨",
+en:"Tarsals",
+desc:"跗骨位在腳踝與腳後部，一隻腳共有 7 塊跗骨。"
+},
+
+{
+zh:"蹠骨",
+en:"Metatarsals",
+desc:"蹠骨位在腳掌，一隻腳共有 5 根蹠骨。"
+},
+
+{
+zh:"趾骨",
+en:"Phalanges",
+desc:"趾骨形成腳趾。一隻腳共有 14 節趾骨。"
+}
+
+]
+
+};
+
+
+/* =====================================================
+   IMAGE VIEWS
+===================================================== */
+
+const headViews = {
+
+front:
+"https://commons.wikimedia.org/wiki/Special:FilePath/Human_skull_front_bones.svg",
+
+side:
+"https://commons.wikimedia.org/wiki/Special:FilePath/Human_skull_side_bones.svg",
+
+back:
+"https://commons.wikimedia.org/wiki/Special:FilePath/730_Posterior_View_Skull.jpg"
+
+};
+
+
+const trunkViews = {
+
+rib:
+"https://commons.wikimedia.org/wiki/Special:FilePath/721_Rib_Cage.jpg",
+
+spine:
+"https://commons.wikimedia.org/wiki/Special:FilePath/701_Axial_Skeleton-01.jpg",
+
+full:
+"https://commons.wikimedia.org/wiki/Special:FilePath/Human_skeleton_front_en.svg"
+
+};
+
+
+/* =====================================================
+   PAGE
+===================================================== */
+
+function openArea(area){
+
+document.getElementById("home").style.display="none";
+
+document.querySelectorAll(".detail-page").forEach(page=>{
+page.classList.remove("active");
+});
+
+document.getElementById(area).classList.add("active");
+
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
+
+}
+
+
+function goHome(){
+
+document.querySelectorAll(".detail-page").forEach(page=>{
+page.classList.remove("active");
+});
+
+document.getElementById("home").style.display="block";
+
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
+
+}
+
+
+/* =====================================================
+   RENDER BONE CARDS
+===================================================== */
+
+function renderBones(area){
+
+const grid=document.getElementById(area+"-bones");
+
+grid.innerHTML="";
+
+boneData[area].forEach((bone,index)=>{
+
+const card=document.createElement("button");
+
+card.className="bone-card";
+
+card.innerHTML=`
+
+<span class="bone-zh">
+${bone.zh}
+</span>
+
+<div class="bone-en-row">
+
+<span class="bone-en">
+${bone.en}
+</span>
+
+<span class="sound">
+🔊
+</span>
+
+</div>
+`;
+
+card.onclick=()=>showBone(area,index);
+
+grid.appendChild(card);
+
+});
+
+}
+
+
+/* =====================================================
+   SHOW INFO
+===================================================== */
+
+function showBone(area,index){
+
+const bone=boneData[area][index];
+
+speak(bone.en);
+
+const info=document.getElementById(area+"-info");
+
+info.classList.remove("empty");
+
+info.innerHTML=`
+
+<div class="info-zh">
+${bone.zh}
+</div>
+
+<div
+class="info-en"
+onclick="speak('${escapeQuote(bone.en)}')"
+>
+${bone.en} 🔊
+</div>
+
+<div class="info-description">
+${bone.desc}
+</div>
+
+`;
+
+info.scrollIntoView({
+behavior:"smooth",
+block:"center"
+});
+
+}
+
+
+function escapeQuote(text){
+return text.replace(/'/g,"\\'");
+}
+
+
+/* =====================================================
+   SPEECH
+===================================================== */
+
+function speak(text){
+
+if(!("speechSynthesis" in window)){
+alert("這個瀏覽器目前不支援語音播放");
+return;
+}
+
+speechSynthesis.cancel();
+
+const utterance=
+new SpeechSynthesisUtterance(text);
+
+utterance.lang="en-US";
+utterance.rate=.78;
+utterance.pitch=1;
+
+speechSynthesis.speak(utterance);
+
+}
+
+
+/* =====================================================
+   HEAD VIEW
+===================================================== */
+
+function changeHeadView(view,button){
+
+document.getElementById("head-image").src=
+headViews[view];
+
+button.parentElement
+.querySelectorAll(".view-btn")
+.forEach(btn=>{
+btn.classList.remove("active");
+});
+
+button.classList.add("active");
+
+}
+
+
+/* =====================================================
+   TRUNK VIEW
+===================================================== */
+
+function changeTrunkView(view,button){
+
+document.getElementById("trunk-image").src=
+trunkViews[view];
+
+button.parentElement
+.querySelectorAll(".view-btn")
+.forEach(btn=>{
+btn.classList.remove("active");
+});
+
+button.classList.add("active");
+
+}
+
+
+/* =====================================================
+   MODE
+===================================================== */
+
+function setMode(area,mode,button){
+
+const learn=document.getElementById(area+"-learn");
+
+const game=document.getElementById(area+"-game");
+
+button.parentElement
+.querySelectorAll(".mode-btn")
+.forEach(btn=>{
+btn.classList.remove("active");
+});
+
+button.classList.add("active");
+
+if(mode==="learn"){
+
+learn.style.display="block";
+game.classList.remove("active");
+
+}else{
+
+learn.style.display="none";
+game.classList.add("active");
+
+startGame(area);
+
+}
+
+}
+
+
+/* =====================================================
+   QUIZ
+===================================================== */
+
+let currentQuiz={};
+
+function startGame(area){
+
+const list=boneData[area];
+
+const answerIndex=
+Math.floor(Math.random()*list.length);
+
+const answer=list[answerIndex];
+
+let choices=[answer];
+
+while(choices.length<4){
+
+const random=
+list[Math.floor(Math.random()*list.length)];
+
+if(!choices.includes(random)){
+choices.push(random);
+}
+
+}
+
+choices.sort(()=>Math.random()-.5);
+
+currentQuiz={
+area:area,
+answer:answer
+};
+
+const panel=
+document.getElementById(area+"-game");
+
+panel.innerHTML=`
+
+<div class="quiz-card">
+
+<div class="quiz-question">
+🎯 「${answer.zh}」的英文是哪一個？
+</div>
+
+<div class="quiz-options">
+
+${choices.map(choice=>`
+
+<button
+class="quiz-option"
+onclick="checkAnswer(
+'${area}',
+'${escapeQuote(choice.en)}'
+)"
+>
+
+${choice.en}
+
+</button>
+
+`).join("")}
+
+</div>
+
+<div
+id="${area}-quiz-result"
+class="quiz-result">
+</div>
+
+<button
+class="next-btn"
+onclick="startGame('${area}')">
+下一題 ➜
+</button>
+
+</div>
+`;
+
+}
+
+
+function checkAnswer(area,choice){
+
+const result=
+document.getElementById(area+"-quiz-result");
+
+if(choice===currentQuiz.answer.en){
+
+result.innerHTML="✅ 答對了！";
+
+speak(currentQuiz.answer.en);
+
+}else{
+
+result.innerHTML=
+"❌ 再想想看～正確答案是 "+
+currentQuiz.answer.en;
+
+}
+
+}
+
+
+/* =====================================================
+   INIT
+===================================================== */
+
+["head","trunk","upper","lower"].forEach(area=>{
+renderBones(area);
+});
+
+</script>
+
+</body>
+</html>
