@@ -1,0 +1,1052 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>兒童醫學骨骼學習館</title>
+
+<style>
+*{box-sizing:border-box}
+
+html{scroll-behavior:smooth}
+
+body{
+  margin:0;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",Arial,sans-serif;
+  background:#eef6fb;
+  color:#29465b;
+}
+
+button{
+  font-family:inherit;
+  -webkit-tap-highlight-color:transparent;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+header{
+  background:linear-gradient(135deg,#1769aa,#42a5f5);
+  color:#fff;
+  text-align:center;
+  padding:25px 16px 29px;
+}
+
+header h1{
+  margin:0;
+  font-size:28px;
+  font-weight:900;
+}
+
+header .english{
+  margin-top:7px;
+  font-size:18px;
+  font-weight:800;
+}
+
+header .subtitle{
+  margin-top:9px;
+  font-size:14px;
+  line-height:1.6;
+}
+
+/* =========================
+   NAV
+========================= */
+
+.nav{
+  max-width:900px;
+  margin:-14px auto 22px;
+  padding:0 14px;
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:7px;
+}
+
+.nav a{
+  text-decoration:none;
+  background:#fff;
+  color:#1769aa;
+  padding:12px 3px;
+  border-radius:14px;
+  text-align:center;
+  font-weight:900;
+  font-size:12px;
+  box-shadow:0 4px 15px rgba(31,81,116,.12);
+}
+
+/* =========================
+   MAIN
+========================= */
+
+.container{
+  width:min(900px,100%);
+  margin:auto;
+  padding:0 13px 40px;
+}
+
+.card{
+  background:#fff;
+  border-radius:27px;
+  margin-bottom:25px;
+  padding:26px 12px 24px;
+  box-shadow:0 5px 20px rgba(31,81,116,.10);
+  overflow:hidden;
+}
+
+.title{text-align:center}
+
+.title h2{
+  margin:0;
+  color:#155b8e;
+  font-size:30px;
+  font-weight:900;
+}
+
+.title .en{
+  margin-top:5px;
+  color:#7893a6;
+  font-size:21px;
+  font-weight:800;
+}
+
+.title p{
+  margin:12px 0 17px;
+  color:#708da1;
+  font-size:16px;
+}
+
+/* =========================
+   IMAGES
+========================= */
+
+.medical-image{
+  display:block;
+  width:100%;
+  height:auto;
+  margin:0 auto;
+}
+
+.skull-image{max-width:720px}
+
+.trunk-image{max-width:620px}
+
+.upper-image{max-width:760px}
+
+/*
+  下肢直接使用原圖本身的標示
+  不畫 CSS 紅線
+  不使用 absolute 座標
+*/
+.lower-image{
+  display:block;
+  width:100%;
+  max-width:610px;
+  height:auto;
+  margin:8px auto 0;
+}
+
+/* =========================
+   SOUND
+========================= */
+
+.sound-title{
+  text-align:center;
+  color:#607f94;
+  font-size:14px;
+  font-weight:800;
+  margin:20px 5px 11px;
+}
+
+.sound-grid{
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:9px;
+}
+
+.sound-btn{
+  appearance:none;
+  border:2px solid #91cff2;
+  background:#fff;
+  color:#1372b8;
+  border-radius:18px;
+  padding:8px 12px 9px;
+  min-width:112px;
+  cursor:pointer;
+}
+
+.sound-btn:active{
+  transform:scale(.97);
+  background:#eef9ff;
+}
+
+.sound-btn .en{
+  display:block;
+  font-size:15px;
+  font-weight:900;
+  white-space:nowrap;
+}
+
+.sound-btn .zh{
+  display:block;
+  margin-top:4px;
+  color:#607f94;
+  font-size:12px;
+  font-weight:800;
+}
+
+/* =========================
+   INFO
+========================= */
+
+.info{
+  border:2px solid #9bd5f4;
+  border-radius:20px;
+  background:#f5fbff;
+  padding:15px 16px;
+  margin:23px 5px 0;
+  text-align:center;
+  font-size:14px;
+  color:#57778d;
+  line-height:1.8;
+}
+
+/* =========================
+   GAME
+========================= */
+
+.game-card{
+  background:linear-gradient(180deg,#fff,#f6fbff);
+}
+
+.game-box{
+  max-width:650px;
+  margin:18px auto 0;
+  padding:20px 15px;
+  border:2px solid #9bd5f4;
+  border-radius:24px;
+  background:#f8fcff;
+  text-align:center;
+}
+
+.game-score{
+  display:flex;
+  justify-content:center;
+  gap:12px;
+  flex-wrap:wrap;
+  margin-bottom:16px;
+}
+
+.score-pill{
+  background:#fff;
+  border:2px solid #b8dff5;
+  color:#1769aa;
+  font-weight:900;
+  border-radius:999px;
+  padding:8px 14px;
+  font-size:14px;
+}
+
+.game-question{
+  color:#29465b;
+  font-size:18px;
+  font-weight:800;
+  line-height:1.6;
+  margin-bottom:10px;
+}
+
+.game-word{
+  display:inline-block;
+  color:#1769aa;
+  background:#fff;
+  border:2px solid #91cff2;
+  border-radius:18px;
+  font-size:27px;
+  font-weight:900;
+  padding:10px 18px;
+  margin:7px 0 18px;
+  cursor:pointer;
+}
+
+.game-word:active{transform:scale(.97)}
+
+.game-options{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:10px;
+}
+
+.game-option{
+  border:2px solid #91cff2;
+  background:#fff;
+  color:#1769aa;
+  border-radius:16px;
+  padding:13px 7px;
+  font-size:16px;
+  font-weight:900;
+  cursor:pointer;
+}
+
+.game-option:active{transform:scale(.98)}
+
+.game-option.correct{
+  background:#e4f8ec;
+  border-color:#57bd7c;
+  color:#267443;
+}
+
+.game-option.wrong{
+  background:#fff0f0;
+  border-color:#ef7777;
+  color:#a23b3b;
+}
+
+.game-result{
+  min-height:35px;
+  margin:15px 0 6px;
+  font-size:17px;
+  font-weight:900;
+}
+
+.next-btn,
+.restart-btn{
+  display:none;
+  margin:12px auto 0;
+  border:0;
+  color:#fff;
+  border-radius:999px;
+  padding:11px 22px;
+  font-size:15px;
+  font-weight:900;
+  cursor:pointer;
+}
+
+.next-btn{background:#1976d2}
+
+.restart-btn{background:#42a5f5}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:600px){
+
+  header h1{font-size:26px}
+
+  .nav{
+    gap:4px;
+    padding-left:8px;
+    padding-right:8px;
+  }
+
+  .nav a{
+    font-size:11px;
+    padding:11px 1px;
+  }
+
+  .container{
+    padding-left:10px;
+    padding-right:10px;
+  }
+
+  .card{
+    padding-left:7px;
+    padding-right:7px;
+  }
+
+  .title h2{font-size:28px}
+
+  .title .en{font-size:20px}
+
+  .skull-image,
+  .trunk-image,
+  .upper-image,
+  .lower-image{
+    width:100%;
+  }
+
+  .sound-btn{
+    min-width:104px;
+    padding-left:9px;
+    padding-right:9px;
+  }
+
+  .game-options{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .game-word{font-size:24px}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>🦴 兒童醫學骨骼學習館</h1>
+  <div class="english">Human Skeleton Learning</div>
+  <div class="subtitle">
+    看骨頭位置・學英文名稱・點一下聽英文發音
+  </div>
+</header>
+
+<nav class="nav">
+  <a href="#head">💀 頭部</a>
+  <a href="#trunk">🫁 胸腹</a>
+  <a href="#upper">💪 上肢</a>
+  <a href="#lower">🦵 下肢</a>
+  <a href="#game">🎮 遊戲</a>
+</nav>
+
+<main class="container">
+
+<!-- =========================
+     頭部
+========================= -->
+
+<section class="card" id="head">
+
+  <div class="title">
+    <h2>💀 頭部骨骼</h2>
+    <div class="en">Skull</div>
+    <p>先看圖片骨頭位置，再點下面英文聽發音</p>
+  </div>
+
+  <img
+    class="medical-image skull-image"
+    src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Human_skull_front_bones.svg"
+    alt="Human skull front bones"
+  >
+
+  <div class="sound-title">🔊 點英文即可聽發音</div>
+
+  <div class="sound-grid">
+
+    <button class="sound-btn" onclick="speak('Frontal bone')">
+      <span class="en">🔊 Frontal bone</span>
+      <span class="zh">額骨</span>
+    </button>
+
+    <button class="sound-btn" onclick="speak('Nasal bone')">
+      <span class="en">🔊 Nasal bone</span>
+      <span class="zh">鼻骨</span>
+    </button>
+
+    <button class="sound-btn" onclick="speak('Parietal bone')">
+      <span class="en">🔊 Parietal bone</span>
+      <span class="zh">頂骨</span>
+    </button>
+
+    <button class="sound-btn" onclick="speak('Temporal bone')">
+      <span class="en">🔊 Temporal bone</span>
+      <span class="zh">顳骨</span>
+    </button>
+
+    <button class="sound-btn" onclick="speak('Sphenoid bone')">
+      <span class="en">🔊 Sphenoid bone</span>
+      <span class="zh">蝶骨</span>
+    </button>
+
+    <button class="sound-btn" onclick="speak('Lacrimal bone')">
+      <span class="en">🔊 Lacrimal bone</span>
+      <span class="zh">淚骨</span>
+    </button>
+
+    <button class="sound-btn" onclick="speak('Zygomatic bone')">
+      <span class="en">🔊 Zygomatic bone</span>
+      <span class="zh">顴骨</span>
+    </button>
+
+    <button class="sound-btn" onclick="speak('Ethmoid bone')">
+      <span class="en">🔊 Ethmoid bone</span>
+      <span class="zh">篩骨</span>
+    </button>
+
+    <button class="sound-btn" onclick="speak('Maxilla')">
+      <span class="en">🔊 Maxilla</span>
+      <span class="zh">上顎骨</span>
+    </button>
+
+    <button class="sound-btn" onclick="speak('Mandible')">
+      <span class="en">🔊 Mandible</span>
+      <span class="zh">下顎骨</span>
+    </button>
+
+  </div>
+
+  <div class="info">
+    💡 頭骨由多塊骨頭組成。Mandible 是下顎骨，
+    Maxilla 是上顎骨，Zygomatic bone 是顴骨。
+  </div>
+
+</section>
+
+<!-- =========================
+     胸腹部
+========================= -->
+
+<section class="card" id="trunk">
+
+  <div class="title">
+    <h2>🫁 胸腹部骨骼</h2>
+    <div class="en">Thorax &amp; Trunk</div>
+    <p>先看胸腔骨骼位置，再點下面英文聽發音</p>
+  </div>
+
+  <img
+    class="medical-image trunk-image"
+    src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Human_skeleton_front_en.svg"
+    alt="Human skeleton front"
+  >
+
+  <div class="sound-title">🔊 點英文即可聽發音</div>
+
+  <div class="sound-grid">
+
+    <button class="sound-btn" onclick="speak('Clavicle')">
+      <span class="en">🔊 Clavicle</span>
+      <span class="zh">鎖骨</span>
+    </button>
+
+    <button class="sound-btn" onclick="speak('Scapula')">
+      <span class="en">🔊 Scapula</span>
+      <span class="zh">肩胛骨</span>
+    </button>
+
+    <button class="sound-btn" onclick="speak('Sternum')">
+      <span class="en">🔊 Sternum</span>
+      <span class="zh">胸骨</span>
+    </button>
+
+    <button class="sound-btn" onclick="speak('Ribs')">
+      <span class="en">🔊 Ribs</span>
+      <span class="zh">肋骨</span>
+    </button>
+
+    <button class="sound-btn" onclick="speak('Cervical vertebrae')">
+      <span class="en">🔊 Cervical vertebrae</span>
+      <span class="zh">頸椎</span>
+    </button>
+
+    <button class="sound-btn" onclick="speak('Thoracic vertebrae')">
+      <span class="en">🔊 Thoracic vertebrae</span>
+      <span class="zh">胸椎</span>
+    </button>
+
+    <button class="sound-btn" onclick="speak('Lumbar vertebrae')">
+      <span class="en">🔊 Lumbar vertebrae</span>
+      <span class="zh">腰椎</span>
+    </button>
+
+    <button class="sound-btn" onclick="speak('Sacrum')">
+      <span class="en">🔊 Sacrum</span>
+      <span class="zh">薦骨</span>
+    </button>
+
+    <button class="sound-btn" onclick="speak('Coccyx')">
+      <span class="en">🔊 Coccyx</span>
+      <span class="zh">尾骨</span>
+    </button>
+
+    <button class="sound-btn" onclick="speak('Pelvic girdle')">
+      <span class="en">🔊 Pelvic girdle</span>
+      <span class="zh">骨盆帶</span>
+    </button>
+
+  </div>
+
+  <div class="info">
+    💡 胸廓主要由 Ribs 肋骨、Sternum 胸骨及胸椎共同構成，
+    可以保護胸腔裡的重要器官。
+  </div>
+
+</section>
+
+<!-- =========================
+     上肢
+========================= -->
+
+<section class="card" id="upper">
+
+  <div class="title">
+    <h2>💪 上肢骨骼</h2>
+    <div class="en">Upper Limb</div>
+    <p>看圖片標示，再點下方英文聽發音</p>
+  </div>
+
+  <img
+    class="medical-image upper-image"
+    src="https://macsdash.wordpress.com/wp-content/uploads/2020/06/human-body-parts.jpg?w=987"
+    alt="Upper limb bones"
+  >
+
+  <div class="sound-title">🔊 點英文即可聽發音</div>
+
+  <div class="sound-grid">
+
+    <button class="sound-btn" onclick="speak('Clavicle')">
+      <span class="en">🔊 Clavicle</span>
+      <span class="zh">鎖骨</span>
+    </button>
+
+    <button class="sound-btn" onclick="speak('Scapula')">
+      <span class="en">🔊 Scapula</span>
+      <span class="zh">肩胛骨</span>
+    </button>
+
+    <button class="sound-btn" onclick="speak('Humerus')">
+      <span class="en">🔊 Humerus</span>
+      <span class="zh">肱骨</span>
+    </button>
+
+    <button class="sound-btn" onclick="speak('Radius')">
+      <span class="en">🔊 Radius</span>
+      <span class="zh">橈骨</span>
+    </button>
+
+    <button class="sound-btn" onclick="speak('Ulna')">
+      <span class="en">🔊 Ulna</span>
+      <span class="zh">尺骨</span>
+    </button>
+
+    <button class="sound-btn" onclick="speak('Carpals')">
+      <span class="en">🔊 Carpals</span>
+      <span class="zh">腕骨</span>
+    </button>
+
+    <button class="sound-btn" onclick="speak('Metacarpals')">
+      <span class="en">🔊 Metacarpals</span>
+      <span class="zh">掌骨</span>
+    </button>
+
+    <button class="sound-btn" onclick="speak('Phalanges')">
+      <span class="en">🔊 Phalanges</span>
+      <span class="zh">指骨</span>
+    </button>
+
+  </div>
+
+  <div class="info">
+    💡 上肢從上臂一路到手指，可以依序認識
+    Humerus、Radius、Ulna、Carpals、Metacarpals 和 Phalanges。
+  </div>
+
+</section>
+
+<!-- =========================
+     下肢
+========================= -->
+
+<section class="card" id="lower">
+
+  <div class="title">
+    <h2>🦵 下肢骨骼</h2>
+    <div class="en">Lower Limb</div>
+    <p>看圖片原本標示，再點下方英文聽發音</p>
+  </div>
+
+  <!--
+    直接使用本身已完成標示的下肢骨骼圖
+    沒有另外畫紅線
+    沒有 CSS 座標定位
+  -->
+  <img
+    class="medical-image lower-image"
+    src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Human_leg_bones_labeled.svg"
+    alt="Human leg bones labeled"
+  >
+
+  <div class="sound-title">🔊 點英文即可聽發音</div>
+
+  <div class="sound-grid">
+
+    <button class="sound-btn" onclick="speak('Pelvis')">
+      <span class="en">🔊 Pelvis</span>
+      <span class="zh">骨盆</span>
+    </button>
+
+    <button class="sound-btn" onclick="speak('Femur')">
+      <span class="en">🔊 Femur</span>
+      <span class="zh">股骨</span>
+    </button>
+
+    <button class="sound-btn" onclick="speak('Patella')">
+      <span class="en">🔊 Patella</span>
+      <span class="zh">髕骨</span>
+    </button>
+
+    <button class="sound-btn" onclick="speak('Tibia')">
+      <span class="en">🔊 Tibia</span>
+      <span class="zh">脛骨</span>
+    </button>
+
+    <button class="sound-btn" onclick="speak('Fibula')">
+      <span class="en">🔊 Fibula</span>
+      <span class="zh">腓骨</span>
+    </button>
+
+    <button class="sound-btn" onclick="speak('Tarsals')">
+      <span class="en">🔊 Tarsals</span>
+      <span class="zh">跗骨</span>
+    </button>
+
+    <button class="sound-btn" onclick="speak('Metatarsals')">
+      <span class="en">🔊 Metatarsals</span>
+      <span class="zh">蹠骨</span>
+    </button>
+
+    <button class="sound-btn" onclick="speak('Phalanges')">
+      <span class="en">🔊 Phalanges</span>
+      <span class="zh">趾骨</span>
+    </button>
+
+  </div>
+
+  <div class="info">
+    💡 Femur 是股骨；Patella 是髕骨；Tibia 是脛骨；
+    Fibula 是腓骨。腳部還有 Tarsals 跗骨、
+    Metatarsals 蹠骨與 Phalanges 趾骨。
+  </div>
+
+</section>
+
+<!-- =========================
+     骨骼小遊戲
+========================= -->
+
+<section class="card game-card" id="game">
+
+  <div class="title">
+    <h2>🎮 骨骼小遊戲</h2>
+    <div class="en">Skeleton Quiz</div>
+    <p>看看你記得多少個骨頭英文名稱！</p>
+  </div>
+
+  <div class="game-box">
+
+    <div class="game-score">
+      <div class="score-pill">
+        題目 <span id="questionNumber">1</span> / 10
+      </div>
+
+      <div class="score-pill">
+        ⭐ 得分 <span id="score">0</span>
+      </div>
+    </div>
+
+    <div class="game-question">
+      這個英文骨頭名稱，中文是什麼？
+    </div>
+
+    <div
+      class="game-word"
+      id="gameWord"
+      onclick="speakCurrentWord()"
+    >
+      Femur 🔊
+    </div>
+
+    <div
+      class="game-options"
+      id="gameOptions"
+    ></div>
+
+    <div
+      class="game-result"
+      id="gameResult"
+    ></div>
+
+    <button
+      class="next-btn"
+      id="nextBtn"
+      onclick="nextQuestion()"
+    >
+      下一題 ➜
+    </button>
+
+    <button
+      class="restart-btn"
+      id="restartBtn"
+      onclick="restartGame()"
+    >
+      再玩一次 🔄
+    </button>
+
+  </div>
+
+  <div class="info">
+    💡 不知道怎麼念時，可以直接點題目的英文 🔊。
+    每次隨機出 10 題，看看可以答對幾題！
+  </div>
+
+</section>
+
+</main>
+
+<script>
+
+/* =========================
+   英文發音
+========================= */
+
+let voices=[];
+
+function loadVoices(){
+  voices=window.speechSynthesis.getVoices();
+}
+
+if("speechSynthesis" in window){
+  loadVoices();
+  window.speechSynthesis.onvoiceschanged=loadVoices;
+}
+
+function speak(text){
+
+  if(!("speechSynthesis" in window)){
+    alert("這個瀏覽器目前不支援語音功能");
+    return;
+  }
+
+  window.speechSynthesis.cancel();
+
+  const speech=new SpeechSynthesisUtterance(text);
+
+  speech.lang="en-US";
+  speech.rate=.78;
+  speech.pitch=1;
+  speech.volume=1;
+
+  const voice=
+    voices.find(v=>
+      v.lang==="en-US" &&
+      v.name.toLowerCase().includes("samantha")
+    )
+    ||
+    voices.find(v=>v.lang==="en-US")
+    ||
+    voices.find(v=>v.lang.startsWith("en"));
+
+  if(voice){
+    speech.voice=voice;
+  }
+
+  window.speechSynthesis.speak(speech);
+}
+
+/* =========================
+   小遊戲
+========================= */
+
+const gameData=[
+
+  {en:"Frontal bone",zh:"額骨"},
+  {en:"Nasal bone",zh:"鼻骨"},
+  {en:"Parietal bone",zh:"頂骨"},
+  {en:"Temporal bone",zh:"顳骨"},
+  {en:"Sphenoid bone",zh:"蝶骨"},
+  {en:"Lacrimal bone",zh:"淚骨"},
+  {en:"Zygomatic bone",zh:"顴骨"},
+  {en:"Ethmoid bone",zh:"篩骨"},
+  {en:"Maxilla",zh:"上顎骨"},
+  {en:"Mandible",zh:"下顎骨"},
+
+  {en:"Clavicle",zh:"鎖骨"},
+  {en:"Scapula",zh:"肩胛骨"},
+  {en:"Sternum",zh:"胸骨"},
+  {en:"Ribs",zh:"肋骨"},
+  {en:"Cervical vertebrae",zh:"頸椎"},
+  {en:"Thoracic vertebrae",zh:"胸椎"},
+  {en:"Lumbar vertebrae",zh:"腰椎"},
+  {en:"Sacrum",zh:"薦骨"},
+  {en:"Coccyx",zh:"尾骨"},
+
+  {en:"Humerus",zh:"肱骨"},
+  {en:"Radius",zh:"橈骨"},
+  {en:"Ulna",zh:"尺骨"},
+  {en:"Carpals",zh:"腕骨"},
+  {en:"Metacarpals",zh:"掌骨"},
+
+  {en:"Pelvis",zh:"骨盆"},
+  {en:"Femur",zh:"股骨"},
+  {en:"Patella",zh:"髕骨"},
+  {en:"Tibia",zh:"脛骨"},
+  {en:"Fibula",zh:"腓骨"},
+  {en:"Tarsals",zh:"跗骨"},
+  {en:"Metatarsals",zh:"蹠骨"},
+  {en:"Phalanges",zh:"趾骨"}
+
+];
+
+let quizQuestions=[];
+let currentQuestion=0;
+let score=0;
+let answered=false;
+
+function shuffle(array){
+
+  const copy=[...array];
+
+  for(let i=copy.length-1;i>0;i--){
+
+    const j=Math.floor(Math.random()*(i+1));
+
+    [copy[i],copy[j]]=[copy[j],copy[i]];
+  }
+
+  return copy;
+}
+
+function startGame(){
+
+  quizQuestions=shuffle(gameData).slice(0,10);
+
+  currentQuestion=0;
+  score=0;
+  answered=false;
+
+  document.getElementById("score").textContent="0";
+  document.getElementById("restartBtn").style.display="none";
+
+  showQuestion();
+}
+
+function showQuestion(){
+
+  answered=false;
+
+  const q=quizQuestions[currentQuestion];
+
+  document.getElementById("questionNumber").textContent=currentQuestion+1;
+  document.getElementById("gameWord").textContent=q.en+" 🔊";
+  document.getElementById("gameResult").textContent="";
+  document.getElementById("nextBtn").style.display="none";
+
+  const wrongAnswers=
+    shuffle(
+      gameData.filter(item=>item.zh!==q.zh)
+    )
+    .slice(0,3)
+    .map(item=>item.zh);
+
+  const answers=shuffle([
+    q.zh,
+    ...wrongAnswers
+  ]);
+
+  const optionsBox=document.getElementById("gameOptions");
+
+  optionsBox.innerHTML="";
+
+  answers.forEach(answer=>{
+
+    const button=document.createElement("button");
+
+    button.className="game-option";
+    button.textContent=answer;
+
+    button.onclick=()=>checkAnswer(button,answer);
+
+    optionsBox.appendChild(button);
+  });
+}
+
+function checkAnswer(button,answer){
+
+  if(answered){
+    return;
+  }
+
+  answered=true;
+
+  const q=quizQuestions[currentQuestion];
+
+  const buttons=document.querySelectorAll(".game-option");
+
+  buttons.forEach(btn=>{
+
+    if(btn.textContent===q.zh){
+      btn.classList.add("correct");
+    }
+
+    btn.disabled=true;
+  });
+
+  if(answer===q.zh){
+
+    score++;
+
+    document.getElementById("score").textContent=score;
+    document.getElementById("gameResult").textContent="🎉 答對了！";
+
+    speak(q.en);
+
+  }else{
+
+    button.classList.add("wrong");
+
+    document.getElementById("gameResult").textContent=
+      "再記一次～正確答案是「"+q.zh+"」";
+  }
+
+  if(currentQuestion<quizQuestions.length-1){
+
+    document.getElementById("nextBtn").style.display="inline-block";
+
+  }else{
+
+    finishGame();
+  }
+}
+
+function nextQuestion(){
+
+  currentQuestion++;
+
+  showQuestion();
+}
+
+function finishGame(){
+
+  const result=document.getElementById("gameResult");
+
+  if(score===10){
+
+    result.textContent="🏆 太厲害了！10 題全部答對！";
+
+  }else if(score>=8){
+
+    result.textContent="🌟 很棒！你答對 "+score+" 題！";
+
+  }else if(score>=6){
+
+    result.textContent="👏 不錯喔！你答對 "+score+" 題！";
+
+  }else{
+
+    result.textContent="💪 你答對 "+score+" 題，再練一次會更熟！";
+  }
+
+  document.getElementById("restartBtn").style.display="inline-block";
+}
+
+function restartGame(){
+  startGame();
+}
+
+function speakCurrentWord(){
+
+  if(!quizQuestions.length){
+    return;
+  }
+
+  speak(quizQuestions[currentQuestion].en);
+}
+
+startGame();
+
+</script>
+
+</body>
+</html>
